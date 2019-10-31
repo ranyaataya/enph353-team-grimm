@@ -1,0 +1,8 @@
+prefix=/home/fizzer/enph353_gym-gazebo/gym_gazebo/envs/enph353/install
+
+Name: hardware_interface
+Description: Description of hardware_interface
+Version: 0.15.1
+Cflags: -I/home/fizzer/enph353_gym-gazebo/gym_gazebo/envs/enph353/install/include
+Libs: -L/home/fizzer/enph353_gym-gazebo/gym_gazebo/envs/enph353/install/lib 
+Requires: roscpp
