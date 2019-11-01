@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="enph353_ros_lab" type="imageSaver-grimm.py" name="myNode"/>
+</launch>

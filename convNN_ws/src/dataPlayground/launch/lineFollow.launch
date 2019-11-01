@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="enph353_ros_lab" type="lineFollowerLab3.py" name="myNode"/>
+</launch>
