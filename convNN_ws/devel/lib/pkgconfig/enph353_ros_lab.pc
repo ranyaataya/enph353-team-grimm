@@ -1,8 +1,0 @@
-prefix=/home/fizzer/enph353-team-grimm/convNN_ws/devel
-
-Name: enph353_ros_lab
-Description: Description of enph353_ros_lab
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/fizzer/enph353-team-grimm/convNN_ws/devel/lib 
-Requires: 

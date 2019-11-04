@@ -1,2 +1,0 @@
-dataPlayground
--DCATKIN_DEVEL_PREFIX=/home/fizzer/enph353-team-grimm/convNN_ws/devel -DCMAKE_INSTALL_PREFIX=/home/fizzer/enph353-team-grimm/convNN_ws/install -G Unix Makefiles
