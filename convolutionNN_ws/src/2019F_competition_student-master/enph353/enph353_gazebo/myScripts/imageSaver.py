@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# This script saves the images from the video feed of the robot whilte the
+# This script saves the images from the video feed of the robot while the
 # robot is being driven by the user (user controlled)
 
 
@@ -24,16 +24,14 @@ class robotPhotographer:
         print("Node initialized")
         self.bridge = CvBridge()
         self.fileNameIncrement = 0
-        self.npcType = "potato"  # change based on which one is wanted
+        self.npcType = "raptor"  # change based on which one is wanted
 
         # Need to initial subscriber for subscribing to image feed
         self.imageSubscriber = rospy.Subscriber("/R1/pi_camera/image_raw", Image, self.callback)
 
     def callback(self, data):
-        # sleeps for 5 seconds
         # we don't need every frame saved, just the significant ones
         print("Callback started")
-        # rospy.sleep(5)
 
         try:
             robotImage = self.bridge.imgmsg_to_cv2(data, "bgr8")
