@@ -1,2 +1,2 @@
 - setup-file:
-    local-name: /home/fizzer/enph353_gym-gazebo/gym_gazebo/envs/enph353/devel/setup.sh
+    local-name: /home/fizzer/enph353-team-grimm/grimm_gym_gazebo_ws/gym_gazebo/envs/enph353/devel/setup.sh

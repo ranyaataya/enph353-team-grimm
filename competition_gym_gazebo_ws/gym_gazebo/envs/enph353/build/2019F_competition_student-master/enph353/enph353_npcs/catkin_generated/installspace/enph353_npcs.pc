@@ -1,0 +1,8 @@
+prefix=/home/fizzer/enph353-team-grimm/competition_gym_gazebo_ws/gym_gazebo/envs/enph353/install
+
+Name: enph353_npcs
+Description: Description of enph353_npcs
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/fizzer/enph353-team-grimm/competition_gym_gazebo_ws/gym_gazebo/envs/enph353/install/lib 
+Requires: 

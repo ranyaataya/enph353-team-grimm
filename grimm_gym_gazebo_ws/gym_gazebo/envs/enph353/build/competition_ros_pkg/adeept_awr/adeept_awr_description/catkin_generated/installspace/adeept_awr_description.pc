@@ -1,0 +1,8 @@
+prefix=/home/fizzer/enph353-team-grimm/grimm_gym_gazebo_ws/gym_gazebo/envs/enph353/install
+
+Name: adeept_awr_description
+Description: Description of adeept_awr_description
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/fizzer/enph353-team-grimm/grimm_gym_gazebo_ws/gym_gazebo/envs/enph353/install/lib 
+Requires: 

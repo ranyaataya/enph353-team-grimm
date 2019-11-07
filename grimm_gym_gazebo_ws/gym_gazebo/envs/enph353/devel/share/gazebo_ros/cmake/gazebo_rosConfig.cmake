@@ -67,14 +67,14 @@ set(gazebo_ros_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("TRUE" STREQUAL "TRUE")
-  set(gazebo_ros_SOURCE_PREFIX /home/fizzer/enph353_gym-gazebo/gym_gazebo/envs/enph353/src/gazebo_ros_pkgs/gazebo_ros)
-  set(gazebo_ros_DEVEL_PREFIX /home/fizzer/enph353_gym-gazebo/gym_gazebo/envs/enph353/devel)
+  set(gazebo_ros_SOURCE_PREFIX /home/fizzer/enph353-team-grimm/grimm_gym_gazebo_ws/gym_gazebo/envs/enph353/src/gazebo_ros_pkgs/gazebo_ros)
+  set(gazebo_ros_DEVEL_PREFIX /home/fizzer/enph353-team-grimm/grimm_gym_gazebo_ws/gym_gazebo/envs/enph353/devel)
   set(gazebo_ros_INSTALL_PREFIX "")
   set(gazebo_ros_PREFIX ${gazebo_ros_DEVEL_PREFIX})
 else()
   set(gazebo_ros_SOURCE_PREFIX "")
   set(gazebo_ros_DEVEL_PREFIX "")
-  set(gazebo_ros_INSTALL_PREFIX /home/fizzer/enph353_gym-gazebo/gym_gazebo/envs/enph353/install)
+  set(gazebo_ros_INSTALL_PREFIX /home/fizzer/enph353-team-grimm/grimm_gym_gazebo_ws/gym_gazebo/envs/enph353/install)
   set(gazebo_ros_PREFIX ${gazebo_ros_INSTALL_PREFIX})
 endif()
 
@@ -91,9 +91,9 @@ endif()
 # flag project as catkin-based to distinguish if a find_package()-ed project is a catkin project
 set(gazebo_ros_FOUND_CATKIN_PROJECT TRUE)
 
-if(NOT "/home/fizzer/enph353_gym-gazebo/gym_gazebo/envs/enph353/devel/include;/usr/include " STREQUAL " ")
+if(NOT "/home/fizzer/enph353-team-grimm/grimm_gym_gazebo_ws/gym_gazebo/envs/enph353/devel/include;/usr/include " STREQUAL " ")
   set(gazebo_ros_INCLUDE_DIRS "")
-  set(_include_dirs "/home/fizzer/enph353_gym-gazebo/gym_gazebo/envs/enph353/devel/include;/usr/include")
+  set(_include_dirs "/home/fizzer/enph353-team-grimm/grimm_gym_gazebo_ws/gym_gazebo/envs/enph353/devel/include;/usr/include")
   if(NOT "https://github.com/ros-simulation/gazebo_ros_pkgs/issues " STREQUAL " ")
     set(_report "Check the issue tracker 'https://github.com/ros-simulation/gazebo_ros_pkgs/issues' and consider creating a ticket if the problem has not been reported yet.")
   elseif(NOT "http://gazebosim.org/tutorials?cat=connect_ros " STREQUAL " ")
@@ -110,7 +110,7 @@ if(NOT "/home/fizzer/enph353_gym-gazebo/gym_gazebo/envs/enph353/devel/include;/u
         message(FATAL_ERROR "Project 'gazebo_ros' specifies '${idir}' as an include dir, which is not found.  It does not exist in '${include}'.  ${_report}")
       endif()
     else()
-      message(FATAL_ERROR "Project 'gazebo_ros' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/fizzer/enph353_gym-gazebo/gym_gazebo/envs/enph353/src/gazebo_ros_pkgs/gazebo_ros/${idir}'.  ${_report}")
+      message(FATAL_ERROR "Project 'gazebo_ros' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/fizzer/enph353-team-grimm/grimm_gym_gazebo_ws/gym_gazebo/envs/enph353/src/gazebo_ros_pkgs/gazebo_ros/${idir}'.  ${_report}")
     endif()
     _list_append_unique(gazebo_ros_INCLUDE_DIRS ${include})
   endforeach()
@@ -131,7 +131,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/fizzer/enph353_gym-gazebo/gym_gazebo/envs/enph353/devel/lib;/opt/ros/melodic/lib)
+    foreach(path /home/fizzer/enph353-team-grimm/grimm_gym_gazebo_ws/gym_gazebo/envs/enph353/devel/lib;/opt/ros/melodic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

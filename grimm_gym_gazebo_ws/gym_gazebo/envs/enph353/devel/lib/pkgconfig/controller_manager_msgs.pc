@@ -1,8 +1,8 @@
-prefix=/home/fizzer/enph353_gym-gazebo/gym_gazebo/envs/enph353/devel
+prefix=/home/fizzer/enph353-team-grimm/grimm_gym_gazebo_ws/gym_gazebo/envs/enph353/devel
 
 Name: controller_manager_msgs
 Description: Description of controller_manager_msgs
 Version: 0.15.1
-Cflags: -I/home/fizzer/enph353_gym-gazebo/gym_gazebo/envs/enph353/devel/include
-Libs: -L/home/fizzer/enph353_gym-gazebo/gym_gazebo/envs/enph353/devel/lib 
+Cflags: -I/home/fizzer/enph353-team-grimm/grimm_gym_gazebo_ws/gym_gazebo/envs/enph353/devel/include
+Libs: -L/home/fizzer/enph353-team-grimm/grimm_gym_gazebo_ws/gym_gazebo/envs/enph353/devel/lib 
 Requires: std_msgs message_runtime

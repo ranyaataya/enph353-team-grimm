@@ -67,14 +67,14 @@ set(joint_limits_interface_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("TRUE" STREQUAL "TRUE")
-  set(joint_limits_interface_SOURCE_PREFIX /home/fizzer/enph353_gym-gazebo/gym_gazebo/envs/enph353/src/ros_control/joint_limits_interface)
-  set(joint_limits_interface_DEVEL_PREFIX /home/fizzer/enph353_gym-gazebo/gym_gazebo/envs/enph353/devel)
+  set(joint_limits_interface_SOURCE_PREFIX /home/fizzer/enph353-team-grimm/grimm_gym_gazebo_ws/gym_gazebo/envs/enph353/src/ros_control/joint_limits_interface)
+  set(joint_limits_interface_DEVEL_PREFIX /home/fizzer/enph353-team-grimm/grimm_gym_gazebo_ws/gym_gazebo/envs/enph353/devel)
   set(joint_limits_interface_INSTALL_PREFIX "")
   set(joint_limits_interface_PREFIX ${joint_limits_interface_DEVEL_PREFIX})
 else()
   set(joint_limits_interface_SOURCE_PREFIX "")
   set(joint_limits_interface_DEVEL_PREFIX "")
-  set(joint_limits_interface_INSTALL_PREFIX /home/fizzer/enph353_gym-gazebo/gym_gazebo/envs/enph353/install)
+  set(joint_limits_interface_INSTALL_PREFIX /home/fizzer/enph353-team-grimm/grimm_gym_gazebo_ws/gym_gazebo/envs/enph353/install)
   set(joint_limits_interface_PREFIX ${joint_limits_interface_INSTALL_PREFIX})
 endif()
 
@@ -91,9 +91,9 @@ endif()
 # flag project as catkin-based to distinguish if a find_package()-ed project is a catkin project
 set(joint_limits_interface_FOUND_CATKIN_PROJECT TRUE)
 
-if(NOT "/home/fizzer/enph353_gym-gazebo/gym_gazebo/envs/enph353/src/ros_control/joint_limits_interface/include;/usr/include " STREQUAL " ")
+if(NOT "/home/fizzer/enph353-team-grimm/grimm_gym_gazebo_ws/gym_gazebo/envs/enph353/src/ros_control/joint_limits_interface/include;/usr/include " STREQUAL " ")
   set(joint_limits_interface_INCLUDE_DIRS "")
-  set(_include_dirs "/home/fizzer/enph353_gym-gazebo/gym_gazebo/envs/enph353/src/ros_control/joint_limits_interface/include;/usr/include")
+  set(_include_dirs "/home/fizzer/enph353-team-grimm/grimm_gym_gazebo_ws/gym_gazebo/envs/enph353/src/ros_control/joint_limits_interface/include;/usr/include")
   if(NOT "https://github.com/ros-controls/ros_control/issues " STREQUAL " ")
     set(_report "Check the issue tracker 'https://github.com/ros-controls/ros_control/issues' and consider creating a ticket if the problem has not been reported yet.")
   elseif(NOT "https://github.com/ros-controls/ros_control/wiki " STREQUAL " ")
@@ -110,7 +110,7 @@ if(NOT "/home/fizzer/enph353_gym-gazebo/gym_gazebo/envs/enph353/src/ros_control/
         message(FATAL_ERROR "Project 'joint_limits_interface' specifies '${idir}' as an include dir, which is not found.  It does not exist in '${include}'.  ${_report}")
       endif()
     else()
-      message(FATAL_ERROR "Project 'joint_limits_interface' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/fizzer/enph353_gym-gazebo/gym_gazebo/envs/enph353/src/ros_control/joint_limits_interface/${idir}'.  ${_report}")
+      message(FATAL_ERROR "Project 'joint_limits_interface' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/fizzer/enph353-team-grimm/grimm_gym_gazebo_ws/gym_gazebo/envs/enph353/src/ros_control/joint_limits_interface/${idir}'.  ${_report}")
     endif()
     _list_append_unique(joint_limits_interface_INCLUDE_DIRS ${include})
   endforeach()
@@ -131,7 +131,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/fizzer/enph353_gym-gazebo/gym_gazebo/envs/enph353/devel/lib;/opt/ros/melodic/lib)
+    foreach(path /home/fizzer/enph353-team-grimm/grimm_gym_gazebo_ws/gym_gazebo/envs/enph353/devel/lib;/opt/ros/melodic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

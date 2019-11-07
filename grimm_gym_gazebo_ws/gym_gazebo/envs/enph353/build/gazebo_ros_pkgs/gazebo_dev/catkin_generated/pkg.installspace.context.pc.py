@@ -4,5 +4,5 @@ PROJECT_PKG_CONFIG_INCLUDE_DIRS = "".split(';') if "" != "" else []
 PROJECT_CATKIN_DEPENDS = "".replace(';', ' ')
 PKG_CONFIG_LIBRARIES_WITH_PREFIX = "".split(';') if "" != "" else []
 PROJECT_NAME = "gazebo_dev"
-PROJECT_SPACE_DIR = "/home/fizzer/enph353_gym-gazebo/gym_gazebo/envs/enph353/install"
+PROJECT_SPACE_DIR = "/home/fizzer/enph353-team-grimm/grimm_gym_gazebo_ws/gym_gazebo/envs/enph353/install"
 PROJECT_VERSION = "2.5.19"
