@@ -1,2 +1,2 @@
-
--DCATKIN_DEVEL_PREFIX=/home/fizzer/enph353_ws/devel -DCMAKE_INSTALL_PREFIX=/home/fizzer/enph353_ws/install -G Unix Makefiles
+enph353_ros_lab
+-DCATKIN_DEVEL_PREFIX=/home/onehalf/Desktop/enph353-team-grimm/Lab3/devel -DCMAKE_INSTALL_PREFIX=/home/onehalf/Desktop/enph353-team-grimm/Lab3/install -G Unix Makefiles

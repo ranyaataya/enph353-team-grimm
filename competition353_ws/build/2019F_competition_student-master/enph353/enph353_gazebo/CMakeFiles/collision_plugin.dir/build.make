@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/fizzer/enph353-team-grimm/competition353_ws/src
+CMAKE_SOURCE_DIR = /home/onehalf/Desktop/enph353-team-grimm/competition353_ws/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/fizzer/enph353-team-grimm/competition353_ws/build
+CMAKE_BINARY_DIR = /home/onehalf/Desktop/enph353-team-grimm/competition353_ws/build
 
 # Include any dependencies generated for this target.
 include 2019F_competition_student-master/enph353/enph353_gazebo/CMakeFiles/collision_plugin.dir/depend.make
@@ -58,17 +58,17 @@ include 2019F_competition_student-master/enph353/enph353_gazebo/CMakeFiles/colli
 include 2019F_competition_student-master/enph353/enph353_gazebo/CMakeFiles/collision_plugin.dir/flags.make
 
 2019F_competition_student-master/enph353/enph353_gazebo/CMakeFiles/collision_plugin.dir/src/collision_plugin.cpp.o: 2019F_competition_student-master/enph353/enph353_gazebo/CMakeFiles/collision_plugin.dir/flags.make
-2019F_competition_student-master/enph353/enph353_gazebo/CMakeFiles/collision_plugin.dir/src/collision_plugin.cpp.o: /home/fizzer/enph353-team-grimm/competition353_ws/src/2019F_competition_student-master/enph353/enph353_gazebo/src/collision_plugin.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/fizzer/enph353-team-grimm/competition353_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object 2019F_competition_student-master/enph353/enph353_gazebo/CMakeFiles/collision_plugin.dir/src/collision_plugin.cpp.o"
-	cd /home/fizzer/enph353-team-grimm/competition353_ws/build/2019F_competition_student-master/enph353/enph353_gazebo && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/collision_plugin.dir/src/collision_plugin.cpp.o -c /home/fizzer/enph353-team-grimm/competition353_ws/src/2019F_competition_student-master/enph353/enph353_gazebo/src/collision_plugin.cpp
+2019F_competition_student-master/enph353/enph353_gazebo/CMakeFiles/collision_plugin.dir/src/collision_plugin.cpp.o: /home/onehalf/Desktop/enph353-team-grimm/competition353_ws/src/2019F_competition_student-master/enph353/enph353_gazebo/src/collision_plugin.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object 2019F_competition_student-master/enph353/enph353_gazebo/CMakeFiles/collision_plugin.dir/src/collision_plugin.cpp.o"
+	cd /home/onehalf/Desktop/enph353-team-grimm/competition353_ws/build/2019F_competition_student-master/enph353/enph353_gazebo && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/collision_plugin.dir/src/collision_plugin.cpp.o -c /home/onehalf/Desktop/enph353-team-grimm/competition353_ws/src/2019F_competition_student-master/enph353/enph353_gazebo/src/collision_plugin.cpp
 
 2019F_competition_student-master/enph353/enph353_gazebo/CMakeFiles/collision_plugin.dir/src/collision_plugin.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/collision_plugin.dir/src/collision_plugin.cpp.i"
-	cd /home/fizzer/enph353-team-grimm/competition353_ws/build/2019F_competition_student-master/enph353/enph353_gazebo && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/fizzer/enph353-team-grimm/competition353_ws/src/2019F_competition_student-master/enph353/enph353_gazebo/src/collision_plugin.cpp > CMakeFiles/collision_plugin.dir/src/collision_plugin.cpp.i
+	cd /home/onehalf/Desktop/enph353-team-grimm/competition353_ws/build/2019F_competition_student-master/enph353/enph353_gazebo && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/onehalf/Desktop/enph353-team-grimm/competition353_ws/src/2019F_competition_student-master/enph353/enph353_gazebo/src/collision_plugin.cpp > CMakeFiles/collision_plugin.dir/src/collision_plugin.cpp.i
 
 2019F_competition_student-master/enph353/enph353_gazebo/CMakeFiles/collision_plugin.dir/src/collision_plugin.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/collision_plugin.dir/src/collision_plugin.cpp.s"
-	cd /home/fizzer/enph353-team-grimm/competition353_ws/build/2019F_competition_student-master/enph353/enph353_gazebo && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/fizzer/enph353-team-grimm/competition353_ws/src/2019F_competition_student-master/enph353/enph353_gazebo/src/collision_plugin.cpp -o CMakeFiles/collision_plugin.dir/src/collision_plugin.cpp.s
+	cd /home/onehalf/Desktop/enph353-team-grimm/competition353_ws/build/2019F_competition_student-master/enph353/enph353_gazebo && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/onehalf/Desktop/enph353-team-grimm/competition353_ws/src/2019F_competition_student-master/enph353/enph353_gazebo/src/collision_plugin.cpp -o CMakeFiles/collision_plugin.dir/src/collision_plugin.cpp.s
 
 2019F_competition_student-master/enph353/enph353_gazebo/CMakeFiles/collision_plugin.dir/src/collision_plugin.cpp.o.requires:
 
@@ -88,155 +88,155 @@ collision_plugin_OBJECTS = \
 # External object files for target collision_plugin
 collision_plugin_EXTERNAL_OBJECTS =
 
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: 2019F_competition_student-master/enph353/enph353_gazebo/CMakeFiles/collision_plugin.dir/src/collision_plugin.cpp.o
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: 2019F_competition_student-master/enph353/enph353_gazebo/CMakeFiles/collision_plugin.dir/build.make
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libgazebo_ros_api_plugin.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libgazebo_ros_paths_plugin.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libtinyxml.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libroslib.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/librospack.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libpython2.7.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_program_options.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libtinyxml2.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libtf.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libtf2_ros.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libactionlib.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libmessage_filters.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libtf2.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libdynamic_reconfigure_config_init_mutex.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libroscpp.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_signals.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/librosconsole.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/librosconsole_log4cxx.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/librosconsole_backend_interface.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/liblog4cxx.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_regex.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libroscpp_serialization.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libxmlrpcpp.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/librostime.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libcpp_common.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_system.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_thread.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libpthread.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libSimTKsimbody.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libSimTKmath.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libSimTKcommon.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libblas.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/liblapack.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libblas.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_client.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_gui.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_sensors.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_rendering.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_physics.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_ode.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_transport.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_msgs.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_util.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_common.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_gimpact.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_opcode.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_opende_ou.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_ccd.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_thread.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_system.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_program_options.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_regex.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_iostreams.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libpthread.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libprotobuf.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libsdformat.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libOgreMain.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_thread.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_system.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libpthread.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libOgreTerrain.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libOgrePaging.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libignition-transport4.so.4.0.0
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libignition-msgs1.so.1.0.0
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libignition-common1.so.1.1.1
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libignition-fuel_tools1.so.1.2.0
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_program_options.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libtinyxml2.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libtf.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libtf2_ros.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libactionlib.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libmessage_filters.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libtf2.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libdynamic_reconfigure_config_init_mutex.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libroscpp.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_signals.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/librosconsole.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/librosconsole_log4cxx.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/librosconsole_backend_interface.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/liblog4cxx.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_regex.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libroscpp_serialization.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libxmlrpcpp.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/librostime.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libcpp_common.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libSimTKsimbody.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libSimTKmath.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libSimTKcommon.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libblas.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/liblapack.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_client.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_gui.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_sensors.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_rendering.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_physics.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_ode.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_transport.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_msgs.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_util.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_common.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_gimpact.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_opcode.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_opende_ou.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_ccd.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_iostreams.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libprotobuf.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libsdformat.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libOgreMain.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libOgreTerrain.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libOgrePaging.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libprotobuf.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libignition-math4.so.4.0.0
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libuuid.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libuuid.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libswscale.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libswscale.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libavdevice.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libavdevice.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libavformat.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libavformat.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libavcodec.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libavcodec.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libavutil.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libavutil.so
-/home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: 2019F_competition_student-master/enph353/enph353_gazebo/CMakeFiles/collision_plugin.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/fizzer/enph353-team-grimm/competition353_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX shared library /home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so"
-	cd /home/fizzer/enph353-team-grimm/competition353_ws/build/2019F_competition_student-master/enph353/enph353_gazebo && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/collision_plugin.dir/link.txt --verbose=$(VERBOSE)
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: 2019F_competition_student-master/enph353/enph353_gazebo/CMakeFiles/collision_plugin.dir/src/collision_plugin.cpp.o
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: 2019F_competition_student-master/enph353/enph353_gazebo/CMakeFiles/collision_plugin.dir/build.make
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libgazebo_ros_api_plugin.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libgazebo_ros_paths_plugin.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libtinyxml.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libroslib.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/librospack.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libpython2.7.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_program_options.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libtinyxml2.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libtf.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libtf2_ros.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libactionlib.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libmessage_filters.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libtf2.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libdynamic_reconfigure_config_init_mutex.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libroscpp.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_signals.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/librosconsole.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/librosconsole_log4cxx.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/librosconsole_backend_interface.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/liblog4cxx.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_regex.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libroscpp_serialization.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libxmlrpcpp.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/librostime.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libcpp_common.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_system.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_thread.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libpthread.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libSimTKsimbody.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libSimTKmath.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libSimTKcommon.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libblas.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/liblapack.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libblas.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_client.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_gui.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_sensors.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_rendering.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_physics.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_ode.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_transport.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_msgs.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_util.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_common.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_gimpact.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_opcode.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_opende_ou.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_ccd.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_thread.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_system.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_program_options.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_regex.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_iostreams.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libpthread.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libprotobuf.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libsdformat.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libOgreMain.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_thread.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_system.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libpthread.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libOgreTerrain.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libOgrePaging.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libignition-transport4.so.4.0.0
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libignition-msgs1.so.1.0.0
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libignition-common1.so.1.1.1
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libignition-fuel_tools1.so.1.2.0
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_program_options.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libtinyxml2.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libtf.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libtf2_ros.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libactionlib.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libmessage_filters.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libtf2.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libdynamic_reconfigure_config_init_mutex.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libroscpp.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_signals.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/librosconsole.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/librosconsole_log4cxx.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/librosconsole_backend_interface.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/liblog4cxx.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_regex.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libroscpp_serialization.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libxmlrpcpp.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/librostime.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /opt/ros/melodic/lib/libcpp_common.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libSimTKsimbody.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libSimTKmath.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libSimTKcommon.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libblas.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/liblapack.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_client.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_gui.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_sensors.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_rendering.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_physics.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_ode.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_transport.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_msgs.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_util.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_common.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_gimpact.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_opcode.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_opende_ou.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libgazebo_ccd.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libboost_iostreams.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libprotobuf.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libsdformat.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libOgreMain.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libOgreTerrain.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libOgrePaging.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libprotobuf.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libignition-math4.so.4.0.0
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libuuid.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libuuid.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libswscale.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libswscale.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libavdevice.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libavdevice.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libavformat.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libavformat.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libavcodec.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libavcodec.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libavutil.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: /usr/lib/x86_64-linux-gnu/libavutil.so
+/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so: 2019F_competition_student-master/enph353/enph353_gazebo/CMakeFiles/collision_plugin.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX shared library /home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so"
+	cd /home/onehalf/Desktop/enph353-team-grimm/competition353_ws/build/2019F_competition_student-master/enph353/enph353_gazebo && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/collision_plugin.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-2019F_competition_student-master/enph353/enph353_gazebo/CMakeFiles/collision_plugin.dir/build: /home/fizzer/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so
+2019F_competition_student-master/enph353/enph353_gazebo/CMakeFiles/collision_plugin.dir/build: /home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib/libcollision_plugin.so
 
 .PHONY : 2019F_competition_student-master/enph353/enph353_gazebo/CMakeFiles/collision_plugin.dir/build
 
@@ -245,10 +245,10 @@ collision_plugin_EXTERNAL_OBJECTS =
 .PHONY : 2019F_competition_student-master/enph353/enph353_gazebo/CMakeFiles/collision_plugin.dir/requires
 
 2019F_competition_student-master/enph353/enph353_gazebo/CMakeFiles/collision_plugin.dir/clean:
-	cd /home/fizzer/enph353-team-grimm/competition353_ws/build/2019F_competition_student-master/enph353/enph353_gazebo && $(CMAKE_COMMAND) -P CMakeFiles/collision_plugin.dir/cmake_clean.cmake
+	cd /home/onehalf/Desktop/enph353-team-grimm/competition353_ws/build/2019F_competition_student-master/enph353/enph353_gazebo && $(CMAKE_COMMAND) -P CMakeFiles/collision_plugin.dir/cmake_clean.cmake
 .PHONY : 2019F_competition_student-master/enph353/enph353_gazebo/CMakeFiles/collision_plugin.dir/clean
 
 2019F_competition_student-master/enph353/enph353_gazebo/CMakeFiles/collision_plugin.dir/depend:
-	cd /home/fizzer/enph353-team-grimm/competition353_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/fizzer/enph353-team-grimm/competition353_ws/src /home/fizzer/enph353-team-grimm/competition353_ws/src/2019F_competition_student-master/enph353/enph353_gazebo /home/fizzer/enph353-team-grimm/competition353_ws/build /home/fizzer/enph353-team-grimm/competition353_ws/build/2019F_competition_student-master/enph353/enph353_gazebo /home/fizzer/enph353-team-grimm/competition353_ws/build/2019F_competition_student-master/enph353/enph353_gazebo/CMakeFiles/collision_plugin.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/onehalf/Desktop/enph353-team-grimm/competition353_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/onehalf/Desktop/enph353-team-grimm/competition353_ws/src /home/onehalf/Desktop/enph353-team-grimm/competition353_ws/src/2019F_competition_student-master/enph353/enph353_gazebo /home/onehalf/Desktop/enph353-team-grimm/competition353_ws/build /home/onehalf/Desktop/enph353-team-grimm/competition353_ws/build/2019F_competition_student-master/enph353/enph353_gazebo /home/onehalf/Desktop/enph353-team-grimm/competition353_ws/build/2019F_competition_student-master/enph353/enph353_gazebo/CMakeFiles/collision_plugin.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : 2019F_competition_student-master/enph353/enph353_gazebo/CMakeFiles/collision_plugin.dir/depend
 
