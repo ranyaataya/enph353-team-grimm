@@ -1,8 +1,8 @@
-prefix=/home/fizzer/enph353-team-grimm/convolutionNN_ws/install
+prefix=/home/onehalf/Desktop/enph353-team-grimm/convolutionNN_ws/install
 
 Name: adeept_awr_gazebo
 Description: Description of adeept_awr_gazebo
 Version: 0.0.0
 Cflags: 
-Libs: -L/home/fizzer/enph353-team-grimm/convolutionNN_ws/install/lib 
+Libs: -L/home/onehalf/Desktop/enph353-team-grimm/convolutionNN_ws/install/lib 
 Requires: 

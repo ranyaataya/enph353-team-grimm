@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/enph353_gazebo_generate_messages_cpp"
-  "/home/fizzer/enph353-team-grimm/competition_gym_gazebo_ws/gym_gazebo/envs/enph353/devel/include/enph353_gazebo/SubmitPlate.h"
-  "/home/fizzer/enph353-team-grimm/competition_gym_gazebo_ws/gym_gazebo/envs/enph353/devel/include/enph353_gazebo/GetLegalPlates.h"
+  "/home/onehalf/Desktop/enph353-team-grimm/competition_gym_gazebo_ws/gym_gazebo/envs/enph353/devel/include/enph353_gazebo/SubmitPlate.h"
+  "/home/onehalf/Desktop/enph353-team-grimm/competition_gym_gazebo_ws/gym_gazebo/envs/enph353/devel/include/enph353_gazebo/GetLegalPlates.h"
 )
 
 # Per-language clean rules from dependency scanning.
