@@ -1,0 +1,8 @@
+prefix=/home/fizzer/enph353-team-grimm/grimm_gym_gazebo_ws/gym_gazebo/envs/enph353/install
+
+Name: rqt_controller_manager
+Description: Description of rqt_controller_manager
+Version: 0.15.1
+Cflags: 
+Libs: -L/home/fizzer/enph353-team-grimm/grimm_gym_gazebo_ws/gym_gazebo/envs/enph353/install/lib 
+Requires: 

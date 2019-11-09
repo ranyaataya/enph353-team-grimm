@@ -1,0 +1,8 @@
+prefix=/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel
+
+Name: enph353_utils
+Description: Description of enph353_utils
+Version: 0.0.2
+Cflags: 
+Libs: -L/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/devel/lib 
+Requires: actionlib_msgs

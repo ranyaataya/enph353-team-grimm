@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # An OpenAI gym extension for using Gazebo known as `gym-gazebo`
 
 **`gym-gazebo` is a complex piece of software for roboticists that puts together simulation tools, robot middlewares (ROS, ROS 2), machine learning and reinforcement learning techniques. All together to create an environment whereto benchmark and develop behaviors with robots. Setting up `gym-gazebo` appropriately requires relevant familiarity with these tools.**
@@ -45,3 +46,6 @@ We recommend creating an alias to kill those processes.
 ```bash
 echo "alias killgazebogym='killall -9 rosout roslaunch rosmaster gzserver nodelet robot_state_publisher gzclient'" >> ~/.bashrc
 ```
+=======
+# enph353-team-grimm
+>>>>>>> c047753f6a168aa1d0f1e9dac2a10606b623a1be
