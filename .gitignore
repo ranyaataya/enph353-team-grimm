@@ -47,3 +47,8 @@ mav.tlog.raw
 mav.parm
 terrain/
 Theano/
+
+gym_gazebo/envs/enph353/build/*
+gym_gazebo/envs/enph353/devel/*
+gym_gazebo/envs/enph353/.catkin_workspace
+gym_gazebo/envs/enph353/src/CMakeLists.txt
