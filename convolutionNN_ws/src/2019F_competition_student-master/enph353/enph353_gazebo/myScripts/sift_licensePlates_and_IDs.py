@@ -15,7 +15,7 @@ import collections
 from PIL import Image
 
 RELATIVE_PATH = "grimmNPC_images/"
-fileName = 'testImg_27.jpg'
+fileName = 'testImg_28.jpg'
 blankImgName = 'blank_plate.png'
 
 files = os.listdir(RELATIVE_PATH)
@@ -25,45 +25,33 @@ blankPlateImg = np.array(Image.open(blankImgName))
 
 # get height and width values
 height, width = cameraImg.shape[0:2]
+heightBlank, widthBlank = blankPlateImg.shape[0:2]
 
-# x direction
-left_x = -1
-right_x = -1
+# threshold values
 # thresholdColour_blue = [5, 5, 100]
 thresholdColour_blue = [1, 0, 102]
-thresholdColour_white = [100, 100, 100]
-heightThreshold = 250
 
-# =============
-# test thing
-# testarray = [[[32, 45, 78], [12, 34, 97], [56, 66, 78], [45, 24, 78]], [[32, 45, 78], [12, 34, 97], [56, 86, 78], [45, 24, 68]]]
-# testthing = [56, 66, 78]
-# num = 0
-# for index, row in reversed(list(enumerate(testarray))):
-#     print(np.array(row))
-#     print(np.array(testthing))
-#     if (testthing in row):
-#         print("TEST: found on row:", index)
-#         print(num)
-#         break
-#     num = num + 1
-# =============
-
-
+"""
+Finds the row at which the middle of the parking lot's height occurs
+"""
 def findHeightThreshold(cameraImg, thresholdValue):
-    print(thresholdValue)
-    for index, row in reversed(list(enumerate(cameraImg))):
-        # rowNonNP = list(row)
-        if (thresholdValue in row):
-            print("found on row:", index)
-            break
+    rowIndices = []
+
+    for currRow, row in reversed(list(enumerate(cameraImg))):
+        for pixel in row:
+            if tuple(thresholdValue) == tuple(pixel):
+                rowIndices.append(currRow)
+                break
+
+    rowIndexList = [min(rowIndices), rowIndices[int(len(rowIndices)/2)], max(rowIndices)]
+    return rowIndexList
 
 
-findHeightThreshold(cameraImg, thresholdColour_blue)
-# plt.imshow(cameraImg), plt.show()
-
+heightThresholds = findHeightThreshold(cameraImg, thresholdColour_blue)
+print(heightThresholds)
+# x direction
 for x in range(width):
-    imgColour = cameraImg[height - heightThreshold, x]
+    imgColour = cameraImg[heightThresholds[1], x]
 
     if(imgColour[0] <= thresholdColour_blue[0] and imgColour[1] <= thresholdColour_blue[1]
        and imgColour[2] >= thresholdColour_blue[2]):
@@ -71,7 +59,7 @@ for x in range(width):
         break
 
 for x in range(width):
-    imgColour = cameraImg[height - heightThreshold, width - x - 1]
+    imgColour = cameraImg[heightThresholds[1], width - x - 1]
 
     if(imgColour[0] <= thresholdColour_blue[0] and imgColour[1] <= thresholdColour_blue[1]
        and imgColour[2] >= thresholdColour_blue[2]):
@@ -79,29 +67,37 @@ for x in range(width):
         break
 
 # y direction
-down_y = -1
-up_y = -1
-RIGHT_THRESHOLD = 10
+up_y = heightThresholds[0]
+down_y = heightThresholds[2]
 
-for y in range(height):
-    imgColour = cameraImg[y, right_x - RIGHT_THRESHOLD]
+# RIGHT_THRESHOLD = 10
 
-    if(imgColour[0] <= thresholdColour_blue[0] and imgColour[1] <= thresholdColour_blue[1]
-       and imgColour[2] >= thresholdColour_blue[2]):
-        up_y = y
-        break
+# for y in range(height):
+#     imgColour = cameraImg[y, right_x - RIGHT_THRESHOLD]
 
-for y in range(height):
-    imgColour = cameraImg[height - y - 1, right_x - RIGHT_THRESHOLD]
+#     if(imgColour[0] <= thresholdColour_blue[0] and imgColour[1] <= thresholdColour_blue[1]
+#        and imgColour[2] >= thresholdColour_blue[2]):
+#         up_y = y
+#         break
 
-    if(imgColour[0] <= thresholdColour_blue[0] and imgColour[1] <= thresholdColour_blue[1]
-       and imgColour[2] >= thresholdColour_blue[2]):
-        down_y = height - y
-        break
+# for y in range(height):
+#     imgColour = cameraImg[height - y - 1, right_x - RIGHT_THRESHOLD]
+
+#     if(imgColour[0] <= thresholdColour_blue[0] and imgColour[1] <= thresholdColour_blue[1]
+#        and imgColour[2] >= thresholdColour_blue[2]):
+#         down_y = height - y
+#         break
 
 print("left x: ", left_x, "\n right x: ", right_x, "\n up y: ", up_y, "\n down y: ", down_y)
 
+# crop image
 croppedImg = cameraImg[up_y:down_y, left_x:right_x, :]
+print(croppedImg.shape[:])
+print(cameraImg.shape[:])
+print(blankPlateImg.shape[:])
+
+resizedImg = cv2.resize(blankPlateImg, (int(0.25*widthBlank), int(0.25*heightBlank)), interpolation=cv2.INTER_AREA)
+print(resizedImg.shape[:])
 plt.imshow(croppedImg), plt.show()
 # ==================================================================
 
@@ -109,14 +105,14 @@ plt.imshow(croppedImg), plt.show()
 orb = cv2.ORB_create()
 
 # Find keypoints and descriptors in images
-keypointsFull, descriptorsFull = orb.detectAndCompute(cameraImg, None)
-keypointsBlank, descriptorsBlank = orb.detectAndCompute(blankPlateImg, None)
+keypointsFull, descriptorsFull = orb.detectAndCompute(croppedImg, None)
+keypointsBlank, descriptorsBlank = orb.detectAndCompute(resizedImg, None)
 
 bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
 matches = bf.match(descriptorsFull, descriptorsBlank)
 matches = sorted(matches, key=lambda x: x.distance)
 
-outImg = cv2.drawMatches(blankPlateImg, keypointsBlank, cameraImg, keypointsFull, matches[:100], None, flags=2)
+# outImg = cv2.drawMatches(resizedImg, keypointsBlank, croppedImg, keypointsFull, matches[:10], None, flags=2)
 
 # plot the matches on the combined image
 # plt.imshow(outImg), plt.show()
