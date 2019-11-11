@@ -24,7 +24,7 @@ class robotPhotographer:
         print("Node initialized")
         self.bridge = CvBridge()
         self.fileNameIncrement = 0
-        self.npcType = "raptor"  # change based on which one is wanted
+        self.npcType = "LP_close"  # change based on which one is wanted
 
         # Need to initial subscriber for subscribing to image feed
         self.imageSubscriber = rospy.Subscriber("/R1/pi_camera/image_raw", Image, self.callback)
