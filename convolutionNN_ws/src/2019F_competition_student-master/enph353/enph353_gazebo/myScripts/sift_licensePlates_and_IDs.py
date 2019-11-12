@@ -15,7 +15,7 @@ import collections
 from PIL import Image
 
 RELATIVE_PATH = "grimmNPC_images/"
-fileName = 'testImg_28.jpg'
+fileName = 'testImg_25.jpg'
 blankImgName = 'blank_plate.png'
 
 files = os.listdir(RELATIVE_PATH)
@@ -23,12 +23,11 @@ files = os.listdir(RELATIVE_PATH)
 cameraImg = np.array(Image.open(RELATIVE_PATH + fileName))
 blankPlateImg = np.array(Image.open(blankImgName))
 
-# get height and width values
+# Get height and width values
 height, width = cameraImg.shape[0:2]
 heightBlank, widthBlank = blankPlateImg.shape[0:2]
 
-# threshold values
-# thresholdColour_blue = [5, 5, 100]
+# Threshold colour value
 thresholdColour_blue = [1, 0, 102]
 
 """
@@ -48,8 +47,8 @@ def findHeightThreshold(cameraImg, thresholdValue):
 
 
 heightThresholds = findHeightThreshold(cameraImg, thresholdColour_blue)
-print(heightThresholds)
-# x direction
+
+# x Direction
 for x in range(width):
     imgColour = cameraImg[heightThresholds[1], x]
 
@@ -66,53 +65,58 @@ for x in range(width):
         right_x = width - x
         break
 
-# y direction
+# y Direction
 up_y = heightThresholds[0]
 down_y = heightThresholds[2]
 
-# RIGHT_THRESHOLD = 10
-
-# for y in range(height):
-#     imgColour = cameraImg[y, right_x - RIGHT_THRESHOLD]
-
-#     if(imgColour[0] <= thresholdColour_blue[0] and imgColour[1] <= thresholdColour_blue[1]
-#        and imgColour[2] >= thresholdColour_blue[2]):
-#         up_y = y
-#         break
-
-# for y in range(height):
-#     imgColour = cameraImg[height - y - 1, right_x - RIGHT_THRESHOLD]
-
-#     if(imgColour[0] <= thresholdColour_blue[0] and imgColour[1] <= thresholdColour_blue[1]
-#        and imgColour[2] >= thresholdColour_blue[2]):
-#         down_y = height - y
-#         break
-
-print("left x: ", left_x, "\n right x: ", right_x, "\n up y: ", up_y, "\n down y: ", down_y)
-
-# crop image
+# Crop Image
 croppedImg = cameraImg[up_y:down_y, left_x:right_x, :]
-print(croppedImg.shape[:])
-print(cameraImg.shape[:])
-print(blankPlateImg.shape[:])
+croppedHeight, croppedWidth = croppedImg.shape[0:2]
 
-resizedImg = cv2.resize(blankPlateImg, (int(0.25*widthBlank), int(0.25*heightBlank)), interpolation=cv2.INTER_AREA)
-print(resizedImg.shape[:])
-plt.imshow(croppedImg), plt.show()
-# ==================================================================
+# scale cropped image to standard size, determine scaling factors
+# standard numbers based on sample image
+STANDARD_HEIGHT = 195.0
+STANDARD_WIDTH = 222.0
 
-# Initiate ORB detector
-orb = cv2.ORB_create()
+scalingHeightFactor = STANDARD_HEIGHT/croppedHeight
+scalingWidthFactor = STANDARD_WIDTH/croppedWidth
 
-# Find keypoints and descriptors in images
-keypointsFull, descriptorsFull = orb.detectAndCompute(croppedImg, None)
-keypointsBlank, descriptorsBlank = orb.detectAndCompute(resizedImg, None)
+# [lower height, upper height, lower width, upper width]
+LP_bounds = [0.7, 0.9, 0.06, 0.72]
+lotID_bounds = [0.41, 0.63, 0.06, 0.72]
 
-bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
-matches = bf.match(descriptorsFull, descriptorsBlank)
-matches = sorted(matches, key=lambda x: x.distance)
+# Resize the cropped image to standard size
+resizedImg = cv2.resize(croppedImg, (int(croppedWidth*scalingWidthFactor),
+                                     int(croppedHeight*scalingHeightFactor)),
+                        interpolation=cv2.INTER_CUBIC)
 
-# outImg = cv2.drawMatches(resizedImg, keypointsBlank, croppedImg, keypointsFull, matches[:10], None, flags=2)
+# Apply perspective transform
+# LP_originalPoints = np.float32([[int(LP_bounds[2]*STANDARD_WIDTH), int(LP_bounds[0]*STANDARD_HEIGHT)],
+#                                 [int(LP_bounds[3]*STANDARD_WIDTH), int(LP_bounds[0]*STANDARD_HEIGHT)],
+#                                 [28,387],
+#                                 [389,390]])
+# LP_newPoints = 
+# lotID_originalPoints =
+# lotID_newPoints = 
 
-# plot the matches on the combined image
-# plt.imshow(outImg), plt.show()
+# Create license plate image and lot ID image
+licensePlate_img = resizedImg[int(LP_bounds[0]*STANDARD_HEIGHT):
+                              int(LP_bounds[1]*STANDARD_HEIGHT),
+                              int(LP_bounds[2]*STANDARD_WIDTH):
+                              int(LP_bounds[3]*STANDARD_WIDTH)]
+
+lotID_img = resizedImg[int(lotID_bounds[0]*STANDARD_HEIGHT):
+                       int(lotID_bounds[1]*STANDARD_HEIGHT),
+                       int(lotID_bounds[2]*STANDARD_WIDTH):
+                       int(lotID_bounds[3]*STANDARD_WIDTH)]
+
+# Divide images into separate letters and numbers
+lot_img_letter = lotID_img[:, 0:int(lotID_img.shape[1]/2), :]
+lot_img_num = lotID_img[:, int(lotID_img.shape[1]/2)+1:lotID_img.shape[1], :]
+
+# LP_img1 = licensePlate_img[:, , :]
+# LP_img2 = licensePlate_img[:, , :]
+# LP_img3 = licensePlate_img[:, , :]
+# LP_img4 = licensePlate_img[:, , :]
+print(fileName)
+plt.imshow(resizedImg), plt.show()
