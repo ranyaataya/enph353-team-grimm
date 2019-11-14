@@ -13,6 +13,11 @@ from PIL import Image, ImageFont, ImageDraw
 
 path = os.path.dirname(os.path.realpath(__file__)) + "/"
 texture_path = '../media/materials/textures/'
+# =========================================
+alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N'
+            'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+nums = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+# =========================================
 
 with open(path + "plates.csv", 'w') as plates_file:
     csvwriter = csv.writer(plates_file)
@@ -22,12 +27,20 @@ with open(path + "plates.csv", 'w') as plates_file:
         # Pick two random letters
         plate_alpha = ""
         for _ in range(0, 2):
-            plate_alpha += (random.choice(string.ascii_uppercase))
+            # plate_alpha += (random.choice(string.ascii_uppercase))
+            plate_alpha += alphabet[i+8] # added by ranya
         num = randint(0, 99)
 
         # Pick two random numbers
-        plate_num = "{:02d}".format(num)
-
+        # plate_num = "{:02d}".format(num)
+# ==================================================
+        plate_num = ""
+        for _ in range(0,2):
+            if i+8 < len(nums):
+                plate_num += nums[i+8]
+            else:
+                plate_num += nums[0]
+# ===================================================
         # Save plate to file
         csvwriter.writerow([plate_alpha+plate_num])
 
