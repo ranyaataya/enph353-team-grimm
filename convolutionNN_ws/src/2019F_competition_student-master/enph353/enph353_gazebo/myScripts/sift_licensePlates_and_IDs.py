@@ -50,7 +50,10 @@ def findHeightThreshold(cameraImg, thresholdValue):
 heightThresholds = findHeightThreshold(cameraImg, thresholdColour_blue)
 
 # x Direction
+left_x = 0
+right_x = 0
 flag = False
+
 for x in range(width):
     imgColour = cameraImg[heightThresholds[1], x]
 

@@ -14,8 +14,8 @@ from PIL import Image, ImageFont, ImageDraw
 path = os.path.dirname(os.path.realpath(__file__)) + "/"
 texture_path = '../media/materials/textures/'
 # =========================================
-alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N'
-            'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+            'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 nums = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 # =========================================
 
@@ -28,7 +28,7 @@ with open(path + "plates.csv", 'w') as plates_file:
         plate_alpha = ""
         for _ in range(0, 2):
             # plate_alpha += (random.choice(string.ascii_uppercase))
-            plate_alpha += alphabet[i+8] # added by ranya
+            plate_alpha += alphabet[i+24]  # added by ranya
         num = randint(0, 99)
 
         # Pick two random numbers
@@ -36,8 +36,8 @@ with open(path + "plates.csv", 'w') as plates_file:
 # ==================================================
         plate_num = ""
         for _ in range(0,2):
-            if i+8 < len(nums):
-                plate_num += nums[i+8]
+            if i < len(nums):
+                plate_num += nums[i]
             else:
                 plate_num += nums[0]
 # ===================================================
