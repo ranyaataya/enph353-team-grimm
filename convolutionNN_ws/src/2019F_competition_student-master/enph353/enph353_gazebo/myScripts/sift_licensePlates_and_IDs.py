@@ -9,16 +9,7 @@ import cv2
 import numpy as np
 from matplotlib import pyplot as plt
 import os
-# import collections
 from PIL import Image
-
-
-# RELATIVE_PATH = 'rawImages/'  # "grimmNPC_images/"
-# # fileName = 'lot_P0_AA00_1.jpg'  # 'testImg_28.jpg'
-# # blankImgName = 'blank_plate.png'
-
-# files = os.listdir(RELATIVE_PATH)
-# counter = 0
 
 """
 @brief: Finds the row at which the middle of the parking lot's height occurs
@@ -37,7 +28,7 @@ def findHeightThreshold(cameraImg, thresholdValue):
                  abs(int(pixel[2]) - int(pixel[0])) <= thresholdValue[1]) and
                 (abs(int(pixel[2]) - int(pixel[1])) >= thresholdValue[0] and
                  abs(int(pixel[2]) - int(pixel[1])) <= thresholdValue[1])):
-                # if tuple(thresholdValue) == tuple(pixel):
+
                 rowIndices.append(currRow)
                 break
 
@@ -75,7 +66,6 @@ def saveImage(img, fileName, position):
 
 # ================================================================================
 RELATIVE_PATH = 'rawImages/'
-# fileName = 'lot_P3_TT33_6.jpg'
 
 files = os.listdir(RELATIVE_PATH)
 counter = 0
@@ -121,14 +111,6 @@ for fileName in files[:]:
            int(imgColour[0]) >= GREY_THRESHOLD):
             left_x = x
             break
-        # if(imgColour[0] <= thresholdColour_blue[0] and
-        #    imgColour[1] <= thresholdColour_blue[1]
-        #    and imgColour[2] >= thresholdColour_blue[2]):
-        #     flag = True
-
-        # if(flag is True and imgColour[0] > threshold_blue_to_grey and imgColour[1] > threshold_blue_to_grey):
-        #     left_x = x
-        #     break
 
     flag = False
     for x in range(width):
@@ -147,21 +129,10 @@ for fileName in files[:]:
            int(imgColour[0]) >= GREY_THRESHOLD):
             right_x = width - x
             break
-        # if(imgColour[0] <= thresholdColour_blue[0] and
-        #    imgColour[1] <= thresholdColour_blue[1]
-        #    and imgColour[2] >= thresholdColour_blue[2]):
-        #     flag = True
-
-        # if(flag is True and imgColour[0] > threshold_blue_to_grey and imgColour[1] > threshold_blue_to_grey):
-        #     right_x = width - x
-        #     break
 
     # y Direction
     up_y = heightThresholds[0]
     down_y = heightThresholds[2]
-
-    # print("positions: ", left_x, right_x, up_y, down_y)
-    # plt.imshow(cameraImg), plt.show()
 
     # Crop Image
     croppedImg = cameraImg[up_y:down_y, left_x:right_x, :]
@@ -176,8 +147,8 @@ for fileName in files[:]:
     scalingWidthFactor = STANDARD_WIDTH/croppedWidth
 
     # [lower height, upper height, lower width, upper width]
-    LP_bounds = [0.7, 0.9]  # , 0.06, 0.72]
-    lotID_bounds = [0.41, 0.63]  # , 0.06, 0.72]
+    LP_bounds = [0.7, 0.9]
+    lotID_bounds = [0.41, 0.63]
 
     # Resize the cropped image to standard size
     resizedImg = cv2.resize(croppedImg, (int(croppedWidth*scalingWidthFactor),
