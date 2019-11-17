@@ -75,7 +75,7 @@ def saveImage(img, fileName, position):
 
 # ================================================================================
 RELATIVE_PATH = 'rawImages/'
-# fileName = 'lot_P6_WW66_6.jpg'
+# fileName = 'lot_P3_TT33_6.jpg'
 
 files = os.listdir(RELATIVE_PATH)
 counter = 0
@@ -92,11 +92,13 @@ for fileName in files[:]:
     thresholdColour_blue = [1, 0, 102]
     threshold_blue_to_grey = 10
     # ============================
-    BLUE_DIFF_RANGE = [93, 107]
+    BLUE_DIFF_RANGE = [80, 107]
+    BLUE_DIFF_RANGE_Y = [93, 107]
     GREY_DIFF = 7
+    GREY_THRESHOLD = 95
     # ============================
 
-    heightThresholds = findHeightThreshold(cameraImg, BLUE_DIFF_RANGE)
+    heightThresholds = findHeightThreshold(cameraImg, BLUE_DIFF_RANGE_Y)
 
     # x Direction
     left_x = 0
@@ -115,7 +117,8 @@ for fileName in files[:]:
         if(flag is True and
            abs(int(imgColour[2]) - int(imgColour[1])) <= GREY_DIFF and
            abs(int(imgColour[2]) - int(imgColour[0])) <= GREY_DIFF and
-           abs(int(imgColour[1]) - int(imgColour[0])) <= GREY_DIFF):
+           abs(int(imgColour[1]) - int(imgColour[0])) <= GREY_DIFF and
+           int(imgColour[0]) >= GREY_THRESHOLD):
             left_x = x
             break
         # if(imgColour[0] <= thresholdColour_blue[0] and
@@ -140,7 +143,8 @@ for fileName in files[:]:
         if(flag is True and
            abs(int(imgColour[2]) - int(imgColour[1])) <= GREY_DIFF and
            abs(int(imgColour[2]) - int(imgColour[0])) <= GREY_DIFF and
-           abs(int(imgColour[1]) - int(imgColour[0])) <= GREY_DIFF):
+           abs(int(imgColour[1]) - int(imgColour[0])) <= GREY_DIFF and
+           int(imgColour[0]) >= GREY_THRESHOLD):
             right_x = width - x
             break
         # if(imgColour[0] <= thresholdColour_blue[0] and
@@ -155,6 +159,9 @@ for fileName in files[:]:
     # y Direction
     up_y = heightThresholds[0]
     down_y = heightThresholds[2]
+
+    # print("positions: ", left_x, right_x, up_y, down_y)
+    # plt.imshow(cameraImg), plt.show()
 
     # Crop Image
     croppedImg = cameraImg[up_y:down_y, left_x:right_x, :]
