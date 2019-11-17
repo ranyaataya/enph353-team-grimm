@@ -1,0 +1,8 @@
+prefix=/home/onehalf/enph353_gym-gazebo/competitionDriving_ws/devel
+
+Name: comp_ctrl
+Description: Description of comp_ctrl
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/onehalf/enph353_gym-gazebo/competitionDriving_ws/devel/lib 
+Requires: 

@@ -1,0 +1,4 @@
+<launch>
+	<node name="driver" pkg="comp_ctrl" type="compPID.py" output="screen">
+  	</node>
+</launch>
