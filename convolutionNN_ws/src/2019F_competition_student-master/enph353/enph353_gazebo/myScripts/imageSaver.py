@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 
-# This script saves the images from the video feed of the robot while the
-# robot is being driven by the user (user controlled)
+# Author: Ranya Ataya
+# Purpose: This script saves the images from the video feed of the robot while
+#          the robot is being driven by the user (user controlled)
 
 
 from __future__ import print_function
