@@ -1,8 +1,8 @@
-prefix=/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/install
+prefix=/home/fizzer/enph353-team-grimm/competition353_ws/install
 
 Name: adeept_awr_description
 Description: Description of adeept_awr_description
 Version: 0.0.0
 Cflags: 
-Libs: -L/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/install/lib 
+Libs: -L/home/fizzer/enph353-team-grimm/competition353_ws/install/lib 
 Requires: 
