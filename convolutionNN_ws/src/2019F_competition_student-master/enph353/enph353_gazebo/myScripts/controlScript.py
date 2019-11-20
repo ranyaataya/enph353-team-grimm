@@ -21,6 +21,10 @@ from keras import optimizers
 
 from keras.utils import plot_model
 from keras import backend
+import tensorflow as tf
+
+from PIL import Image
+import numpy as np
 
 
 class controlNode:
@@ -54,10 +58,36 @@ class controlNode:
             velocity = self.determineVelocity(cv_image)  # function that determines velocity, need to change this later
             self.publishVel.publish(velocity)
 
-    # FOR RANYA OR ZACH TO COMPLETE
+    """
+    @brief: Determines if the robot has reached a parking lot
+    @param: camerImg - robot's raw camera image
+    @return: flag - boolean representing if the robot is at a
+                    parking lot or not. (True = parking lot &
+                    False = road)
+    """
     def atParkingLot(self, cameraImg):
-        # Determine if robot has reached a parking lot
-        flag = True
+        flag = False
+        img = np.array(cameraImg)
+        img = cv2.cvtColor(img, cv2.COLOR_RGB2HSV)
+
+        # Define limits of blue in HSV
+        lowerBlue = np.array([110, 50, 50])
+        upperBlue = np.array([130, 255, 255])
+
+        # Create and apply blue mask
+        blueMask = cv2.inRange(img, lowerBlue, upperBlue)
+        maskedImg = cv2.bitwise_and(img, img, mask=blueMask)
+        maskedImg = maskedImg[300:, :, :]
+
+        # Sum all the pixels in the image to represent the
+        # area of blue in the image
+        imgSum = np.sum(maskedImg)
+        thresholdSum = [8000000, 40000000]
+
+        # Robot is at parking lot
+        if imgSum > thresholdSum[0] and imgSum < thresholdSum[1]:
+            flag = True
+
         return flag
 
     # FOR RANYA TO COMPLETE
@@ -65,10 +95,11 @@ class controlNode:
         # call on image cropper -> should return five images
         # or save them locally for this script to access
         # runs CNN model for each letter/number image inputted.
+        LPModel = tf.keras.models.load_model('licensePlates_and_IDs_model.h5')
         LP_msg = ""
 
-        for i in range(5):
-            
+        # for i in range(5):
+
 
         return LP_msg
 
