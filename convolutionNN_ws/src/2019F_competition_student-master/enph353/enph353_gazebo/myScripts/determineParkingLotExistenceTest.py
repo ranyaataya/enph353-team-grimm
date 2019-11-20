@@ -29,7 +29,9 @@ else:
     print("road")
     print(imgSum)
 
-print(i)
+print("end of script 1")
+from testRandomStuff import myfunction
+myfunction(4)
 
 # plt.imshow(cameraImg), plt.show()
 # plt.imshow(maskedCameraImg), plt.show()

@@ -116,6 +116,7 @@ class controlNode:
         # call on image cropper -> should return five images
         # or save them locally for this script to access
         # runs CNN model for each letter/number image inputted.
+
         LPModel = tf.keras.models.load_model('licensePlates_and_IDs_model.h5')
         LP_msg = ""
 
