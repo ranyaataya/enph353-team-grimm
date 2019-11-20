@@ -141,7 +141,7 @@ class image_converter:
         velocity.linear.x = 0.4
         velocity.angular.z = 0.0
         self.publish.publish(velocity)
-        sleep(0.300)
+        sleep(0.400)
         velocity.linear.x = 0
         velocity.angular.z = 0.0
         self.publish.publish(velocity)
@@ -160,12 +160,12 @@ class image_converter:
         velocity.linear.x = 0.0
         velocity.angular.z = 0.5
         self.publish.publish(velocity)
-        sleep(0.012)
+        sleep(0.017)
         velocity.linear.x = 0.0
         velocity.angular.z = 0.0
         self.publish.publish(velocity)
         # for debug, stop and wait
-        sleep(jogDelay)
+        #sleep(jogDelay)
 
     def rightJog(self):
         jogDelay = 0.015
@@ -179,12 +179,12 @@ class image_converter:
         velocity.linear.x = 0.0
         velocity.angular.z = -0.5
         self.publish.publish(velocity)
-        sleep(0.012)
+        sleep(0.017)
         velocity.linear.x = 0.0
         velocity.angular.z = 0.0
         self.publish.publish(velocity)
         # for debug, stop and wait
-        sleep(jogDelay)
+        #sleep(jogDelay)
 
     def forwardJog(self):
         jogDelay = 0.015
@@ -203,7 +203,7 @@ class image_converter:
         velocity.angular.z = 0.0
         self.publish.publish(velocity)
         # for debug, stop and wait
-        sleep(jogDelay)
+        #sleep(jogDelay)
 
     # determineVelocity function calculate the velocity for the robot based
     # on the position of the line in the image.
@@ -214,7 +214,7 @@ class image_converter:
         center = -34
         offset = 0
         lower_hsv = np.array([0, 0, 82])
-        upper_hsv = np.array([100, 255, 84])
+        upper_hsv = np.array([100, 255, 85])
 
         image = cv2.cvtColor(cv_image, cv2.COLOR_RGB2HSV)
         mask = cv2.inRange(image, lower_hsv, upper_hsv)
@@ -275,7 +275,7 @@ class image_converter:
 
         # goes through different options of turning
 
-        if stateNumber > 9:
+        if stateNumber > 10:
             self.rightJog()
         elif stateNumber < 9:
             # turn left
