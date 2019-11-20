@@ -134,7 +134,7 @@ def imageCrop(cameraImg):
     saveImage(LP_img2, "img_2.jpg")
     saveImage(LP_img3, "img_3.jpg")
     saveImage(LP_img4, "img_4.jpg")
-    print("imageCrop Hi")
+
 
 """
 @brief: Finds the row at which the middle of the parking lot's height occurs
@@ -173,7 +173,7 @@ def getImagePath(fileName):
     global counter
     # relPath = "letters_and_numbers/" + fileName[position] + "/" + fileName[position] + str(counter) + ".jpg"
     # CHANGE RELATIVE PATH TO BE WHAT WE WANT!!!!
-    relPath = "folder/" + fileName
+    relPath = "competitionImgs/" + fileName
 
     return relPath
 

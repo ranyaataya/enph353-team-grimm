@@ -6,18 +6,29 @@ import os
 from PIL import Image
 from imageCrop_for_CNN import imageCrop
 
-print("second script")
+from keras.models import load_model
+import keras.preprocessing.text
 
-def myfunction(num):
-    print("hey", num)
+# import keras.models
 
+# print("second script")
 
-RELATIVE_PATH = 'rawImages/'
+# def myfunction(num):
+#     print("hey", num)
+
+RELATIVE_PATH = 'letters_and_numbers/M/'
 files = os.listdir(RELATIVE_PATH)
-fileName = "lot_P6_OO66_13.jpg"
+fileName = "M551.jpg"
 
 cameraImg = np.array(Image.open(RELATIVE_PATH + fileName))
+resizedImg = np.reshape(cameraImg, [1, 39, 36, 3])
 
-print("before")
-# imageCrop(cameraImg)
-print("complete")
+# print("before")
+# # imageCrop(cameraImg)
+# print("complete")
+print("about to load model")
+model = load_model('ConvolutionModels/LPModel.h5')
+print("model loaded")
+
+predictions = model.predict(resizedImg)
+print(predictions)

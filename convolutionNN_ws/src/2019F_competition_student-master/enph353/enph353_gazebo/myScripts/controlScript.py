@@ -27,6 +27,7 @@ from PIL import Image
 import numpy as np
 
 from imageCrop_for_CNN import imageCrop
+from keras.models import load_model
 
 
 class controlNode:
@@ -66,15 +67,15 @@ class controlNode:
             parkingLotFlag = False
             self.tempCounter = self.counter
 
-        # else:
+        else:
             # Determines the velocity twist message of the robot
             # and publishes it
             # velocity = self.determineVelocity(cv_image)
             # self.publishVel.publish(velocity)
-
-            velocity = self.determineVelocity(cv_image)
             self.counter = self.counter + 1
-            
+
+        velocity = self.determineVelocity(cv_image)
+
 
     """
     @brief:  Determines if the robot has reached a parking lot
@@ -118,15 +119,21 @@ class controlNode:
     """"
     def determineLicensePlate(self, cameraImg):
         # Calls on image cropper which crops the robot's raw camera
-        # image
+        # image and saves the 5 images to a local folder: competitionImages/
         imageCrop(cameraImg)
-        LPModel = tf.keras.models.load_model('licensePlates_and_IDs_model.h5')
+        conModel = load_model('ConvolutionModels/LPModel.h5')
         LP_msg = ""
 
-        for i in range(5):
-            letterNumImg = 4  # image from image cropper
-            result = LPModel.predict()  # may be wrong
-            LP_msg = LP_msg + result  # may be wrong
+        RELATIVE_PATH = "competitionImgs/"
+        files = os.listdir(RELATIVE_PATH)
+
+        for fileName in files[:]:
+            letterNumImg = np.array(Image.open(RELATIVE_PATH + fileName))
+            resizedImg = np.reshape(letterNumImg, [1, 39, 36, 3])
+
+            predictions = LPModel.predict()
+            # LP_msg = LP_msg + result  # may be wrong
+            # convert from predictions one hot to strings
 
         return LP_msg
 
