@@ -2,7 +2,7 @@
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/onehalf/Desktop/enph353-team-grimm/competition353_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/fizzer/enph353-team-grimm/competition353_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
