@@ -29,6 +29,8 @@ else:
     print("road")
     print(imgSum)
 
+print(i)
+
 # plt.imshow(cameraImg), plt.show()
 # plt.imshow(maskedCameraImg), plt.show()
 # plt.imshow(roadImg), plt.show()

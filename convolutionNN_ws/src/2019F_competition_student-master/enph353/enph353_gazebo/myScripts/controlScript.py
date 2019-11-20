@@ -35,6 +35,10 @@ class controlNode:
         self.publishVel = rospy.Publisher("/R1/cmd_vel", Twist, queue_size=1)
         self.publishLP = rospy.Publisher("/license_plate", String, queue_size=1)
 
+        self.counter = 0
+        self.tempCounter = 0
+        # PUBLISH THE INITIAL MESSAGE STATING OUR TEAM NUMBER!!!!!!!!
+
     def callback(self, data):
         try:
             cv_image = self.bridge.imgmsg_to_cv2(data, "bgr8")
@@ -44,7 +48,7 @@ class controlNode:
         # checks if robot is at parking lot
         parkingLotFlag = self.atParkingLot(cv_image)
 
-        if parkingLotFlag is True:
+        if parkingLotFlag is True and (self.counter - self.tempCounter) >= 5:
             # LP_image = ""  # <-- need to change
             LP_msg = self.determineLicensePlate(cv_image)
             self.publishLP.publish(LP_msg)
@@ -53,10 +57,13 @@ class controlNode:
             self.publishVel.publish(velocity)
 
             parkingLotFlag = False
+            self.tempCounter = self.counter
 
         else:
             velocity = self.determineVelocity(cv_image)  # function that determines velocity, need to change this later
             self.publishVel.publish(velocity)
+
+            self.counter = self.counter + 1
 
     """
     @brief: Determines if the robot has reached a parking lot
