@@ -37,6 +37,8 @@ class controlNode:
 
         self.counter = 0
         self.tempCounter = 0
+        self.teamName = "TGrimm"
+        self.teamPassword = ""
         # PUBLISH THE INITIAL MESSAGE STATING OUR TEAM NUMBER!!!!!!!!
 
     def callback(self, data):
@@ -45,29 +47,34 @@ class controlNode:
         except CvBridgeError as e:
             print(e)
 
-        # checks if robot is at parking lot
+        # Checks if robot is at parking lot
         parkingLotFlag = self.atParkingLot(cv_image)
 
         if parkingLotFlag is True and (self.counter - self.tempCounter) >= 5:
-            # LP_image = ""  # <-- need to change
+
+            # Determines license plate and publishes message
             LP_msg = self.determineLicensePlate(cv_image)
             self.publishLP.publish(LP_msg)
 
-            velocity = self.determineVelocity(cv_image)  # function that determines velocity, need to change this later
+            # Determines the velocity twist message of the robot
+            # and publishes it
+            velocity = self.determineVelocity(cv_image)
             self.publishVel.publish(velocity)
 
             parkingLotFlag = False
             self.tempCounter = self.counter
 
         else:
-            velocity = self.determineVelocity(cv_image)  # function that determines velocity, need to change this later
+            # Determines the velocity twist message of the robot
+            # and publishes it
+            velocity = self.determineVelocity(cv_image)
             self.publishVel.publish(velocity)
 
             self.counter = self.counter + 1
 
     """
-    @brief: Determines if the robot has reached a parking lot
-    @param: camerImg - robot's raw camera image
+    @brief:  Determines if the robot has reached a parking lot
+    @param:  camerImg - robot's raw camera image
     @return: flag - boolean representing if the robot is at a
                     parking lot or not. (True = parking lot &
                     False = road)
@@ -97,19 +104,35 @@ class controlNode:
 
         return flag
 
-    # FOR RANYA TO COMPLETE
-    def determineLicensePlate(self, LP_image):
+    """"
+    @brief:  Determiens the license plate and the parking lot ID
+             given the robot's raw camera image
+    @param:  cameraImg - Robot's raw camera image of the parking lot
+    @return: A string containing the license plate (determined by
+             the license plates and ID convolution model) and the
+             parking lot ID
+    """"
+    def determineLicensePlate(self, cameraImg):
         # call on image cropper -> should return five images
         # or save them locally for this script to access
         # runs CNN model for each letter/number image inputted.
         LPModel = tf.keras.models.load_model('licensePlates_and_IDs_model.h5')
         LP_msg = ""
 
-        # for i in range(5):
-
+        for i in range(5):
+            letterNumImg = 4  # image from image cropper
+            result = LPModel.predict()  # may be wrong
+            LP_msg = LP_msg + result  # may be wrong
 
         return LP_msg
 
+    """
+    @brief:  Determines the velocity twist message to output to
+             the robot
+    @param:  camerImg - Robot's raw camera image
+    @return: velocity - Velocity twist message output given the
+                        robot's position in the map
+    """
     # FOR ZACH TO COMPLETE
     def determineVelocity(self, cameraImg):
         velocity = Twist()
