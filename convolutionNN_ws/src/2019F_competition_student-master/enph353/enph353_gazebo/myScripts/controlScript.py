@@ -40,9 +40,16 @@ class controlNode:
 
         self.counter = 0
         self.tempCounter = 0
-        self.teamName = "TGrimm"
+        self.teamName = "Grimm"
         self.teamPassword = ""
-        # PUBLISH THE INITIAL MESSAGE STATING OUR TEAM NUMBER!!!!!!!!
+        self.answerKey = ["A", "B", "C", "D", "E", "F", "G",
+                          "H", "I", "J", "K", "L", "M", "N",
+                          "O", "P", "Q", "R", "S", "T", "U",
+                          "V", "W", "X", "Y", "Z", "0", "1",
+                          "2", "3", "4", "5", "6", "7", "8",
+                          "9"]
+
+        initialMsg = str(self.teamName + ',' + self.teamPassword + ',' + '0' + ',' + 'AA11')
 
     def callback(self, data):
         try:
@@ -54,10 +61,12 @@ class controlNode:
         parkingLotFlag = self.atParkingLot(cv_image)
 
         if parkingLotFlag is True and (self.counter - self.tempCounter) >= 5:
-
+            velocity = Twist()
+            self.publishVel.publish(velocity)
             # Determines license plate and publishes message
             LP_msg = self.determineLicensePlate(cv_image)
-            self.publishLP.publish(LP_msg)
+            fullMsg = str(self.teamName + ',' + self.teamPassword + ',' + LP_msg[0] + ',' + LP_msg[1:])
+            self.publishLP.publish(fullMsg)
 
             # Determines the velocity twist message of the robot
             # and publishes it
@@ -125,15 +134,20 @@ class controlNode:
         LP_msg = ""
 
         RELATIVE_PATH = "competitionImgs/"
-        files = os.listdir(RELATIVE_PATH)
+        # files = os.listdir(RELATIVE_PATH)
+        files = ["img_0.jpg", "img_1.jpg", "img_2.jpg", "img_3.jpg",
+                 "img_4.jpg"]
 
-        for fileName in files[:]:
-            letterNumImg = np.array(Image.open(RELATIVE_PATH + fileName))
+        # for fileName in files[:]:
+        for i in range(5):
+            letterNumImg = np.array(Image.open(RELATIVE_PATH + files[i]))
             resizedImg = np.reshape(letterNumImg, [1, 39, 36, 3])
 
             predictions = LPModel.predict()
-            # LP_msg = LP_msg + result  # may be wrong
-            # convert from predictions one hot to strings
+            index = np.where(predictions == np.amax(predictions))
+            index = int(index[1])
+            character = self.answerKey[index]
+            LP_msg = LP_msg + character
 
         return LP_msg
 
