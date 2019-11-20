@@ -26,6 +26,8 @@ import tensorflow as tf
 from PIL import Image
 import numpy as np
 
+from imageCrop_for_CNN import imageCrop
+
 
 class controlNode:
 
@@ -58,19 +60,21 @@ class controlNode:
 
             # Determines the velocity twist message of the robot
             # and publishes it
-            velocity = self.determineVelocity(cv_image)
-            self.publishVel.publish(velocity)
+            # velocity = self.determineVelocity(cv_image)
+            # self.publishVel.publish(velocity)
 
             parkingLotFlag = False
             self.tempCounter = self.counter
 
-        else:
+        # else:
             # Determines the velocity twist message of the robot
             # and publishes it
-            velocity = self.determineVelocity(cv_image)
-            self.publishVel.publish(velocity)
+            # velocity = self.determineVelocity(cv_image)
+            # self.publishVel.publish(velocity)
 
+            velocity = self.determineVelocity(cv_image)
             self.counter = self.counter + 1
+            
 
     """
     @brief:  Determines if the robot has reached a parking lot
@@ -113,10 +117,9 @@ class controlNode:
              parking lot ID
     """"
     def determineLicensePlate(self, cameraImg):
-        # call on image cropper -> should return five images
-        # or save them locally for this script to access
-        # runs CNN model for each letter/number image inputted.
-
+        # Calls on image cropper which crops the robot's raw camera
+        # image
+        imageCrop(cameraImg)
         LPModel = tf.keras.models.load_model('licensePlates_and_IDs_model.h5')
         LP_msg = ""
 
