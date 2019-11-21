@@ -1,8 +1,0 @@
-prefix=/home/fizzer/enph353-team-grimm/competition_gym_gazebo_ws/gym_gazebo/envs/enph353/install
-
-Name: gazebo_dev
-Description: Description of gazebo_dev
-Version: 2.5.19
-Cflags: 
-Libs: -L/home/fizzer/enph353-team-grimm/competition_gym_gazebo_ws/gym_gazebo/envs/enph353/install/lib 
-Requires: 

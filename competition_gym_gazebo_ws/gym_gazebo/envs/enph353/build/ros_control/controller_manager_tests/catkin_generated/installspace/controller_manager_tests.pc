@@ -1,8 +1,0 @@
-prefix=/home/fizzer/enph353-team-grimm/competition_gym_gazebo_ws/gym_gazebo/envs/enph353/install
-
-Name: controller_manager_tests
-Description: Description of controller_manager_tests
-Version: 0.15.1
-Cflags: -I/home/fizzer/enph353-team-grimm/competition_gym_gazebo_ws/gym_gazebo/envs/enph353/install/include
-Libs: -L/home/fizzer/enph353-team-grimm/competition_gym_gazebo_ws/gym_gazebo/envs/enph353/install/lib -lcontroller_manager_tests
-Requires: controller_manager controller_interface

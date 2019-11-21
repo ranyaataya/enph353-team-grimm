@@ -1,1 +1,0 @@
-All code is a copy of Miti's original code

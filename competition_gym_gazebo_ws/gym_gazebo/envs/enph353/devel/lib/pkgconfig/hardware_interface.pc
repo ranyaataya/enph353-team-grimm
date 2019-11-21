@@ -1,8 +1,0 @@
-prefix=/home/fizzer/enph353-team-grimm/competition_gym_gazebo_ws/gym_gazebo/envs/enph353/devel
-
-Name: hardware_interface
-Description: Description of hardware_interface
-Version: 0.15.1
-Cflags: -I/home/fizzer/enph353-team-grimm/competition_gym_gazebo_ws/gym_gazebo/envs/enph353/src/ros_control/hardware_interface/include
-Libs: -L/home/fizzer/enph353-team-grimm/competition_gym_gazebo_ws/gym_gazebo/envs/enph353/devel/lib 
-Requires: roscpp

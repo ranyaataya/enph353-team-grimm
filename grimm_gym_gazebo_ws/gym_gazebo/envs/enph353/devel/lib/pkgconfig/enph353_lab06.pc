@@ -1,8 +1,0 @@
-prefix=/home/fizzer/enph353-team-grimm/grimm_gym_gazebo_ws/gym_gazebo/envs/enph353/devel
-
-Name: enph353_lab06
-Description: Description of enph353_lab06
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/fizzer/enph353-team-grimm/grimm_gym_gazebo_ws/gym_gazebo/envs/enph353/devel/lib 
-Requires: 
