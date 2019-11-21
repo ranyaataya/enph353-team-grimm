@@ -29,6 +29,8 @@ import numpy as np
 from imageCrop_for_CNN import imageCrop
 from keras.models import load_model
 
+from time import sleep
+
 
 class controlNode:
 
@@ -37,6 +39,8 @@ class controlNode:
         self.image_sub = rospy.Subscriber("/R1/pi_camera/image_raw", Image, self.callback)
         self.publishVel = rospy.Publisher("/R1/cmd_vel", Twist, queue_size=1)
         self.publishLP = rospy.Publisher("/license_plate", String, queue_size=1)
+
+        self.inLoop = False
 
         self.counter = 0
         self.tempCounter = 0
@@ -50,6 +54,7 @@ class controlNode:
                           "9"]
 
         initialMsg = str(self.teamName + ',' + self.teamPassword + ',' + '0' + ',' + 'AA11')
+        self.publishLP.publish(initialMsg)
 
     def callback(self, data):
         try:
@@ -118,14 +123,14 @@ class controlNode:
 
         return flag
 
-    """"
+    """
     @brief:  Determiens the license plate and the parking lot ID
              given the robot's raw camera image
     @param:  cameraImg - Robot's raw camera image of the parking lot
     @return: A string containing the license plate (determined by
              the license plates and ID convolution model) and the
              parking lot ID
-    """"
+    """
     def determineLicensePlate(self, cameraImg):
         # Calls on image cropper which crops the robot's raw camera
         # image and saves the 5 images to a local folder: competitionImages/
@@ -151,7 +156,7 @@ class controlNode:
 
         return LP_msg
 
-    """"
+    """
     @brief:  Uses a specified line of pixels to find the sides of the road
              and gives a pass or fail depending on its success/ meaningfullness
     @param:  newMask - normalized road mask of theRobot's raw camera image
@@ -163,7 +168,7 @@ class controlNode:
                      of the road, or -34 if this failed
              gotLeft - success of getting the left side of the road
              gotRight - success of getting the right side of the road
-    """"
+    """
     def edgePass(self, height, newMask, w):
         left = -34
         right = -34
@@ -190,7 +195,7 @@ class controlNode:
 
         return left, right, gotLeft, gotRight
 
-    """"
+    """
     @brief:  A debugging function that show the camera view
              and draws the search lines, state and edge conditions
              on the image
@@ -202,7 +207,7 @@ class controlNode:
              edgeConditions - the list of edge locations and pass/fail booleans
              h - height of image in pixels
              w - width of image in pixels
-    """"
+    """
     def imagePresent(self, name, text, center, edgeConditions, cv_image, h, w):
         top = int(0.65*h)
         mid = int(0.70*h)
@@ -220,12 +225,12 @@ class controlNode:
         cv2.imshow(name, cv_image)
         cv2.waitKey(1)
 
-    """"
+    """
     @brief:  Determines the center of the road given a set of edge conditions
     @param:  edgeConditions - the list of edge locations and pass/fail booleans
              gap - the size of each segmentation of the image
     @return: center - the horizontal pixel location of the center of the road
-    """"
+    """
     def getCenter(self, edgeConditions, gap):
         usableEdges = []
         centers = []
@@ -248,10 +253,10 @@ class controlNode:
         center = int(sum(centers)/len(centers))
         return center
 
-    """"
+    """
     @brief:  Performs a large left turn movement(used to rotate the robot such
              that it faces the correct direction in the outer loop)
-    """"
+    """
     def leftTurn(self):
         velocity = Twist()
         # stop current motion
@@ -270,10 +275,10 @@ class controlNode:
         # for debug, stop and wait
         sleep(0.015)
 
-    """"
+    """
     @brief:  Performs a large forward movement(used to move the robot into
              the outer loop)
-    """"
+    """
     def forwardStep(self):
         velocity = Twist()
         # stop current motion
@@ -292,10 +297,10 @@ class controlNode:
         # for debug, stop and wait
         sleep(0.015)
 
-    """"
+    """
     @brief:  Performs a slight left turn (used to align the camera center
              road center)
-    """"
+    """
     def leftJog(self):
         jogDelay = 0.015
         velocity = Twist()
@@ -313,10 +318,10 @@ class controlNode:
         velocity.angular.z = 0.0
         self.publish.publish(velocity)
 
-    """"
+    """
     @brief:  Performs a slight right turn (used to align the camera center
              road center)
-    """"
+    """
     def rightJog(self):
         jogDelay = 0.015
         velocity = Twist()
@@ -334,10 +339,10 @@ class controlNode:
         velocity.angular.z = 0.0
         self.publish.publish(velocity)
 
-    """"
+    """
     @brief:  Performs a slight forward movement (used to ensure that
              the robot does not move forward too quickly
-    """"
+    """
     def forwardJog(self):
         jogDelay = 0.015
         velocity = Twist()
