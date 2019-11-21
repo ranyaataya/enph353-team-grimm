@@ -1,8 +1,0 @@
-prefix=/home/fizzer/enph353-team-grimm/grimm_gym_gazebo_ws/gym_gazebo/envs/enph353/install
-
-Name: cartpole_gazebo
-Description: Description of cartpole_gazebo
-Version: 1.0.0
-Cflags: 
-Libs: -L/home/fizzer/enph353-team-grimm/grimm_gym_gazebo_ws/gym_gazebo/envs/enph353/install/lib 
-Requires: 

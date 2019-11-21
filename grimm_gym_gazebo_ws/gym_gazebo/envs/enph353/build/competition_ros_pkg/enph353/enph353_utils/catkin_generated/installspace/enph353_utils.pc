@@ -1,8 +1,0 @@
-prefix=/home/fizzer/enph353-team-grimm/grimm_gym_gazebo_ws/gym_gazebo/envs/enph353/install
-
-Name: enph353_utils
-Description: Description of enph353_utils
-Version: 0.0.2
-Cflags: 
-Libs: -L/home/fizzer/enph353-team-grimm/grimm_gym_gazebo_ws/gym_gazebo/envs/enph353/install/lib 
-Requires: actionlib_msgs
