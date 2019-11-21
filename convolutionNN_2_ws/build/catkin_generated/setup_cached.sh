@@ -7,7 +7,7 @@
 # new environment variables
 
 # modified environment variables
-export CMAKE_PREFIX_PATH="/home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/devel:$CMAKE_PREFIX_PATH"
-export PWD="/home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/build"
-export ROSLISP_PACKAGE_DIRECTORIES="/home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/devel/share/common-lisp"
-export ROS_PACKAGE_PATH="/home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/src:$ROS_PACKAGE_PATH"
+export CMAKE_PREFIX_PATH="/home/fizzer/enph353-team-grimm/convolutionNN_2_ws/devel:$CMAKE_PREFIX_PATH"
+export PWD="/home/fizzer/enph353-team-grimm/convolutionNN_2_ws/build"
+export ROSLISP_PACKAGE_DIRECTORIES="/home/fizzer/enph353-team-grimm/convolutionNN_2_ws/devel/share/common-lisp"
+export ROS_PACKAGE_PATH="/home/fizzer/enph353-team-grimm/convolutionNN_2_ws/src:$ROS_PACKAGE_PATH"
