@@ -6,7 +6,7 @@
 from __future__ import print_function
 
 import roslib
-roslib.load_manifest('enph353_gazebo')
+roslib.load_manifest('convolution_net')
 import sys
 import rospy
 import cv2
