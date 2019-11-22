@@ -94,15 +94,15 @@ class image_converter:
         usableEdges = []
         centers = []
         for line1 in range((len(edgeConditions)/4)):
-            if edgeConditions[2 + 4*line1] is True:  # and edgeConditions[3 + 4*line1] is True:
+            if edgeConditions[2 + 4*line1] is True:  # Checks which search lines gave back usable data, adds them to list
                 usableEdges.append(edgeConditions[0 + 4*line1])
                 usableEdges.append(edgeConditions[1 + 4*line1])
-        for line2 in range(len(usableEdges)/2):
+        for line2 in range(len(usableEdges)/2):  # takes the usuable edges and finds the center
             centers.append(int((usableEdges[0 + 2*line2] + usableEdges[1 + 2*line2])/2))
             averageCenter = int(sum(centers)/len(centers))
         length = len(centers)
         line3 = 0
-        while (line3 < length):
+        while (line3 < length):  # removes any centers that are outliers
             if (centers[line3] - averageCenter) > int(gap):
                 centers.remove(centers[line3])
                 length = length - 1
@@ -111,7 +111,7 @@ class image_converter:
 
         center = int(sum(centers)/len(centers))
         return center
-    
+
     def leftTurn(self):
         velocity = Twist()
         # stop current motion
@@ -165,7 +165,7 @@ class image_converter:
         velocity.angular.z = 0.0
         self.publish.publish(velocity)
         # for debug, stop and wait
-        #sleep(jogDelay)
+        # sleep(jogDelay)
 
     def rightJog(self):
         jogDelay = 0.015
@@ -184,7 +184,7 @@ class image_converter:
         velocity.angular.z = 0.0
         self.publish.publish(velocity)
         # for debug, stop and wait
-        #sleep(jogDelay)
+        # sleep(jogDelay)
 
     def forwardJog(self):
         jogDelay = 0.015
@@ -203,7 +203,7 @@ class image_converter:
         velocity.angular.z = 0.0
         self.publish.publish(velocity)
         # for debug, stop and wait
-        #sleep(jogDelay)
+        # sleep(jogDelay)
 
     # determineVelocity function calculate the velocity for the robot based
     # on the position of the line in the image.
@@ -265,7 +265,7 @@ class image_converter:
             text = "straight"
 
         # compute state 0 through 9
-        # self.imagePresent("camera", text, center, edgeConditions, cv_image, h, w)
+        self.imagePresent("camera", text, center, edgeConditions, cv_image, h, w)
         # self.imagePresent("mask", text, center, edgeConditions, interMask, h, w)
         # cv2.imshow("Camera", cv_image)
         # cv2.waitKey(1)

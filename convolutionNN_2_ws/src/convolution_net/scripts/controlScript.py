@@ -235,17 +235,18 @@ class controlNode:
         usableEdges = []
         centers = []
         for line1 in range((len(edgeConditions)/4)):
-            if edgeConditions[2 + 4*line1] is True:
+            if edgeConditions[2 + 4*line1] is True:  # Checks which search lines gave back usable data, adds them to list
                 usableEdges.append(edgeConditions[0 + 4*line1])
                 usableEdges.append(edgeConditions[1 + 4*line1])
-        for line2 in range(len(usableEdges)/2):
+        for line2 in range(len(usableEdges)/2):  # takes the usuable edges and finds the center
             centers.append(int((usableEdges[0 + 2*line2] + usableEdges[1 + 2*line2])/2))
             averageCenter = int(sum(centers)/len(centers))
         length = len(centers)
         line3 = 0
-        while (line3 < length):
-            if (centers[line3] - averageCenter) > int(gap):
+        while (line3 < length):  # removes any centers that are outliers
+            if (centers[line3] - averageCenter) > int(gap/2):
                 centers.remove(centers[line3])
+                averageCenter = int(sum(centers)/len(centers))
                 length = length - 1
                 line3 = line3 - 1
             line3 = line3 + 1

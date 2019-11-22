@@ -1,8 +1,8 @@
-prefix=/home/fizzer/enph353-team-grimm/convolutionNN_2_ws/devel
+prefix=/home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/devel
 
 Name: convolution_net
 Description: Description of convolution_net
 Version: 0.0.0
 Cflags: 
-Libs: -L/home/fizzer/enph353-team-grimm/convolutionNN_2_ws/devel/lib 
+Libs: -L/home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/devel/lib 
 Requires: 
