@@ -431,7 +431,7 @@ class controlNode:
 
 
 def main(args):
-    controlNode = controlNode()
+    cn = controlNode()
     rospy.init_node('controlNode', anonymous=True)
     try:
         rospy.spin()

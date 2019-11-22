@@ -58,16 +58,13 @@ competition353_ws/build/*
 competition353_ws/devel/*
 competition353_ws/.catkin_workspace
 competition353_ws/src/CMakeLists.txt
-competition_gym_gazebo_ws/gym_gazebo/envs/enph353/build/*
-competition_gym_gazebo_ws/gym_gazebo/envs/enph353/devel/*
-competition_gym_gazebo_ws/gym_gazebo/envs/enph353/.catkin_workspace
-competition_gym_gazebo_ws/gym_gazebo/envs/enph353/src/CMakeLists.txt
-competition353_ws/src/2019F_competition_student-master/adeept_awr/adeept_awr/CMakeLists.txt
-competition353_ws/src/2019F_competition_student-master/adeept_awr/adeept_awr_description/CMakeLists.txt
-competition353_ws/src/2019F_competition_student-master/adeept_awr/adeept_awr_gazebo/CMakeLists.txt
-competition353_ws/src/2019F_competition_student-master/adeept_awr_ros_driver/CMakeLists.txt
-competition353_ws/src/2019F_competition_student-master/enph353/enph353/CMakeLists.txt
-competition353_ws/src/2019F_competition_student-master/enph353/enph353_gazebo/CMakeLists.txt
-competition353_ws/src/2019F_competition_student-master/enph353/enph353_npcs/CMakeLists.txt
+competitionDriving_ws/build/*
+competitionDriving_ws/devel/*
+competitionDriving_ws/.catkin_workspace
+competitionDriving_ws/src/CMakeLists.txt
+convolutionNN_2_ws/build/*
+convolutionNN_2_ws/devel/*
+convolutionNN_2_ws/.catkin_workspace
+convolutionNN_2_ws/src/CMakeLists.txt
 
 >>>>>>> c047753f6a168aa1d0f1e9dac2a10606b623a1be
