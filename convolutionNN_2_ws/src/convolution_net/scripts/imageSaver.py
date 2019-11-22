@@ -24,8 +24,8 @@ class robotPhotographer:
     def __init__(self):
         print("Node initialized")
         self.bridge = CvBridge()
-        self.fileNameIncrement = 892
-        self.npcType = "pedestrian"  # change based on which one is wanted
+        self.fileNameIncrement = 287
+        self.npcType = "emptyRoad"  # change based on which one is wanted
 
         # Need to initial subscriber for subscribing to image feed
         self.imageSubscriber = rospy.Subscriber("/R1/pi_camera/image_raw", Image, self.callback)
@@ -53,7 +53,7 @@ class robotPhotographer:
     """
     def photographer(self, robotImage, filename):
         # saves image to a file in current directory
-        relPath = "pedestrianCNN_rawData/"
+        relPath = "pedestrianCNN_rawData/emptyRoad_rawData/"
         filenameWithExtension = relPath + filename + ".jpg"
         print("Filename with extension: ", filenameWithExtension)
 
