@@ -1,4 +1,4 @@
 <launch>
-	<node name="competitionController" pkg="enph353_gazebo" type="controlScript.py" output="screen">
+	<node name="competitionController" pkg="convolution_net" type="controlScript.py" output="screen">
   	</node>
 </launch>
