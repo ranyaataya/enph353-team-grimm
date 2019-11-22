@@ -1,4 +1,3 @@
 <launch>
-	<node name="competitionController" pkg="convolution_net" type="controlScript.py" output="screen">
-  	</node>
+	<node name="competitionControl" pkg="convolution_net" type="controlScript.py" output="screen"/>
 </launch>

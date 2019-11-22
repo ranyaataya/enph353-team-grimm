@@ -28,7 +28,7 @@ class image_converter:
         self.bridge = CvBridge()
         self.image_sub = rospy.Subscriber("/R1/pi_camera/image_raw", Image, self.callback)
 
-        self.publish = rospy.Publisher("/R1/cmd_vel", Twist, queue_size=1)
+        self.publishVel = rospy.Publisher("/R1/cmd_vel", Twist, queue_size=1)
         self.inLoop = False
 
     def callback(self, data):
@@ -39,7 +39,7 @@ class image_converter:
 
         # Gets the velocity message from the determineVelocity function
         velocity = self.determineVelocity(cv_image)
-        # self.publish.publish(velocity)
+        # self.publishVel.publish(velocity)
 
     # Finds the edge conditions for each search line by iteration of "height"
     # pixel line of pixels up
@@ -117,16 +117,16 @@ class image_converter:
         # stop current motion
         velocity.linear.x = 0
         velocity.angular.z = 0.0
-        self.publish.publish(velocity)
+        self.publishVel.publish(velocity)
         sleep(0.015)
         # turn 90 degrees left
         velocity.linear.x = 0
         velocity.angular.z = 0.5
-        self.publish.publish(velocity)
+        self.publishVel.publish(velocity)
         sleep(0.363)
         velocity.linear.x = 0
         velocity.angular.z = 0.0
-        self.publish.publish(velocity)
+        self.publishVel.publish(velocity)
         # for debug, stop and wait
         sleep(0.015)
 
@@ -135,75 +135,95 @@ class image_converter:
         # stop current motion
         velocity.linear.x = 0
         velocity.angular.z = 0.0
-        self.publish.publish(velocity)
+        self.publishVel.publish(velocity)
         sleep(0.015)
         # turn 90 degrees left
         velocity.linear.x = 0.4
         velocity.angular.z = 0.0
-        self.publish.publish(velocity)
+        self.publishVel.publish(velocity)
         sleep(0.400)
         velocity.linear.x = 0
         velocity.angular.z = 0.0
-        self.publish.publish(velocity)
+        self.publishVel.publish(velocity)
         # for debug, stop and wait
         sleep(0.015)
 
-    def leftJog(self):
+    def leftJog(self, error):
         jogDelay = 0.015
+        jogTime = 0.02 + error*0.001
         velocity = Twist()
         # stop current motion
         velocity.linear.x = 0.0
         velocity.angular.z = 0.0
-        self.publish.publish(velocity)
+        self.publishVel.publish(velocity)
         sleep(jogDelay)
         # turn 90 degrees left
         velocity.linear.x = 0.0
         velocity.angular.z = 0.5
-        self.publish.publish(velocity)
-        sleep(0.017)
+        self.publishVel.publish(velocity)
+        sleep(jogTime)
         velocity.linear.x = 0.0
         velocity.angular.z = 0.0
-        self.publish.publish(velocity)
+        self.publishVel.publish(velocity)
         # for debug, stop and wait
         # sleep(jogDelay)
 
-    def rightJog(self):
+    def rightJog(self, error):
         jogDelay = 0.015
+        jogTime = 0.02 + error*0.01
         velocity = Twist()
         # stop current motion
         velocity.linear.x = 0.0
         velocity.angular.z = 0.0
-        self.publish.publish(velocity)
+        self.publishVel.publish(velocity)
         sleep(jogDelay)
         # turn 90 degrees left
         velocity.linear.x = 0.0
         velocity.angular.z = -0.5
-        self.publish.publish(velocity)
-        sleep(0.017)
+        self.publishVel.publish(velocity)
+        sleep(jogTime)
         velocity.linear.x = 0.0
         velocity.angular.z = 0.0
-        self.publish.publish(velocity)
+        self.publishVel.publish(velocity)
         # for debug, stop and wait
         # sleep(jogDelay)
 
-    def forwardJog(self):
+    def forwardJog(self, error):
         jogDelay = 0.015
+        jogTime = 0.05 - error*0.01
         velocity = Twist()
         # stop current motion
         velocity.linear.x = 0.0
         velocity.angular.z = 0.0
-        self.publish.publish(velocity)
+        self.publishVel.publish(velocity)
         sleep(jogDelay)
         # turn 90 degrees left
         velocity.linear.x = 0.4
         velocity.angular.z = 0.0
-        self.publish.publish(velocity)
-        sleep(0.04)
+        self.publishVel.publish(velocity)
+        sleep(jogTime)
         velocity.linear.x = 0.0
         velocity.angular.z = 0.0
-        self.publish.publish(velocity)
+        self.publishVel.publish(velocity)
         # for debug, stop and wait
         # sleep(jogDelay)
+
+    def atSpot(self, cv_image):
+        lowerBlue = np.array([0, 110, 145])
+        upperBlue = np.array([60, 220, 245])
+
+        img = cv2.cvtColor(cv_image, cv2.COLOR_RGB2HSV)
+        blueMask = cv2.inRange(img, lowerBlue, upperBlue)
+        h, w = blueMask.shape[0:2]
+        blur3 = cv2.medianBlur(blueMask, 23)
+        blurProper = blur3[int(h/2):h, :]
+
+        cv2.imshow("Blur 3", blurProper)
+        imgSum = np.sum(blurProper)
+        if (imgSum > 3000000):
+            return True
+        else:
+            return False
 
     # determineVelocity function calculate the velocity for the robot based
     # on the position of the line in the image.
@@ -253,36 +273,41 @@ class image_converter:
         if (edgeConditions[10] == 0 and edgeConditions[11] == 0):  # either totally lost or at a T intersection
             center = 1  # value of extreme left turn
             text = "T"
-        elif(leftTotal < 1):
+        elif(leftTotal < 2):
             # left turn intersection
-            center = edgeConditions[5] - int(0.23*w)  # approximate lane center for the intersection
+            center = edgeConditions[1] - int(0.12*w)  # approximate lane center for the intersection
             if (center < 0):
                 center = 0
             text = "intersection"
         else:  # straights including parking space straights
-            center = self.getCenter(edgeConditions, gap)
+            if(self.atSpot(cv_image) is True):
+               center = edgeConditions[1] - int(0.12*w)
+            else:
+                center = self.getCenter(edgeConditions, gap)
+                # center = edgeConditions[1] + int(0.21875*w)
             center = center + offset
             text = "straight"
 
         # compute state 0 through 9
-        self.imagePresent("camera", text, center, edgeConditions, cv_image, h, w)
+        # self.imagePresent("camera", text, center, edgeConditions, cv_image, h, w)
         # self.imagePresent("mask", text, center, edgeConditions, interMask, h, w)
         # cv2.imshow("Camera", cv_image)
         # cv2.waitKey(1)
         # print(text)
         stateNumber = center / gap
+        error = abs(center - int(w/2))
         # velocity = Twist()
 
         # goes through different options of turning
 
         if stateNumber > 10:
-            self.rightJog()
+            self.rightJog(error - int(gap/2))
         elif stateNumber < 9:
             # turn left
-            self.leftJog()
+            self.leftJog(error - int(gap/2))
         else:
             # go straight
-            self.forwardJog()
+            self.forwardJog(error)
 
         #return velocity
 

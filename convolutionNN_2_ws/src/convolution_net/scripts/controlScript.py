@@ -14,7 +14,7 @@ from std_msgs.msg import String
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge, CvBridgeError
 from geometry_msgs.msg import Twist
-
+"""
 from keras import layers
 from keras import models
 from keras import optimizers
@@ -22,19 +22,20 @@ from keras import optimizers
 from keras.utils import plot_model
 from keras import backend
 import tensorflow as tf
-
-from PIL import Image
+"""
+#from PIL import Image
 import numpy as np
-
+"""
 from imageCrop_for_CNN import imageCrop
 from keras.models import load_model
-
+"""
 from time import sleep
 
 
 class controlNode:
 
     def __init__(self):
+        print("CN node started init.")
         self.bridge = CvBridge()
         self.image_sub = rospy.Subscriber("/R1/pi_camera/image_raw", Image, self.callback)
         self.publishVel = rospy.Publisher("/R1/cmd_vel", Twist, queue_size=1)
@@ -47,22 +48,27 @@ class controlNode:
         self.teamName = "Grimm"
         self.teamPassword = ""
         self.answerKey = ["A", "B", "C", "D", "E", "F", "G",
-                          "H", "I", "J", "K", "L", "M", "N",
-                          "O", "P", "Q", "R", "S", "T", "U",
-                          "V", "W", "X", "Y", "Z", "0", "1",
-                          "2", "3", "4", "5", "6", "7", "8",
-                          "9"]
+                         "H", "I", "J", "K", "L", "M", "N",
+                         "O", "P", "Q", "R", "S", "T", "U",
+                         "V", "W", "X", "Y", "Z", "0", "1",
+                         "2", "3", "4", "5", "6", "7", "8",
+                         "9"]
 
         initialMsg = str(self.teamName + ',' + self.teamPassword + ',' + '0' + ',' + 'AA11')
         self.publishLP.publish(initialMsg)
+        print("CN node done init.")
 
     def callback(self, data):
         try:
             cv_image = self.bridge.imgmsg_to_cv2(data, "bgr8")
         except CvBridgeError as e:
             print(e)
+        velocity = self.determineVelocity(cv_image)
 
+        initialMsg = str(self.teamName + ',' + self.teamPassword + ',' + '0' + ',' + 'AA11')
+        self.publishLP.publish(initialMsg)
         # Checks if robot is at parking lot
+        """
         parkingLotFlag = self.atParkingLot(cv_image)
 
         if parkingLotFlag is True and (self.counter - self.tempCounter) >= 5:
@@ -87,8 +93,7 @@ class controlNode:
             # velocity = self.determineVelocity(cv_image)
             # self.publishVel.publish(velocity)
             self.counter = self.counter + 1
-
-        velocity = self.determineVelocity(cv_image)
+        """
 
 
     """
@@ -97,6 +102,7 @@ class controlNode:
     @return: flag - boolean representing if the robot is at a
                     parking lot or not. (True = parking lot &
                     False = road)
+    """
     """
     def atParkingLot(self, cameraImg):
         flag = False
@@ -122,7 +128,7 @@ class controlNode:
             flag = True
 
         return flag
-
+    """
     """
     @brief:  Determiens the license plate and the parking lot ID
              given the robot's raw camera image
@@ -130,6 +136,7 @@ class controlNode:
     @return: A string containing the license plate (determined by
              the license plates and ID convolution model) and the
              parking lot ID
+    """
     """
     def determineLicensePlate(self, cameraImg):
         # Calls on image cropper which crops the robot's raw camera
@@ -155,7 +162,7 @@ class controlNode:
             LP_msg = LP_msg + character
 
         return LP_msg
-
+    """
     """
     @brief:  Uses a specified line of pixels to find the sides of the road
              and gives a pass or fail depending on its success/ meaningfullness
@@ -244,9 +251,8 @@ class controlNode:
         length = len(centers)
         line3 = 0
         while (line3 < length):  # removes any centers that are outliers
-            if (centers[line3] - averageCenter) > int(gap/2):
+            if (centers[line3] - averageCenter) > int(gap):
                 centers.remove(centers[line3])
-                averageCenter = int(sum(centers)/len(centers))
                 length = length - 1
                 line3 = line3 - 1
             line3 = line3 + 1
@@ -263,16 +269,16 @@ class controlNode:
         # stop current motion
         velocity.linear.x = 0
         velocity.angular.z = 0.0
-        self.publish.publish(velocity)
+        self.publishVel.publish(velocity)
         sleep(0.015)
         # turn ~90 degrees left
         velocity.linear.x = 0
         velocity.angular.z = 0.5
-        self.publish.publish(velocity)
+        self.publishVel.publish(velocity)
         sleep(0.363)
         velocity.linear.x = 0
         velocity.angular.z = 0.0
-        self.publish.publish(velocity)
+        self.publishVel.publish(velocity)
         # for debug, stop and wait
         sleep(0.015)
 
@@ -285,16 +291,16 @@ class controlNode:
         # stop current motion
         velocity.linear.x = 0
         velocity.angular.z = 0.0
-        self.publish.publish(velocity)
+        self.publishVel.publish(velocity)
         sleep(0.015)
         # step forward into the loop
         velocity.linear.x = 0.4
         velocity.angular.z = 0.0
-        self.publish.publish(velocity)
+        self.publishVel.publish(velocity)
         sleep(0.400)
         velocity.linear.x = 0
         velocity.angular.z = 0.0
-        self.publish.publish(velocity)
+        self.publishVel.publish(velocity)
         # for debug, stop and wait
         sleep(0.015)
 
@@ -308,16 +314,16 @@ class controlNode:
         # stop current motion
         velocity.linear.x = 0.0
         velocity.angular.z = 0.0
-        self.publish.publish(velocity)
+        self.publishVel.publish(velocity)
         sleep(jogDelay)
         # turn left a small amount
         velocity.linear.x = 0.0
         velocity.angular.z = 0.5
-        self.publish.publish(velocity)
+        self.publishVel.publish(velocity)
         sleep(0.017)
         velocity.linear.x = 0.0
         velocity.angular.z = 0.0
-        self.publish.publish(velocity)
+        self.publishVel.publish(velocity)
 
     """
     @brief:  Performs a slight right turn (used to align the camera center
@@ -329,16 +335,16 @@ class controlNode:
         # stop current motion
         velocity.linear.x = 0.0
         velocity.angular.z = 0.0
-        self.publish.publish(velocity)
+        self.publishVel.publish(velocity)
         sleep(jogDelay)
         # turn right a small amount
         velocity.linear.x = 0.0
         velocity.angular.z = -0.5
-        self.publish.publish(velocity)
+        self.publishVel.publish(velocity)
         sleep(0.017)
         velocity.linear.x = 0.0
         velocity.angular.z = 0.0
-        self.publish.publish(velocity)
+        self.publishVel.publish(velocity)
 
     """
     @brief:  Performs a slight forward movement (used to ensure that
@@ -350,16 +356,16 @@ class controlNode:
         # stop current motion
         velocity.linear.x = 0.0
         velocity.angular.z = 0.0
-        self.publish.publish(velocity)
+        self.publishVel.publish(velocity)
         sleep(jogDelay)
         # turn 90 degrees left
         velocity.linear.x = 0.4
         velocity.angular.z = 0.0
-        self.publish.publish(velocity)
+        self.publishVel.publish(velocity)
         sleep(0.04)
         velocity.linear.x = 0.0
         velocity.angular.z = 0.0
-        self.publish.publish(velocity)
+        self.publishVel.publish(velocity)
 
     """
     @brief:  Determines the appropriate movement and calls the function to 
@@ -369,13 +375,13 @@ class controlNode:
     # FOR ZACH TO COMPLETE -> Zach has completed
     def determineVelocity(self, cameraImg):
         # get a mask for the road color
-        cv_image = cameraImg
+        # cv_image = cameraImg
         center = -34
         offset = 0
         lower_hsv = np.array([0, 0, 82])
         upper_hsv = np.array([100, 255, 85])
 
-        image = cv2.cvtColor(cv_image, cv2.COLOR_RGB2HSV)
+        image = cv2.cvtColor(cameraImg, cv2.COLOR_RGB2HSV)
         mask = cv2.inRange(image, lower_hsv, upper_hsv)
         interMask = cv2.medianBlur(mask, 7)
         newMask = interMask/255  # normalizes to 0 and 1
@@ -432,14 +438,15 @@ class controlNode:
 
 
 def main(args):
-    cn = controlNode()
+    print("START")
     rospy.init_node('controlNode', anonymous=True)
+    print("Init ros")
+    cn = controlNode()
     try:
         rospy.spin()
     except KeyboardInterrupt:
         print("Shutting down")
     cv2.destroyAllWindows()
 
-
-if __name__ == 'main':
+if __name__ == '__main__':
     main(sys.argv)
