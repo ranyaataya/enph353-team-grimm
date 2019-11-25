@@ -14,7 +14,7 @@ from std_msgs.msg import String
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge, CvBridgeError
 from geometry_msgs.msg import Twist
-"""
+
 from keras import layers
 from keras import models
 from keras import optimizers
@@ -22,13 +22,13 @@ from keras import optimizers
 from keras.utils import plot_model
 from keras import backend
 import tensorflow as tf
-"""
-#from PIL import Image
+
+from PIL import Image as PIL_Image
 import numpy as np
-"""
+
 from imageCrop_for_CNN import imageCrop
 from keras.models import load_model
-"""
+
 from time import sleep
 
 
@@ -42,6 +42,7 @@ class controlNode:
         self.publishLP = rospy.Publisher("/license_plate", String, queue_size=1)
 
         self.inLoop = False
+        self.initialMsgSent = False
 
         self.counter = 0
         self.tempCounter = 0
@@ -63,19 +64,25 @@ class controlNode:
             cv_image = self.bridge.imgmsg_to_cv2(data, "bgr8")
         except CvBridgeError as e:
             print(e)
-        velocity = self.determineVelocity(cv_image)
+        # velocity = self.determineVelocity(cv_image)
 
-        initialMsg = str(self.teamName + ',' + self.teamPassword + ',' + '0' + ',' + 'AA11')
-        self.publishLP.publish(initialMsg)
+        if(self.initialMsgSent is False):
+            initialMsg = str(self.teamName + ',' + self.teamPassword + ',' + '0' + ',' + 'AA11')
+            self.publishLP.publish(initialMsg)
+
+            self.initialMsgSent = True
         # Checks if robot is at parking lot
-        """
+
         parkingLotFlag = self.atParkingLot(cv_image)
 
-        if parkingLotFlag is True and (self.counter - self.tempCounter) >= 5:
+        if parkingLotFlag is True and (self.counter - self.tempCounter) >= 25:
+            """
             velocity = Twist()
             self.publishVel.publish(velocity)
+            """
             # Determines license plate and publishes message
             LP_msg = self.determineLicensePlate(cv_image)
+            print(LP_msg)
             fullMsg = str(self.teamName + ',' + self.teamPassword + ',' + LP_msg[0] + ',' + LP_msg[1:])
             self.publishLP.publish(fullMsg)
 
@@ -84,6 +91,7 @@ class controlNode:
             # velocity = self.determineVelocity(cv_image)
             # self.publishVel.publish(velocity)
 
+            print("At parking lot\n")
             parkingLotFlag = False
             self.tempCounter = self.counter
 
@@ -93,7 +101,7 @@ class controlNode:
             # velocity = self.determineVelocity(cv_image)
             # self.publishVel.publish(velocity)
             self.counter = self.counter + 1
-        """
+
 
 
     """
@@ -103,11 +111,11 @@ class controlNode:
                     parking lot or not. (True = parking lot &
                     False = road)
     """
-    """
+
     def atParkingLot(self, cameraImg):
         flag = False
         img = np.array(cameraImg)
-        img = cv2.cvtColor(img, cv2.COLOR_RGB2HSV)
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 
         # Define limits of blue in HSV
         lowerBlue = np.array([110, 50, 50])
@@ -121,14 +129,14 @@ class controlNode:
         # Sum all the pixels in the image to represent the
         # area of blue in the image
         imgSum = np.sum(maskedImg)
-        thresholdSum = [8000000, 40000000]
+        thresholdSum = [10000000, 17000000]
 
         # Robot is at parking lot
         if imgSum > thresholdSum[0] and imgSum < thresholdSum[1]:
             flag = True
 
         return flag
-    """
+
     """
     @brief:  Determiens the license plate and the parking lot ID
              given the robot's raw camera image
@@ -137,13 +145,16 @@ class controlNode:
              the license plates and ID convolution model) and the
              parking lot ID
     """
-    """
+
     def determineLicensePlate(self, cameraImg):
         # Calls on image cropper which crops the robot's raw camera
         # image and saves the 5 images to a local folder: competitionImages/
-        imageCrop(cameraImg)
-        conModel = load_model('ConvolutionModels/LPModel.h5')
+        RGB_cameraImg = cv2.cvtColor(cameraImg, cv2.COLOR_BGR2RGB)
+        imageCrop(RGB_cameraImg)
+        LPModel = load_model('ConvolutionModels/LPModel.h5')
         LP_msg = ""
+
+        print("model loaded")
 
         RELATIVE_PATH = "competitionImgs/"
         # files = os.listdir(RELATIVE_PATH)
@@ -152,17 +163,17 @@ class controlNode:
 
         # for fileName in files[:]:
         for i in range(5):
-            letterNumImg = np.array(Image.open(RELATIVE_PATH + files[i]))
+            letterNumImg = np.array(PIL_Image.open(RELATIVE_PATH + files[i]))
             resizedImg = np.reshape(letterNumImg, [1, 39, 36, 3])
 
-            predictions = LPModel.predict()
+            predictions = LPModel.predict(resizedImg)
             index = np.where(predictions == np.amax(predictions))
             index = int(index[1])
             character = self.answerKey[index]
             LP_msg = LP_msg + character
 
         return LP_msg
-    """
+
     """
     @brief:  Uses a specified line of pixels to find the sides of the road
              and gives a pass or fail depending on its success/ meaningfullness
