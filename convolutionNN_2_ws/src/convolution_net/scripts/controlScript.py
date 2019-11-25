@@ -179,7 +179,7 @@ class controlNode:
     def edgePass(self, height, newMask, w):
         left = -34
         right = -34
-        searchIndent = int(-1.00*height + 700)
+        searchIndent = int(-0.85*height + 700)
         # print(searchIndent)
 
         for x in range(searchIndent, w - searchIndent):
@@ -215,7 +215,7 @@ class controlNode:
              h - height of image in pixels
              w - width of image in pixels
     """
-    def imagePresent(self, name, text, center, edgeConditions, cv_image, h, w):
+    def imagePresent(self, name, text, center, edgeConditions, cv_image, h, w): # This function is not up to date, but isn't useful
         top = int(0.65*h)
         mid = int(0.70*h)
         bottom = int(0.75*h)
@@ -308,19 +308,21 @@ class controlNode:
     @brief:  Performs a slight left turn (used to align the camera center
              road center)
     """
-    def leftJog(self):
-        jogDelay = 0.015
+    def leftJog(self, error):
+        jogDelay = 0.010
+        jogTime = 0.02 + error*0.001
         velocity = Twist()
         # stop current motion
         velocity.linear.x = 0.0
         velocity.angular.z = 0.0
         self.publishVel.publish(velocity)
         sleep(jogDelay)
-        # turn left a small amount
+        # turn left slightly
         velocity.linear.x = 0.0
         velocity.angular.z = 0.5
         self.publishVel.publish(velocity)
-        sleep(0.017)
+        sleep(jogTime)
+        # stop turn
         velocity.linear.x = 0.0
         velocity.angular.z = 0.0
         self.publishVel.publish(velocity)
@@ -329,19 +331,21 @@ class controlNode:
     @brief:  Performs a slight right turn (used to align the camera center
              road center)
     """
-    def rightJog(self):
-        jogDelay = 0.015
+    def rightJog(self, error):
+        jogDelay = 0.010
+        jogTime = 0.02 + error*0.005
         velocity = Twist()
         # stop current motion
         velocity.linear.x = 0.0
         velocity.angular.z = 0.0
         self.publishVel.publish(velocity)
         sleep(jogDelay)
-        # turn right a small amount
+        # turn right slightly
         velocity.linear.x = 0.0
         velocity.angular.z = -0.5
         self.publishVel.publish(velocity)
-        sleep(0.017)
+        sleep(jogTime)
+        # stop turn
         velocity.linear.x = 0.0
         velocity.angular.z = 0.0
         self.publishVel.publish(velocity)
@@ -350,19 +354,21 @@ class controlNode:
     @brief:  Performs a slight forward movement (used to ensure that
              the robot does not move forward too quickly
     """
-    def forwardJog(self):
-        jogDelay = 0.015
+    def forwardJog(self, error):
+        jogDelay = 0.010
+        jogTime = 0.07 - error*0.01
         velocity = Twist()
         # stop current motion
         velocity.linear.x = 0.0
         velocity.angular.z = 0.0
         self.publishVel.publish(velocity)
         sleep(jogDelay)
-        # turn 90 degrees left
+        # go forward slightly
         velocity.linear.x = 0.4
         velocity.angular.z = 0.0
         self.publishVel.publish(velocity)
-        sleep(0.04)
+        sleep(jogTime)
+        # stop forward motion
         velocity.linear.x = 0.0
         velocity.angular.z = 0.0
         self.publishVel.publish(velocity)
@@ -392,7 +398,7 @@ class controlNode:
 
         # find the conditions for the edges of the given search lines
         edgeConditions = []
-        searchLines = [int(0.83*h), int(0.72*h), int(0.61*h)]
+        searchLines = [int(0.83*h), int(0.67*h), int(0.56*h)]
         for search in range(len(searchLines)):
             left, right, gotLeft, gotRight = self.edgePass(searchLines[search], newMask, w)
             edgeConditions.append(left)
@@ -412,9 +418,9 @@ class controlNode:
         if (edgeConditions[10] == 0 and edgeConditions[11] == 0):  # either totally lost or at a T intersection
             center = 1  # value of extreme left turn
             text = "T"
-        elif(leftTotal < 1):
+        elif(leftTotal < 2):
             # left turn intersection
-            center = edgeConditions[5] - int(0.23*w)  # approximate lane center for the intersection
+            center = edgeConditions[1] - int(0.12*w)  # approximate lane center for the intersection
             if (center < 0):
                 center = 0
             text = "intersection"
@@ -424,17 +430,17 @@ class controlNode:
             text = "straight"
 
         stateNumber = center / gap
-
+        error = abs(center - int(w/2))
         # goes through different options of turning
 
         if stateNumber > 10:
-            self.rightJog()
+            self.rightJog(error - int(gap/2))
         elif stateNumber < 9:
             # turn left
-            self.leftJog()
+            self.leftJog(error - int(gap/2))
         else:
             # go straight
-            self.forwardJog()
+            self.forwardJog(error)
 
 
 def main(args):
