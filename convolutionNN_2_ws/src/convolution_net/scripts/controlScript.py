@@ -54,8 +54,8 @@ class controlNode:
                          "2", "3", "4", "5", "6", "7", "8",
                          "9"]
 
-        initialMsg = str(self.teamName + ',' + self.teamPassword + ',' + '0' + ',' + 'AA11')
-        self.publishLP.publish(initialMsg)
+        # initialMsg = str(self.teamName + ',' + self.teamPassword + ',' + '0' + ',' + 'AA11')
+        # self.publishLP.publish(initialMsg)
         print("CN node done init.")
 
     def callback(self, data):
