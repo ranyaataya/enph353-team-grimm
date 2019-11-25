@@ -357,6 +357,8 @@ class controlNode:
     def forwardJog(self, error):
         jogDelay = 0.010
         jogTime = 0.07 - error*0.01
+        if jogTime < 0.01:
+            jogTime = 0.01
         velocity = Twist()
         # stop current motion
         velocity.linear.x = 0.0
