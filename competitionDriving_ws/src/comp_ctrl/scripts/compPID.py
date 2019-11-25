@@ -47,7 +47,7 @@ class image_converter:
     def edgePass(self, height, newMask, w):
         left = -34
         right = -34
-        searchIndent = int(-1.00*height + 700)
+        searchIndent = int(-0.85*height + 700)
         # print(searchIndent)
 
         for x in range(searchIndent, w - searchIndent):
@@ -149,7 +149,7 @@ class image_converter:
         sleep(0.015)
 
     def leftJog(self, error):
-        jogDelay = 0.015
+        jogDelay = 0.010
         jogTime = 0.02 + error*0.001
         velocity = Twist()
         # stop current motion
@@ -169,8 +169,8 @@ class image_converter:
         # sleep(jogDelay)
 
     def rightJog(self, error):
-        jogDelay = 0.015
-        jogTime = 0.02 + error*0.01
+        jogDelay = 0.010
+        jogTime = 0.02 + error*0.005
         velocity = Twist()
         # stop current motion
         velocity.linear.x = 0.0
@@ -189,8 +189,8 @@ class image_converter:
         # sleep(jogDelay)
 
     def forwardJog(self, error):
-        jogDelay = 0.015
-        jogTime = 0.05 - error*0.01
+        jogDelay = 0.010
+        jogTime = 0.07 - error*0.01
         velocity = Twist()
         # stop current motion
         velocity.linear.x = 0.0
@@ -209,6 +209,7 @@ class image_converter:
         # sleep(jogDelay)
 
     def atSpot(self, cv_image):
+        retval = False
         lowerBlue = np.array([0, 110, 145])
         upperBlue = np.array([60, 220, 245])
 
@@ -221,9 +222,11 @@ class image_converter:
         cv2.imshow("Blur 3", blurProper)
         imgSum = np.sum(blurProper)
         if (imgSum > 3000000):
-            return True
+            retval = True
         else:
-            return False
+            retval = False
+        print(retval)
+        return retval
 
     # determineVelocity function calculate the velocity for the robot based
     # on the position of the line in the image.
@@ -247,7 +250,7 @@ class image_converter:
 
         # find the conditions for the edges of the given search lines
         edgeConditions = []
-        searchLines = [int(0.83*h), int(0.72*h), int(0.61*h)]
+        searchLines = [int(0.83*h), int(0.67*h), int(0.56*h)]
         # print(searchLines)
         for search in range(len(searchLines)):
             left, right, gotLeft, gotRight = self.edgePass(searchLines[search], newMask, w)
@@ -279,12 +282,8 @@ class image_converter:
             if (center < 0):
                 center = 0
             text = "intersection"
-        else:  # straights including parking space straights
-            if(self.atSpot(cv_image) is True):
-               center = edgeConditions[1] - int(0.12*w)
-            else:
-                center = self.getCenter(edgeConditions, gap)
-                # center = edgeConditions[1] + int(0.21875*w)
+        else:
+            center = self.getCenter(edgeConditions, gap)
             center = center + offset
             text = "straight"
 
