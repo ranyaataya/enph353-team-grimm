@@ -67,14 +67,14 @@ set(adeept_awr_ros_driver_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("TRUE" STREQUAL "TRUE")
-  set(adeept_awr_ros_driver_SOURCE_PREFIX /home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/src/2019F_competition_student-master/adeept_awr_ros_driver)
-  set(adeept_awr_ros_driver_DEVEL_PREFIX /home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/devel)
+  set(adeept_awr_ros_driver_SOURCE_PREFIX /home/fizzer/new-enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/src/2019F_competition_student-master/adeept_awr_ros_driver)
+  set(adeept_awr_ros_driver_DEVEL_PREFIX /home/fizzer/new-enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/devel)
   set(adeept_awr_ros_driver_INSTALL_PREFIX "")
   set(adeept_awr_ros_driver_PREFIX ${adeept_awr_ros_driver_DEVEL_PREFIX})
 else()
   set(adeept_awr_ros_driver_SOURCE_PREFIX "")
   set(adeept_awr_ros_driver_DEVEL_PREFIX "")
-  set(adeept_awr_ros_driver_INSTALL_PREFIX /home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/install)
+  set(adeept_awr_ros_driver_INSTALL_PREFIX /home/fizzer/new-enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/install)
   set(adeept_awr_ros_driver_PREFIX ${adeept_awr_ros_driver_INSTALL_PREFIX})
 endif()
 
@@ -91,9 +91,9 @@ endif()
 # flag project as catkin-based to distinguish if a find_package()-ed project is a catkin project
 set(adeept_awr_ros_driver_FOUND_CATKIN_PROJECT TRUE)
 
-if(NOT "/home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/devel/include " STREQUAL " ")
+if(NOT "/home/fizzer/new-enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/devel/include " STREQUAL " ")
   set(adeept_awr_ros_driver_INCLUDE_DIRS "")
-  set(_include_dirs "/home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/devel/include")
+  set(_include_dirs "/home/fizzer/new-enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/devel/include")
   if(NOT " " STREQUAL " ")
     set(_report "Check the issue tracker '' and consider creating a ticket if the problem has not been reported yet.")
   elseif(NOT " " STREQUAL " ")
@@ -110,7 +110,7 @@ if(NOT "/home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/convolutionN
         message(FATAL_ERROR "Project 'adeept_awr_ros_driver' specifies '${idir}' as an include dir, which is not found.  It does not exist in '${include}'.  ${_report}")
       endif()
     else()
-      message(FATAL_ERROR "Project 'adeept_awr_ros_driver' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/src/2019F_competition_student-master/adeept_awr_ros_driver/${idir}'.  ${_report}")
+      message(FATAL_ERROR "Project 'adeept_awr_ros_driver' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/fizzer/new-enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/src/2019F_competition_student-master/adeept_awr_ros_driver/${idir}'.  ${_report}")
     endif()
     _list_append_unique(adeept_awr_ros_driver_INCLUDE_DIRS ${include})
   endforeach()
@@ -131,7 +131,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/devel/lib;/opt/ros/melodic/lib)
+    foreach(path /home/fizzer/new-enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/devel/lib;/home/fizzer/new-enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/devel/lib;/opt/ros/melodic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)
