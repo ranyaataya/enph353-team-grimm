@@ -74,30 +74,17 @@ class controlNode:
         parkingLotFlag = self.atParkingLot(cv_image)
 
         if parkingLotFlag is True and (self.counter - self.tempCounter) >= 25:
-            """
-            velocity = Twist()
-            self.publishVel.publish(velocity)
-            """
             # Determines license plate and publishes message
             LP_msg = self.determineLicensePlate(cv_image)
             print(LP_msg)
             fullMsg = str(self.teamName + ',' + self.teamPassword + ',' + LP_msg[0] + ',' + LP_msg[1:])
             self.publishLP.publish(fullMsg)
 
-            # Determines the velocity twist message of the robot
-            # and publishes it
-            # velocity = self.determineVelocity(cv_image)
-            # self.publishVel.publish(velocity)
-
             print("At parking lot\n")
             parkingLotFlag = False
             self.tempCounter = self.counter
 
         else:
-            # Determines the velocity twist message of the robot
-            # and publishes it
-            # velocity = self.determineVelocity(cv_image)
-            # self.publishVel.publish(velocity)
             self.counter = self.counter + 1
 
 
@@ -149,7 +136,7 @@ class controlNode:
         # image and saves the 5 images to a local folder: competitionImages/
         RGB_cameraImg = cv2.cvtColor(cameraImg, cv2.COLOR_BGR2RGB)
         imageCrop(RGB_cameraImg)
-        LPModel = load_model('ConvolutionModels/LPModel.h5')
+        LPModel = load_model('ConvolutionModels/LPModel_2.h5')
         LP_msg = ""
 
         print("model loaded")
