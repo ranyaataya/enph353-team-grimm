@@ -46,7 +46,8 @@ def findHeightThreshold(cameraImg, thresholdValue):
 """
 def getImagePath(fileName, position):
     global counter
-    relPath = "letters_and_numbers/" + fileName[position] + "/" + fileName[position] + str(counter) + ".jpg"
+    # relPath = "letters_and_numbers/" + fileName[position] + "/" + fileName[position] + str(counter) + ".jpg"
+    relPath = "LP_testDataSet/cropped/" + fileName[position] + str(counter) + ".jpg"
     counter = counter + 1
     return relPath
 
@@ -65,7 +66,7 @@ def saveImage(img, fileName, position):
 
 
 # ================================================================================
-RELATIVE_PATH = 'rawImages/'
+RELATIVE_PATH = 'LP_testDataSet/raw/'  # 'rawImages/'
 
 files = os.listdir(RELATIVE_PATH)
 counter = 0
@@ -193,11 +194,17 @@ for fileName in files[:]:
     # Save individual images for each letter and number
     print("Set: ", setNum, " saved")
     setNum = setNum + 1
-    saveImage(lot_img_num, fileName, 5)
-    saveImage(LP_img1, fileName, 7)
-    saveImage(LP_img2, fileName, 8)
-    saveImage(LP_img3, fileName, 9)
-    saveImage(LP_img4, fileName, 10)
+    # saveImage(lot_img_num, fileName, 5)
+    # saveImage(LP_img1, fileName, 7)
+    # saveImage(LP_img2, fileName, 8)
+    # saveImage(LP_img3, fileName, 9)
+    # saveImage(LP_img4, fileName, 10)
+
+    saveImage(lot_img_num, fileName, 3)
+    saveImage(LP_img1, fileName, 4)
+    saveImage(LP_img2, fileName, 5)
+    saveImage(LP_img3, fileName, 6)
+    saveImage(LP_img4, fileName, 7)
 
     # plt.imshow(lot_img_num), plt.show()
     # plt.imshow(LP_img1), plt.show()
