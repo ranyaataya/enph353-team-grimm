@@ -191,7 +191,7 @@ class controlNode:
     def edgePass(self, height, newMask, w):
         left = -34
         right = -34
-        searchIndent = int(-0.85*height + 700)
+        searchIndent = int(-1.00*height + 700)
         # print(searchIndent)
 
         for x in range(searchIndent, w - searchIndent):
@@ -282,17 +282,17 @@ class controlNode:
         velocity.linear.x = 0
         velocity.angular.z = 0.0
         self.publishVel.publish(velocity)
-        sleep(0.015)
+        rospy.sleep(0.015)
         # turn ~90 degrees left
         velocity.linear.x = 0
         velocity.angular.z = 0.5
         self.publishVel.publish(velocity)
-        sleep(0.363)
+        rospy.sleep(1.100)
         velocity.linear.x = 0
         velocity.angular.z = 0.0
         self.publishVel.publish(velocity)
         # for debug, stop and wait
-        sleep(0.015)
+        rospy.sleep(1.015)
 
     """
     @brief:  Performs a large forward movement(used to move the robot into
@@ -304,17 +304,17 @@ class controlNode:
         velocity.linear.x = 0
         velocity.angular.z = 0.0
         self.publishVel.publish(velocity)
-        sleep(0.015)
+        rospy.sleep(0.015)
         # step forward into the loop
         velocity.linear.x = 0.4
         velocity.angular.z = 0.0
         self.publishVel.publish(velocity)
-        sleep(0.400)
+        rospy.sleep(1.200)
         velocity.linear.x = 0
         velocity.angular.z = 0.0
         self.publishVel.publish(velocity)
         # for debug, stop and wait
-        sleep(0.015)
+        rospy.sleep(0.015)
 
     """
     @brief:  Performs a slight left turn (used to align the camera center
@@ -322,18 +322,18 @@ class controlNode:
     """
     def leftJog(self, error):
         jogDelay = 0.010
-        jogTime = 0.02 + error*0.001
+        jogTime = 0.03 + error*0.00001
         velocity = Twist()
         # stop current motion
         velocity.linear.x = 0.0
         velocity.angular.z = 0.0
         self.publishVel.publish(velocity)
-        sleep(jogDelay)
+        rospy.sleep(jogDelay)
         # turn left slightly
         velocity.linear.x = 0.0
         velocity.angular.z = 0.5
         self.publishVel.publish(velocity)
-        sleep(jogTime)
+        rospy.sleep(jogTime)
         # stop turn
         velocity.linear.x = 0.0
         velocity.angular.z = 0.0
@@ -345,18 +345,18 @@ class controlNode:
     """
     def rightJog(self, error):
         jogDelay = 0.010
-        jogTime = 0.02 + error*0.005
+        jogTime = 0.03 + error*0.00001
         velocity = Twist()
         # stop current motion
         velocity.linear.x = 0.0
         velocity.angular.z = 0.0
         self.publishVel.publish(velocity)
-        sleep(jogDelay)
+        rospy.sleep(jogDelay)
         # turn right slightly
         velocity.linear.x = 0.0
         velocity.angular.z = -0.5
         self.publishVel.publish(velocity)
-        sleep(jogTime)
+        rospy.sleep(jogTime)
         # stop turn
         velocity.linear.x = 0.0
         velocity.angular.z = 0.0
@@ -368,7 +368,7 @@ class controlNode:
     """
     def forwardJog(self, error):
         jogDelay = 0.010
-        jogTime = 0.07 - error*0.01
+        jogTime = 0.071  # - error*0.01
         if jogTime < 0.01:
             jogTime = 0.01
         velocity = Twist()
@@ -376,12 +376,12 @@ class controlNode:
         velocity.linear.x = 0.0
         velocity.angular.z = 0.0
         self.publishVel.publish(velocity)
-        sleep(jogDelay)
+        rospy.sleep(jogDelay)
         # go forward slightly
         velocity.linear.x = 0.4
         velocity.angular.z = 0.0
         self.publishVel.publish(velocity)
-        sleep(jogTime)
+        rospy.sleep(jogTime)
         # stop forward motion
         velocity.linear.x = 0.0
         velocity.angular.z = 0.0
@@ -412,7 +412,7 @@ class controlNode:
 
         # find the conditions for the edges of the given search lines
         edgeConditions = []
-        searchLines = [int(0.83*h), int(0.67*h), int(0.56*h)]
+        searchLines = [int(0.83*h), int(0.72*h), int(0.61*h)]
         for search in range(len(searchLines)):
             left, right, gotLeft, gotRight = self.edgePass(searchLines[search], newMask, w)
             edgeConditions.append(left)
@@ -432,9 +432,9 @@ class controlNode:
         if (edgeConditions[10] == 0 and edgeConditions[11] == 0):  # either totally lost or at a T intersection
             center = 1  # value of extreme left turn
             text = "T"
-        elif(leftTotal < 2):
+        elif(leftTotal < 1):
             # left turn intersection
-            center = edgeConditions[1] - int(0.12*w)  # approximate lane center for the intersection
+            center = edgeConditions[1] - int(0.23*w)  # approximate lane center for the intersection
             if (center < 0):
                 center = 0
             text = "intersection"
@@ -449,7 +449,7 @@ class controlNode:
 
         if stateNumber > 10:
             self.rightJog(error - int(gap/2))
-        elif stateNumber < 9:
+        elif stateNumber < 8:
             # turn left
             self.leftJog(error - int(gap/2))
         else:
@@ -467,6 +467,7 @@ def main(args):
     except KeyboardInterrupt:
         print("Shutting down")
     cv2.destroyAllWindows()
+
 
 if __name__ == '__main__':
     main(sys.argv)
