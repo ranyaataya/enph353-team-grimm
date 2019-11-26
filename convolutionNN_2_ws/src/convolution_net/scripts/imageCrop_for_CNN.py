@@ -28,7 +28,7 @@ def imageCrop(cameraImg):
     # ============================
 
     heightThresholds = findHeightThreshold(cameraImg, BLUE_DIFF_RANGE_Y)
-    print("ImageCrop: Got height thresholds")
+
     # x Direction
     left_x = 0
     right_x = 0
@@ -69,7 +69,7 @@ def imageCrop(cameraImg):
             right_x = width - x
             break
 
-    print("ImageCrop: got left x and right x")
+
     # y Direction
     up_y = heightThresholds[0]
     down_y = heightThresholds[2]
@@ -94,7 +94,7 @@ def imageCrop(cameraImg):
     resizedImg = cv2.resize(croppedImg, (int(croppedWidth*scalingWidthFactor),
                                          int(croppedHeight*scalingHeightFactor)),
                             interpolation=cv2.INTER_CUBIC)
-    print("ImageCrop: resized image")
+
     # Create license plate image and lot ID image
     licensePlate_img = resizedImg[int(LP_bounds[0]*STANDARD_HEIGHT):
                                   int(LP_bounds[1]*STANDARD_HEIGHT), :]
@@ -113,7 +113,7 @@ def imageCrop(cameraImg):
     LP_img2 = licensePlate_img[:, LP_charBounds[2]:LP_charBounds[3], :]
     LP_img3 = licensePlate_img[:, LP_charBounds[4]:LP_charBounds[5], :]
     LP_img4 = licensePlate_img[:, LP_charBounds[6]:LP_charBounds[7], :]
-    print("ImageCrop: obtained LP_imgs")
+
     # Resize lot ID letters and numbers
     scaling_lotIDL_HeightFactor = float(LP_img1.shape[0])/lot_img_letter.shape[0]
     scaling_lotIDL_WidthFactor = float(LP_img1.shape[1])/lot_img_letter.shape[1]
@@ -176,7 +176,6 @@ def getImagePath(fileName):
     # relPath = "letters_and_numbers/" + fileName[position] + "/" + fileName[position] + str(counter) + ".jpg"
     # CHANGE RELATIVE PATH TO BE WHAT WE WANT!!!!
     relPath = "competitionImgs/" + fileName
-    print("ImageCrop: got path")
 
     return relPath
 

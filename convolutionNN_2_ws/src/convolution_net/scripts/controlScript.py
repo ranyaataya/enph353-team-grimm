@@ -62,7 +62,7 @@ class controlNode:
             cv_image = self.bridge.imgmsg_to_cv2(data, "bgr8")
         except CvBridgeError as e:
             print(e)
-        # self.determineVelocity(cv_image)
+        self.determineVelocity(cv_image)
 
         if(self.initialMsgSent is False):
             initialMsg = str(self.teamName + ',' + self.teamPassword + ',' + '0' + ',' + 'AA11')
