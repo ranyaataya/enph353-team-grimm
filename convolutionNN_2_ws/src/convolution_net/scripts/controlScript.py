@@ -165,9 +165,12 @@ class controlNode:
             resizedImg = np.reshape(letterNumImg, [1, 39, 36, 3])
 
             predictions = LPModel.predict(resizedImg)
+            print("Predictions: ", predictions)
             index = np.where(predictions == np.amax(predictions))
+            print("Index of max value: ", index)
             index = int(index[1])
             character = self.answerKey[index]
+            print("Character: ", character)
             LP_msg = LP_msg + character
 
         return LP_msg
