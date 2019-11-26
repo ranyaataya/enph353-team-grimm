@@ -1,8 +1,8 @@
-# Install script for directory: /home/onehalf/enph353_gym-gazebo/competitionDriving_ws/src/comp_ctrl
+# Install script for directory: /home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/competitionDriving_ws/src/comp_ctrl
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/onehalf/enph353_gym-gazebo/competitionDriving_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/competitionDriving_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,17 +38,17 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/onehalf/enph353_gym-gazebo/competitionDriving_ws/build/comp_ctrl/catkin_generated/installspace/comp_ctrl.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/competitionDriving_ws/build/comp_ctrl/catkin_generated/installspace/comp_ctrl.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/comp_ctrl/cmake" TYPE FILE FILES
-    "/home/onehalf/enph353_gym-gazebo/competitionDriving_ws/build/comp_ctrl/catkin_generated/installspace/comp_ctrlConfig.cmake"
-    "/home/onehalf/enph353_gym-gazebo/competitionDriving_ws/build/comp_ctrl/catkin_generated/installspace/comp_ctrlConfig-version.cmake"
+    "/home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/competitionDriving_ws/build/comp_ctrl/catkin_generated/installspace/comp_ctrlConfig.cmake"
+    "/home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/competitionDriving_ws/build/comp_ctrl/catkin_generated/installspace/comp_ctrlConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/comp_ctrl" TYPE FILE FILES "/home/onehalf/enph353_gym-gazebo/competitionDriving_ws/src/comp_ctrl/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/comp_ctrl" TYPE FILE FILES "/home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/competitionDriving_ws/src/comp_ctrl/package.xml")
 endif()
 

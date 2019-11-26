@@ -21,6 +21,7 @@ from time import sleep
 class image_converter:
 
     def __init__(self):
+        print("Starting Up")
         # we want to subscribe to the image that is published automatically by the camera
         # then we want to publish the velocity which is automatically heard by the robot
         # self.image_pub = rospy.Publisher("image_topic_2", Image)
@@ -47,7 +48,7 @@ class image_converter:
     def edgePass(self, height, newMask, w):
         left = -34
         right = -34
-        searchIndent = int(-0.85*height + 700)
+        searchIndent = int(-1.00*height + 700)
         # print(searchIndent)
 
         for x in range(searchIndent, w - searchIndent):
@@ -118,17 +119,17 @@ class image_converter:
         velocity.linear.x = 0
         velocity.angular.z = 0.0
         self.publishVel.publish(velocity)
-        sleep(0.015)
+        rospy.sleep(0.015)
         # turn 90 degrees left
         velocity.linear.x = 0
         velocity.angular.z = 0.5
         self.publishVel.publish(velocity)
-        sleep(0.363)
+        rospy.sleep(1.100)
         velocity.linear.x = 0
         velocity.angular.z = 0.0
         self.publishVel.publish(velocity)
         # for debug, stop and wait
-        sleep(0.015)
+        rospy.sleep(1.015)
 
     def forwardStep(self):
         velocity = Twist()
@@ -136,61 +137,61 @@ class image_converter:
         velocity.linear.x = 0
         velocity.angular.z = 0.0
         self.publishVel.publish(velocity)
-        sleep(0.015)
+        rospy.sleep(0.015)
         # turn 90 degrees left
         velocity.linear.x = 0.4
         velocity.angular.z = 0.0
         self.publishVel.publish(velocity)
-        sleep(0.400)
+        rospy.sleep(1.200)
         velocity.linear.x = 0
         velocity.angular.z = 0.0
         self.publishVel.publish(velocity)
         # for debug, stop and wait
-        sleep(0.015)
+        rospy.sleep(0.015)
 
     def leftJog(self, error):
         jogDelay = 0.010
-        jogTime = 0.02 + error*0.001
+        jogTime = 0.03 + error*0.00001
         velocity = Twist()
         # stop current motion
         velocity.linear.x = 0.0
         velocity.angular.z = 0.0
         self.publishVel.publish(velocity)
-        sleep(jogDelay)
+        rospy.sleep(jogDelay)
         # turn 90 degrees left
         velocity.linear.x = 0.0
         velocity.angular.z = 0.5
         self.publishVel.publish(velocity)
-        sleep(jogTime)
+        rospy.sleep(jogTime)
         velocity.linear.x = 0.0
         velocity.angular.z = 0.0
         self.publishVel.publish(velocity)
         # for debug, stop and wait
-        # sleep(jogDelay)
+        # rospy.sleep(1.0)
 
     def rightJog(self, error):
         jogDelay = 0.010
-        jogTime = 0.02 + error*0.005
+        jogTime = 0.03 + error*0.00001
         velocity = Twist()
         # stop current motion
         velocity.linear.x = 0.0
         velocity.angular.z = 0.0
         self.publishVel.publish(velocity)
-        sleep(jogDelay)
+        rospy.sleep(jogDelay)
         # turn 90 degrees left
         velocity.linear.x = 0.0
         velocity.angular.z = -0.5
         self.publishVel.publish(velocity)
-        sleep(jogTime)
+        rospy.sleep(jogTime)
         velocity.linear.x = 0.0
         velocity.angular.z = 0.0
         self.publishVel.publish(velocity)
         # for debug, stop and wait
-        # sleep(jogDelay)
+        # rospy.sleep(1.0)
 
     def forwardJog(self, error):
         jogDelay = 0.010
-        jogTime = 0.07 - error*0.01
+        jogTime = 0.071  # - error*0.01
         if jogTime < 0.01:
             jogTime = 0.01
         velocity = Twist()
@@ -198,17 +199,17 @@ class image_converter:
         velocity.linear.x = 0.0
         velocity.angular.z = 0.0
         self.publishVel.publish(velocity)
-        sleep(jogDelay)
+        rospy.sleep(jogDelay)
         # turn 90 degrees left
         velocity.linear.x = 0.4
         velocity.angular.z = 0.0
         self.publishVel.publish(velocity)
-        sleep(jogTime)
+        rospy.sleep(jogTime)
         velocity.linear.x = 0.0
         velocity.angular.z = 0.0
         self.publishVel.publish(velocity)
         # for debug, stop and wait
-        # sleep(jogDelay)
+        # rospy.sleep(jogDelay)
 
     def atSpot(self, cv_image):
         retval = False
@@ -252,7 +253,7 @@ class image_converter:
 
         # find the conditions for the edges of the given search lines
         edgeConditions = []
-        searchLines = [int(0.83*h), int(0.67*h), int(0.56*h)]
+        searchLines = [int(0.83*h), int(0.72*h), int(0.61*h)]
         # print(searchLines)
         for search in range(len(searchLines)):
             left, right, gotLeft, gotRight = self.edgePass(searchLines[search], newMask, w)
@@ -271,6 +272,7 @@ class image_converter:
            # edgeConditions[2] + edgeConditions[6] + edgeConditions[10] > 1):
            #  center = int(0.75*w)
            #  text = "lost right"
+
         if(self.inLoop is False):
             self.forwardStep()
             self.leftTurn()
@@ -278,9 +280,9 @@ class image_converter:
         if (edgeConditions[10] == 0 and edgeConditions[11] == 0):  # either totally lost or at a T intersection
             center = 1  # value of extreme left turn
             text = "T"
-        elif(leftTotal < 2):
+        elif(leftTotal < 1):
             # left turn intersection
-            center = edgeConditions[1] - int(0.12*w)  # approximate lane center for the intersection
+            center = edgeConditions[1] - int(0.23*w)  # approximate lane center for the intersection
             if (center < 0):
                 center = 0
             text = "intersection"
@@ -288,6 +290,7 @@ class image_converter:
             center = self.getCenter(edgeConditions, gap)
             center = center + offset
             text = "straight"
+            # enter = edgeConditions[1] - int(0.23*w) 
 
         # compute state 0 through 9
         # self.imagePresent("camera", text, center, edgeConditions, cv_image, h, w)
@@ -303,14 +306,14 @@ class image_converter:
 
         if stateNumber > 10:
             self.rightJog(error - int(gap/2))
-        elif stateNumber < 9:
+        elif stateNumber < 8:
             # turn left
             self.leftJog(error - int(gap/2))
         else:
             # go straight
             self.forwardJog(error)
 
-        #return velocity
+        # return velocity
 
 
 # the main function is what is run

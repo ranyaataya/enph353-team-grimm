@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/enph353_utils_generate_messages_eus"
-  "/home/onehalf/enph353_gym-gazebo/competitionDriving_ws/devel/share/roseus/ros/enph353_utils/manifest.l"
+  "/home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/competitionDriving_ws/devel/share/roseus/ros/enph353_utils/manifest.l"
 )
 
 # Per-language clean rules from dependency scanning.
