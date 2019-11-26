@@ -55,8 +55,6 @@ class controlNode:
                          "2", "3", "4", "5", "6", "7", "8",
                          "9"]
 
-        # initialMsg = str(self.teamName + ',' + self.teamPassword + ',' + '0' + ',' + 'AA11')
-        # self.publishLP.publish(initialMsg)
         print("CN node done init.")
 
     def callback(self, data):
@@ -64,7 +62,7 @@ class controlNode:
             cv_image = self.bridge.imgmsg_to_cv2(data, "bgr8")
         except CvBridgeError as e:
             print(e)
-        # velocity = self.determineVelocity(cv_image)
+        # self.determineVelocity(cv_image)
 
         if(self.initialMsgSent is False):
             initialMsg = str(self.teamName + ',' + self.teamPassword + ',' + '0' + ',' + 'AA11')
