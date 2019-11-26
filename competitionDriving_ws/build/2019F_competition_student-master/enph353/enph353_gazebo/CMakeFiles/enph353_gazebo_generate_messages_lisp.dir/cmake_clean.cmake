@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/enph353_gazebo_generate_messages_lisp"
-  "/home/onehalf/enph353_gym-gazebo/competitionDriving_ws/devel/share/common-lisp/ros/enph353_gazebo/srv/SubmitPlate.lisp"
-  "/home/onehalf/enph353_gym-gazebo/competitionDriving_ws/devel/share/common-lisp/ros/enph353_gazebo/srv/GetLegalPlates.lisp"
+  "/home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/competitionDriving_ws/devel/share/common-lisp/ros/enph353_gazebo/srv/SubmitPlate.lisp"
+  "/home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/competitionDriving_ws/devel/share/common-lisp/ros/enph353_gazebo/srv/GetLegalPlates.lisp"
 )
 
 # Per-language clean rules from dependency scanning.

@@ -1,8 +1,8 @@
-prefix=/home/onehalf/enph353_gym-gazebo/competitionDriving_ws/install
+prefix=/home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/competitionDriving_ws/install
 
 Name: comp_ctrl
 Description: Description of comp_ctrl
 Version: 0.0.0
 Cflags: 
-Libs: -L/home/onehalf/enph353_gym-gazebo/competitionDriving_ws/install/lib 
+Libs: -L/home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/competitionDriving_ws/install/lib 
 Requires: 
