@@ -62,7 +62,7 @@ class controlNode:
             cv_image = self.bridge.imgmsg_to_cv2(data, "bgr8")
         except CvBridgeError as e:
             print(e)
-        # self.determineVelocity(cv_image)
+        self.determineVelocity(cv_image)
 
         if(self.initialMsgSent is False):
             initialMsg = str(self.teamName + ',' + self.teamPassword + ',' + '0' + ',' + 'AA11')
@@ -74,13 +74,17 @@ class controlNode:
         parkingLotFlag = self.atParkingLot(cv_image)
 
         if parkingLotFlag is True and (self.counter - self.tempCounter) >= 25:
+            print("At parking lot\n")
+            # Stops the robot
+            velocity = Twist()
+            self.publishVel(velocity)
+
             # Determines license plate and publishes message
             LP_msg = self.determineLicensePlate(cv_image)
             print(LP_msg)
             fullMsg = str(self.teamName + ',' + self.teamPassword + ',' + LP_msg[0] + ',' + LP_msg[1:])
             self.publishLP.publish(fullMsg)
 
-            print("At parking lot\n")
             parkingLotFlag = False
             self.tempCounter = self.counter
 
@@ -155,7 +159,7 @@ class controlNode:
             resizedImg = np.reshape(letterNumImg, [1, 39, 36, 3])
 
             predictions = LPModel.predict(resizedImg)
-            print("Predictions: ", predictions)
+            # print("Predictions: ", predictions)
 
             if(i == 1 or i == 2):
                 # it's a letter
@@ -164,10 +168,10 @@ class controlNode:
                 # it's a number
                 index = np.where(predictions == np.amax(predictions[:, 26:36]))
             # index = np.where(predictions == np.amax(predictions))
-            print("Index of max value: ", index)
+            # print("Index of max value: ", index)
             index = int(index[1])
             character = self.answerKey[index]
-            print("Character: ", character)
+            # print("Character: ", character)
             LP_msg = LP_msg + character
 
         return LP_msg

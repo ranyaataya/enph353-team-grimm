@@ -1,8 +1,8 @@
-# Install script for directory: /home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/src/convolution_net
+# Install script for directory: /home/fizzer/new-enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/src/convolution_net
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/fizzer/new-enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,17 +38,17 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/build/convolution_net/catkin_generated/installspace/convolution_net.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/fizzer/new-enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/build/convolution_net/catkin_generated/installspace/convolution_net.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/convolution_net/cmake" TYPE FILE FILES
-    "/home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/build/convolution_net/catkin_generated/installspace/convolution_netConfig.cmake"
-    "/home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/build/convolution_net/catkin_generated/installspace/convolution_netConfig-version.cmake"
+    "/home/fizzer/new-enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/build/convolution_net/catkin_generated/installspace/convolution_netConfig.cmake"
+    "/home/fizzer/new-enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/build/convolution_net/catkin_generated/installspace/convolution_netConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/convolution_net" TYPE FILE FILES "/home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/src/convolution_net/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/convolution_net" TYPE FILE FILES "/home/fizzer/new-enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/src/convolution_net/package.xml")
 endif()
 
