@@ -156,7 +156,14 @@ class controlNode:
 
             predictions = LPModel.predict(resizedImg)
             print("Predictions: ", predictions)
-            index = np.where(predictions == np.amax(predictions))
+
+            if(i == 1 or i == 2):
+                # it's a letter
+                index = np.where(predictions == np.amax(predictions[:, 0:26]))
+            else:
+                # it's a number
+                index = np.where(predictions == np.amax(predictions[:, 26:36]))
+            # index = np.where(predictions == np.amax(predictions))
             print("Index of max value: ", index)
             index = int(index[1])
             character = self.answerKey[index]
