@@ -100,23 +100,23 @@ class image_converter:
         # for debug, stop and wait
         sleep(0.015)
 
-    def forwardStep(self):
-        velocity = Twist()
-        # stop current motion
-        velocity.linear.x = 0
-        velocity.angular.z = 0.0
-        self.publishVel.publish(velocity)
-        rospy.sleep(0.015)
-        # turn 90 degrees left
-        velocity.linear.x = 0.4
-        velocity.angular.z = 0.0
-        self.publishVel.publish(velocity)
-        rospy.sleep(1.260)
-        velocity.linear.x = 0
-        velocity.angular.z = 0.0
-        self.publishVel.publish(velocity)
-        # for debug, stop and wait
-        rospy.sleep(0.015)
+    # def forwardStep(self):
+    #     velocity = Twist()
+    #     # stop current motion
+    #     velocity.linear.x = 0
+    #     velocity.angular.z = 0.0
+    #     self.publishVel.publish(velocity)
+    #     rospy.sleep(0.015)
+    #     # turn 90 degrees left
+    #     velocity.linear.x = 0.4
+    #     velocity.angular.z = 0.0
+    #     self.publishVel.publish(velocity)
+    #     rospy.sleep(1.260)
+    #     velocity.linear.x = 0
+    #     velocity.angular.z = 0.0
+    #     self.publishVel.publish(velocity)
+    #     # for debug, stop and wait
+    #     rospy.sleep(0.015)
 
     def backwardStep(self):
         velocity = Twist()
@@ -220,7 +220,6 @@ class image_converter:
         retval = False
         lowerBlue = np.array([80, 60, 0])
         upperBlue = np.array([120, 200, 150])
-
 
         img = cv2.cvtColor(cv_image, cv2.COLOR_BGR2HSV)
         blueMask = cv2.inRange(img, lowerBlue, upperBlue)
