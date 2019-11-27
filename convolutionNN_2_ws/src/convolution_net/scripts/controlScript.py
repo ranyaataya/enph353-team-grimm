@@ -62,7 +62,7 @@ class controlNode:
             cv_image = self.bridge.imgmsg_to_cv2(data, "bgr8")
         except CvBridgeError as e:
             print(e)
-        self.determineVelocity(cv_image)
+        # self.determineVelocity(cv_image)
 
         if(self.initialMsgSent is False):
             initialMsg = str(self.teamName + ',' + self.teamPassword + ',' + '0' + ',' + 'AA11')
@@ -136,7 +136,7 @@ class controlNode:
         # image and saves the 5 images to a local folder: competitionImages/
         RGB_cameraImg = cv2.cvtColor(cameraImg, cv2.COLOR_BGR2RGB)
         imageCrop(RGB_cameraImg)
-        LPModel = load_model('ConvolutionModels/LPModel_3.h5')
+        LPModel = load_model('ConvolutionModels/LPModel_4.h5')
         LP_msg = ""
 
         print("model loaded")

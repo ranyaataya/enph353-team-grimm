@@ -1,8 +1,8 @@
-prefix=/home/fizzer/new-enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/devel
+prefix=/home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/devel
 
 Name: enph353_utils
 Description: Description of enph353_utils
 Version: 0.0.2
 Cflags: 
-Libs: -L/home/fizzer/new-enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/devel/lib 
+Libs: -L/home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/devel/lib 
 Requires: actionlib_msgs

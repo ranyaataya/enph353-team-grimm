@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/enph353_gazebo_generate_messages_cpp"
-  "/home/fizzer/new-enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/devel/include/enph353_gazebo/SubmitPlate.h"
-  "/home/fizzer/new-enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/devel/include/enph353_gazebo/GetLegalPlates.h"
+  "/home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/devel/include/enph353_gazebo/SubmitPlate.h"
+  "/home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/devel/include/enph353_gazebo/GetLegalPlates.h"
 )
 
 # Per-language clean rules from dependency scanning.

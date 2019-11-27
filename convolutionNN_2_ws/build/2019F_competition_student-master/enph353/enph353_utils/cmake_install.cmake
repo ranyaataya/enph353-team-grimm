@@ -1,8 +1,8 @@
-# Install script for directory: /home/fizzer/new-enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/src/2019F_competition_student-master/enph353/enph353_utils
+# Install script for directory: /home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/src/2019F_competition_student-master/enph353/enph353_utils
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/fizzer/new-enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,37 +38,37 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/enph353_utils/cmake" TYPE FILE FILES "/home/fizzer/new-enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/build/2019F_competition_student-master/enph353/enph353_utils/catkin_generated/installspace/enph353_utils-msg-paths.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/enph353_utils/cmake" TYPE FILE FILES "/home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/build/2019F_competition_student-master/enph353/enph353_utils/catkin_generated/installspace/enph353_utils-msg-paths.cmake")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/roseus/ros" TYPE DIRECTORY FILES "/home/fizzer/new-enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/devel/share/roseus/ros/enph353_utils")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/roseus/ros" TYPE DIRECTORY FILES "/home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/devel/share/roseus/ros/enph353_utils")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  execute_process(COMMAND "/usr/bin/python2" -m compileall "/home/fizzer/new-enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/devel/lib/python2.7/dist-packages/enph353_utils")
+  execute_process(COMMAND "/usr/bin/python2" -m compileall "/home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/devel/lib/python2.7/dist-packages/enph353_utils")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages" TYPE DIRECTORY FILES "/home/fizzer/new-enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/devel/lib/python2.7/dist-packages/enph353_utils")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/python2.7/dist-packages" TYPE DIRECTORY FILES "/home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/devel/lib/python2.7/dist-packages/enph353_utils")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/fizzer/new-enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/build/2019F_competition_student-master/enph353/enph353_utils/catkin_generated/installspace/enph353_utils.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/build/2019F_competition_student-master/enph353/enph353_utils/catkin_generated/installspace/enph353_utils.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/enph353_utils/cmake" TYPE FILE FILES "/home/fizzer/new-enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/build/2019F_competition_student-master/enph353/enph353_utils/catkin_generated/installspace/enph353_utils-msg-extras.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/enph353_utils/cmake" TYPE FILE FILES "/home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/build/2019F_competition_student-master/enph353/enph353_utils/catkin_generated/installspace/enph353_utils-msg-extras.cmake")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/enph353_utils/cmake" TYPE FILE FILES
-    "/home/fizzer/new-enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/build/2019F_competition_student-master/enph353/enph353_utils/catkin_generated/installspace/enph353_utilsConfig.cmake"
-    "/home/fizzer/new-enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/build/2019F_competition_student-master/enph353/enph353_utils/catkin_generated/installspace/enph353_utilsConfig-version.cmake"
+    "/home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/build/2019F_competition_student-master/enph353/enph353_utils/catkin_generated/installspace/enph353_utilsConfig.cmake"
+    "/home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/build/2019F_competition_student-master/enph353/enph353_utils/catkin_generated/installspace/enph353_utilsConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/enph353_utils" TYPE FILE FILES "/home/fizzer/new-enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/src/2019F_competition_student-master/enph353/enph353_utils/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/enph353_utils" TYPE FILE FILES "/home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/src/2019F_competition_student-master/enph353/enph353_utils/package.xml")
 endif()
 

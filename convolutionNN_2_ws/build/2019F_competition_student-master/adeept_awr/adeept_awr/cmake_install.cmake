@@ -1,8 +1,8 @@
-# Install script for directory: /home/fizzer/new-enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/src/2019F_competition_student-master/adeept_awr/adeept_awr
+# Install script for directory: /home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/src/2019F_competition_student-master/adeept_awr/adeept_awr
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/fizzer/new-enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,6 +38,6 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/adeept_awr" TYPE FILE FILES "/home/fizzer/new-enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/src/2019F_competition_student-master/adeept_awr/adeept_awr/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/adeept_awr" TYPE FILE FILES "/home/onehalf/Desktop/enph353-team-grimm/enph353-team-grimm/convolutionNN_2_ws/src/2019F_competition_student-master/adeept_awr/adeept_awr/package.xml")
 endif()
 
