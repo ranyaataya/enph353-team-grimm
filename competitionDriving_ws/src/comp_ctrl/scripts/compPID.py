@@ -37,6 +37,8 @@ class image_converter:
         self.cooldown = 0
         self.cornerNumber = 0
         self.edgeValue = 0
+        self.pedCounter = 0
+        self.crosswalkCooldown = 0
 
     def callback(self, data):
         try:
@@ -208,7 +210,27 @@ class image_converter:
         # blurProper = blur3[int(h/2):h, :]
 
         imgSum = np.sum(redMask)
-        if (imgSum > 450000):
+        if (imgSum > 350000):
+            retval = True
+        else:
+            retval = False
+        return retval
+
+    def checkPedestrain(self, cv_image):
+        retval = False
+        lowerBlue = np.array([80, 60, 0])
+        upperBlue = np.array([120, 200, 150])
+
+
+        img = cv2.cvtColor(cv_image, cv2.COLOR_BGR2HSV)
+        blueMask = cv2.inRange(img, lowerBlue, upperBlue)
+        h, w = blueMask.shape[0:2]
+        blur3 = cv2.medianBlur(blueMask, 7)
+        # blur3 = cv2.medianBlur(redMask, 23)
+        blurProper = blur3[int(h/3):h, int(0.45*w):int(0.55*w)]
+
+        imgSum = np.sum(blurProper)
+        if (imgSum > 10000):
             retval = True
         else:
             retval = False
@@ -221,7 +243,7 @@ class image_converter:
             velocity.angular.z = 0.0
             self.publishVel.publish(velocity)
             return False
-        cornerTime = [1.135, 1.120, 1.135, 1.125, 1.115]
+        cornerTime = [1.135, 1.120, 1.125, 1.125, 1.115]
         velocity = Twist()
         # stop current motion
         velocity.linear.x = 0
@@ -252,6 +274,10 @@ class image_converter:
 
     def determineVelocity(self, cv_image):
         # get a mask for the road color
+        print(self.pedCounter)
+        self.crosswalkCooldown = self.crosswalkCooldown - 1
+        if self.crosswalkCooldown < 0:
+            self.crosswalkCooldown = 0
 
         # center = -34
         # offset = 0
@@ -262,7 +288,6 @@ class image_converter:
         mask = cv2.inRange(image, lower_hsv, upper_hsv)
         interMask = cv2.medianBlur(mask, 7)
         newMask = interMask/255  # normalizes to 0 and 1
-        
 
         h, w = newMask.shape[0:2]
 
@@ -284,12 +309,32 @@ class image_converter:
             velocity.linear.x = 0
             velocity.angular.z = 0.0
             self.publishVel.publish(velocity)
-        elif self.atCrosswalk(cv_image) is True:
-            velocity = Twist()
-            velocity.linear.x = 0
-            velocity.angular.z = 0.0
-            self.publishVel.publish(velocity)
-            rospy.sleep(1.015)
+        elif self.atCrosswalk(cv_image) is True or self.pedCounter > 0:
+            if self.crosswalkCooldown > 0:
+                velocity = Twist()
+                velocity.linear.x = 0.4
+                velocity.angular.z = 0.0
+                self.publishVel.publish(velocity)
+            elif self.pedCounter == 0:
+                velocity = Twist()
+                velocity.linear.x = 0.0
+                velocity.angular.z = 0.0
+                self.publishVel.publish(velocity)
+                self.pedCounter = 1
+            elif self.pedCounter == 1:
+                if(self.checkPedestrain(cv_image) is True):
+                    self.pedCounter = 2
+            elif self.pedCounter == 2:
+                if(self.checkPedestrain(cv_image) is False):
+                    self.pedCounter = 0
+                    velocity = Twist()
+                    velocity.linear.x = 0.4
+                    velocity.angular.z = 0.0
+                    self.publishVel.publish(velocity)
+                    self.crosswalkCooldown = 30
+            else:
+                print("Ped Failure")
+
         elif self.cooldownFlag is True:
             self.cooldown = self.cooldown - 1
             print(self.cooldown)
@@ -298,16 +343,16 @@ class image_converter:
                 self.cooldownFlag = False
                 self.edgeValue = int(self.getEdge(newMask, int(0.9*h), w, self.edgeValue))
         else:
-            print(self.edgeValue)
+            #print(self.edgeValue)
             newEdge = int(self.getEdge(newMask, int(0.9*h), w, self.edgeValue))
-            print(newEdge)
+            #print(newEdge)
             if self.edgeValue - newEdge < -jogThreshold:
                 self.rightJog()
                 self.edgeValue = newEdge
             if self.edgeValue - newEdge > jogThreshold:
                 self.leftJog()
                 self.edgeValue = newEdge
-            contours = np.array([[int(0.40*w), int(0.75*h)], [int(0.41*w), int(0.5*h)], [int(0.50*w), int(0.5*h)], [int(0.60*w), int(0.75*h)]])
+            contours = np.array([[int(0.42*w), int(0.75*h)], [int(0.48*w), int(0.25*h)], [int(0.49*w), int(0.25*h)], [int(0.55*w), int(0.75*h)]])
             img = np.zeros((h, w), dtype="uint8")  # create a single channel h x w pixel black image
             cv2.fillPoly(img, pts=[contours], color=(255, 255, 255))
 
@@ -320,8 +365,8 @@ class image_converter:
             # croppedBlur = newMask[topEdge:h, leftEdge:rightEdge]
             imgSum = int(np.sum(finalMask))
             sumText = str(imgSum)
-            print(sumText)
-            thresholdSet = [3000, 3000, 3000, 3000, 3000, 3000]
+            #print(sumText)
+            thresholdSet = [4000, 4000, 4250, 4250, 4300, 4250]
             threshold = thresholdSet[self.cornerNumber]
             if imgSum > threshold:
                 self.counter = self.counter + 1
