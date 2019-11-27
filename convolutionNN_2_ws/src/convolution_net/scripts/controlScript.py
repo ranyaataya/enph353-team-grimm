@@ -136,7 +136,7 @@ class controlNode:
         # image and saves the 5 images to a local folder: competitionImages/
         RGB_cameraImg = cv2.cvtColor(cameraImg, cv2.COLOR_BGR2RGB)
         imageCrop(RGB_cameraImg)
-        LPModel = load_model('ConvolutionModels/LPModel_2.h5')
+        LPModel = load_model('ConvolutionModels/LPModel_3.h5')
         LP_msg = ""
 
         print("model loaded")
@@ -149,6 +149,9 @@ class controlNode:
         # for fileName in files[:]:
         for i in range(5):
             letterNumImg = np.array(PIL_Image.open(RELATIVE_PATH + files[i]))
+
+            letterNumImg = letterNumImg/255.0
+
             resizedImg = np.reshape(letterNumImg, [1, 39, 36, 3])
 
             predictions = LPModel.predict(resizedImg)
