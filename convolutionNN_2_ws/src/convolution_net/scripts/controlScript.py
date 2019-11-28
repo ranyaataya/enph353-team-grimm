@@ -53,7 +53,7 @@ class controlNode:
 
         self.initialMsgSent = False
 
-        self.counter = 0
+        self.counterLP = 25
         self.tempCounter = 0
         self.teamName = "Grimm"
         self.teamPassword = ""
@@ -81,12 +81,13 @@ class controlNode:
         # Checks if robot is at parking lot
 
         parkingLotFlag = self.atParkingLot(cv_image)
+        # print(parkingLotFlag)
 
-        if parkingLotFlag is True and (self.counter - self.tempCounter) >= 25:
+        if parkingLotFlag is True and (self.counterLP - self.tempCounter) >= 15:
             print("At parking lot\n")
             # Stops the robot
             velocity = Twist()
-            self.publishVel(velocity)
+            self.publishVel.publish(velocity)
 
             # Determines license plate and publishes message
             LP_msg = self.determineLicensePlate(cv_image)
@@ -95,10 +96,10 @@ class controlNode:
             self.publishLP.publish(fullMsg)
 
             parkingLotFlag = False
-            self.tempCounter = self.counter
+            self.tempCounter = self.counterLP
 
         else:
-            self.counter = self.counter + 1
+            self.counterLP = self.counterLP + 1
 
 
 
@@ -127,7 +128,10 @@ class controlNode:
         # Sum all the pixels in the image to represent the
         # area of blue in the image
         imgSum = np.sum(maskedImg)
-        thresholdSum = [10000000, 17000000]
+        # thresholdSum = [10000000, 17000000]
+        thresholdSum = [4000000, 6500000]
+        # thresholdSum = [5000000, 7500000]
+        # print("imgSum: ", imgSum)
 
         # Robot is at parking lot
         if imgSum > thresholdSum[0] and imgSum < thresholdSum[1]:
