@@ -35,20 +35,25 @@ from time import sleep
 class controlNode:
 
     def __init__(self):
+        # sets up necessary image subscriber and
+        # velocity/license plate publisher
         print("CN node started init.")
         self.bridge = CvBridge()
-        self.image_sub = rospy.Subscriber("/R1/pi_camera/image_raw", Image, self.callback)
+        self.image_sub = rospy.Subscriber("/R1/pi_camera/image_raw", Image,
+                                          self.callback)
         self.publishVel = rospy.Publisher("/R1/cmd_vel", Twist, queue_size=1)
         self.publishLP = rospy.Publisher("/license_plate", String, queue_size=1)
 
-        self.inLoop = False
-        self.cooldownFlag = False
-        self.going = True
-        self.counter = 0
-        self.cooldown = 0
-        self.cornerNumber = 0
+        self.inLoop = False  # true or false for in the loop
+        self.cooldownFlag = False  # true or false for in cooldown after corner
+        self.going = True  # true or false on the robot still driving
+        self.counter = 0  # counter for corner threshold
+        self.cooldown = 0  # holds value for corner cooldown
+        self.cornerNumber = 0  # tracks which corner the robot is approaching
+        # holds the value to the image center of the side of the road
         self.edgeValue = 0
-        self.pedCounter = 0
+        self.pedCounter = 0  # holds the state number for the pedestrain
+        # holds cooldown for triggering on a crosswalk
         self.crosswalkCooldown = 0
 
         self.initialMsgSent = False
@@ -58,11 +63,11 @@ class controlNode:
         self.teamName = "Grimm"
         self.teamPassword = ""
         self.answerKey = ["A", "B", "C", "D", "E", "F", "G",
-                         "H", "I", "J", "K", "L", "M", "N",
-                         "O", "P", "Q", "R", "S", "T", "U",
-                         "V", "W", "X", "Y", "Z", "0", "1",
-                         "2", "3", "4", "5", "6", "7", "8",
-                         "9"]
+                          "H", "I", "J", "K", "L", "M", "N",
+                          "O", "P", "Q", "R", "S", "T", "U",
+                          "V", "W", "X", "Y", "Z", "0", "1",
+                          "2", "3", "4", "5", "6", "7", "8",
+                          "9"]
 
         print("CN node done init.")
 
@@ -100,8 +105,6 @@ class controlNode:
 
         else:
             self.counterLP = self.counterLP + 1
-
-
 
     """
     @brief:  Determines if the robot has reached a parking lot
@@ -188,108 +191,16 @@ class controlNode:
             LP_msg = LP_msg + character
 
         return LP_msg
-    
-    """
-    @brief:  Uses a specified line of pixels to find the sides of the road
-             and gives a pass or fail depending on its success/ meaningfullness
-    @param:  newMask - normalized road mask of theRobot's raw camera image
-             height - the height on the image in which to search for the road
-             w - the width of the image/mask
-    @return: left - the horizontal pixel location of the left side
-                    of the road, or -34 if this failed
-             right - the horizontal pixel location of the right side
-                     of the road, or -34 if this failed
-             gotLeft - success of getting the left side of the road
-             gotRight - success of getting the right side of the road
-    """
-    # def edgePass(self, height, newMask, w):
-    #     left = -34
-    #     right = -34
-    #     searchIndent = int(-1.00*height + 700)
-    #     # print(searchIndent)
-
-    #     for x in range(searchIndent, w - searchIndent):
-    #         if (newMask[height, x] > 0):  # looks for mask to go high
-    #             left = x
-    #             break
-
-    #     for x in range(searchIndent, w - searchIndent):
-    #         if (newMask[height, w-x-1] > 0):  # looks for mask to go high
-    #             right = w-x
-    #             break
-    #     if (left <= searchIndent + 5):
-    #         gotLeft = False
-    #     else:
-    #         gotLeft = True
-    #     if (right >= w - searchIndent - 5 or right == -34):
-    #         gotRight = False
-    #     else:
-    #         gotRight = True
-
-    #     return left, right, gotLeft, gotRight
-    
-    """
-    @brief:  A debugging function that show the camera view
-             and draws the search lines, state and edge conditions
-             on the image
-    @param:  name - the name of the window to present the image in
-             cv_image - Robot's raw camera image of the parking lot
-             text - the name of the state the robot detects
-                    (e.g. intersection, straight, etc)
-             center - the horizontal pixel location of the road center
-             edgeConditions - the list of edge locations and pass/fail booleans
-             h - height of image in pixels
-             w - width of image in pixels
-    """
-    # def imagePresent(self, name, text, center, edgeConditions, cv_image, h, w): # This function is not up to date, but isn't useful
-    #     top = int(0.65*h)
-    #     mid = int(0.70*h)
-    #     bottom = int(0.75*h)
-    #     topSearchIndent = int(-1.00*int(0.65*h) + 700)
-    #     midSearchIndent = int(-1.00*int(0.70*h) + 700)
-    #     bottomSearchIndent = int(-1.00*int(0.75*h) + 700)
-    #     cv2.circle(cv_image, (center, bottom), 10, (0, 255, 0), -1)
-    #     cv2.line(cv_image, (bottomSearchIndent, bottom), (w - bottomSearchIndent, bottom), (255, 0, 0), 3)
-    #     cv2.line(cv_image, (midSearchIndent, mid), (w - midSearchIndent, mid), (255, 0, 0), 3)
-    #     cv2.line(cv_image, (topSearchIndent, top), (w - topSearchIndent, top), (255, 0, 0), 3)
-    #     cv2.line(cv_image, (int(w/2), 0), (int(w/2), h), (255, 0, 255), 3)
-    #     cv2.putText(cv_image, text, (5, 100), cv2.FONT_HERSHEY_SIMPLEX,  1.0, (0, 0, 255), lineType=cv2.LINE_AA)
-    #     cv2.putText(cv_image, str(edgeConditions), (5, 50), cv2.FONT_HERSHEY_SIMPLEX,  0.5, (0, 0, 255), lineType=cv2.LINE_AA)
-    #     cv2.imshow(name, cv_image)
-    #     cv2.waitKey(1)
-
-    """
-    @brief:  Determines the center of the road given a set of edge conditions
-    @param:  edgeConditions - the list of edge locations and pass/fail booleans
-             gap - the size of each segmentation of the image
-    @return: center - the horizontal pixel location of the center of the road
-    """
-    def getCenter(self, edgeConditions, gap):
-        usableEdges = []
-        centers = []
-        for line1 in range((len(edgeConditions)/4)):
-            if edgeConditions[2 + 4*line1] is True:  # Checks which search lines gave back usable data, adds them to list
-                usableEdges.append(edgeConditions[0 + 4*line1])
-                usableEdges.append(edgeConditions[1 + 4*line1])
-        for line2 in range(len(usableEdges)/2):  # takes the usuable edges and finds the center
-            centers.append(int((usableEdges[0 + 2*line2] + usableEdges[1 + 2*line2])/2))
-            averageCenter = int(sum(centers)/len(centers))
-        length = len(centers)
-        line3 = 0
-        while (line3 < length):  # removes any centers that are outliers
-            if (centers[line3] - averageCenter) > int(gap):
-                centers.remove(centers[line3])
-                length = length - 1
-                line3 = line3 - 1
-            line3 = line3 + 1
-
-        center = int(sum(centers)/len(centers))
-        return center
 
     """
     @brief:  Performs a large left turn movement(used to rotate the robot such
              that it faces the correct direction in the outer loop)
+    @param:  cornerNumber - number representing that the robot is at the
+             nth corner (used to custom fit each corner with a turning time)
+    @return: boolean to tell the driving code whether a full loop has been
+             completed or not
     """
+
     def leftTurn(self, cornerNumber):
         if cornerNumber > 4:
             velocity = Twist()
@@ -320,9 +231,10 @@ class controlNode:
     @brief:  Performs a large forward movement(used to move the robot into
              the outer loop)
     """
+
     def forwardStep(self):
-        velocity = Twist()
         # stop current motion
+        velocity = Twist()
         velocity.linear.x = 0
         velocity.angular.z = 0.0
         self.publishVel.publish(velocity)
@@ -332,95 +244,81 @@ class controlNode:
         velocity.angular.z = 0.0
         self.publishVel.publish(velocity)
         rospy.sleep(1.200)
+        # stop motion and wait
         velocity.linear.x = 0
         velocity.angular.z = 0.0
         self.publishVel.publish(velocity)
-        # for debug, stop and wait
         rospy.sleep(0.015)
 
     """
     @brief:  Performs a slight left turn (used to align the camera center
              road center)
     """
+
     def leftJog(self):
         jogDelay = 0.015
-        jogTime = 0.040  # + error*0.00001
-        velocity = Twist()
+        jogTime = 0.040
         # stop current motion
+        velocity = Twist()
         velocity.linear.x = 0.0
         velocity.angular.z = 0.0
         self.publishVel.publish(velocity)
         rospy.sleep(jogDelay)
-        # turn 90 degrees left
+        # turn left slighty
         velocity.linear.x = 0.0
         velocity.angular.z = 0.5
         self.publishVel.publish(velocity)
         rospy.sleep(jogTime)
+        # stop motion
         velocity.linear.x = 0.0
         velocity.angular.z = 0.0
         self.publishVel.publish(velocity)
-        # for debug, stop and wait
-        # rospy.sleep(1.0)
 
     """
     @brief:  Performs a slight right turn (used to align the camera center
              road center)
     """
+
     def rightJog(self):
         jogDelay = 0.015
-        jogTime = 0.035  # + error*0.00001
+        jogTime = 0.035
         velocity = Twist()
         # stop current motion
         velocity.linear.x = 0.0
         velocity.angular.z = 0.0
         self.publishVel.publish(velocity)
         rospy.sleep(jogDelay)
-        # turn 90 degrees left
+        # turn right slighty
         velocity.linear.x = 0.0
         velocity.angular.z = -0.5
         self.publishVel.publish(velocity)
         rospy.sleep(jogTime)
+        # stop motion
         velocity.linear.x = 0.0
         velocity.angular.z = 0.0
         self.publishVel.publish(velocity)
-        # for debug, stop and wait
-        # rospy.sleep(1.0)
 
     """
-    @brief:  Performs a slight forward movement (used to ensure that
-             the robot does not move forward too quickly
+    @brief:  checks camera image to see if the robot is
+             at a crosswalk or not
+    @param:  cv_image - the image to check for the red line
+             indicating a cross walk
+    @return: retval - boolean true or false for being at a
+             crosswalk
     """
-    # def forwardJog(self, error):
-    #     jogDelay = 0.010
-    #     jogTime = 0.071  # - error*0.01
-    #     if jogTime < 0.01:
-    #         jogTime = 0.01
-    #     velocity = Twist()
-    #     # stop current motion
-    #     velocity.linear.x = 0.0
-    #     velocity.angular.z = 0.0
-    #     self.publishVel.publish(velocity)
-    #     rospy.sleep(jogDelay)
-    #     # go forward slightly
-    #     velocity.linear.x = 0.4
-    #     velocity.angular.z = 0.0
-    #     self.publishVel.publish(velocity)
-    #     rospy.sleep(jogTime)
-    #     # stop forward motion
-    #     velocity.linear.x = 0.0
-    #     velocity.angular.z = 0.0
-    #     self.publishVel.publish(velocity)
+
     def atCrosswalk(self, cv_image):
         retval = False
+        # makes mask for the crosswalk's red line
         lowerRed = np.array([0, 150, 150])
         upperRed = np.array([5, 255, 255])
 
         img = cv2.cvtColor(cv_image, cv2.COLOR_BGR2HSV)
         redMask = cv2.inRange(img, lowerRed, upperRed)
         h, w = redMask.shape[0:2]
-        # blur3 = cv2.medianBlur(redMask, 23)
-        # blurProper = blur3[int(h/2):h, :]
 
+        # checks if the threshold is exceeded, returns true
+        # if this is the case (robot is at the crosswalk)
         imgSum = np.sum(redMask)
         if (imgSum > 350000):
             retval = True
@@ -428,8 +326,18 @@ class controlNode:
             retval = False
         return retval
 
+    """
+    @brief:  checks camera image to see if the pedestrain is
+             in the crosswalk or not
+    @param:  cv_image - the image to check for the jeans of the
+             pedestrain
+    @return: retval - boolean true or false for the pedestrain in
+             the crosswalk
+    """
+
     def checkPedestrain(self, cv_image):
         retval = False
+        # makes a mask for the pedestrains jeans
         lowerBlue = np.array([80, 60, 0])
         upperBlue = np.array([120, 200, 150])
 
@@ -437,9 +345,10 @@ class controlNode:
         blueMask = cv2.inRange(img, lowerBlue, upperBlue)
         h, w = blueMask.shape[0:2]
         blur3 = cv2.medianBlur(blueMask, 7)
-        # blur3 = cv2.medianBlur(redMask, 23)
         blurProper = blur3[int(h/3):h, int(0.45*w):int(0.55*w)]
 
+        # checks if the threshold is exceeded, returns true
+        # if this is the case (pedestrain is present)
         imgSum = np.sum(blurProper)
         if (imgSum > 10000):
             retval = True
@@ -447,27 +356,37 @@ class controlNode:
             retval = False
         return retval
 
+    """
+    @brief:  Uses a specified line of pixels to find the right side of the road
+             so it can be related to the past value (gauges robot direction)
+    @param:  newMask - normalized grass mask of theRobot's raw camera image
+             height - the height on the image in which to search for the road
+             w - the width of the image/mask
+             edgeValue - the past value for the edge of the road
+    @return: x or edgeValue - returns either the new road edge or the past
+             road edge if the new edge is not found
+    """
+
     def getEdge(self, cv_image, height, w, edgeValue):
         for x in range(int(w/2), w):
             if (cv_image[height, x] > 0):
                 return x
         print("edge Failure")
         return edgeValue
+
     """
-    @brief:  Determines the appropriate movement and calls the function to 
+    @brief:  Determines the appropriate movement and calls the function to
              run said movement
-    @param:  camerImg - Robot's raw camera image
+    @param:  cv_image - Robot's raw camera image
     """
-    # FOR ZACH TO COMPLETE -> Zach has completed
+
     def determineVelocity(self, cv_image):
-        # get a mask for the road color
-        # print(self.pedCounter)
+        # decrements the crosswalkCooldown to a minumum value of 0
         self.crosswalkCooldown = self.crosswalkCooldown - 1
         if self.crosswalkCooldown < 0:
             self.crosswalkCooldown = 0
 
-        # center = -34
-        # offset = 0
+        # makes a mask of the grass
         lower_hsv = np.array([61, 50, 50])
         upper_hsv = np.array([81, 255, 255])
 
@@ -477,9 +396,12 @@ class controlNode:
         newMask = interMask/255  # normalizes to 0 and 1
 
         h, w = newMask.shape[0:2]
-
+        # sets the amount the robot must be off of
+        # past center before jogging left or right
+        # to correct
         jogThreshold = int(w/40)
-        if(self.inLoop is False):
+        if(self.inLoop is False):  # checks to see if the robot is in the loop
+            # steps robot into loop
             self.forwardStep()
             velocity = Twist()
             self.publishVel.publish(velocity)
@@ -488,31 +410,40 @@ class controlNode:
             self.cornerNumber = self.cornerNumber + 1
             velocity = Twist()
             self.publishVel.publish(velocity)
-            self.edgeValue = int(self.getEdge(newMask, int(0.9*h), w, self.edgeValue))
+            self.edgeValue = int(self.getEdge(newMask, int(0.9*h), w,
+                                 self.edgeValue))
+            #  sets cooldown to flush out image queue
             self.cooldownFlag = True
             self.cooldown = 20
-        elif(self.going is False):
+        elif(self.going is False):  # checks if the robot has gone around
+            # if the robot has gone all the way around, stops the robot
             velocity = Twist()
             velocity.linear.x = 0
             velocity.angular.z = 0.0
             self.publishVel.publish(velocity)
+        # checks if the robot is at or stopped at a crosswalk
         elif self.atCrosswalk(cv_image) is True or self.pedCounter > 0:
             if self.crosswalkCooldown > 0:
+                # if the robot has already stopped at the crosswalk, it goes
                 velocity = Twist()
                 velocity.linear.x = 0.4
                 velocity.angular.z = 0.0
                 self.publishVel.publish(velocity)
             elif self.pedCounter == 0:
+                # if the robot has just seen the crosswalk, stops the robot
                 velocity = Twist()
                 velocity.linear.x = 0.0
                 velocity.angular.z = 0.0
                 self.publishVel.publish(velocity)
                 self.pedCounter = 1
             elif self.pedCounter == 1:
+                # if the robot sees the pedestrian, go to next step
                 if(self.checkPedestrain(cv_image) is True):
                     self.pedCounter = 2
             elif self.pedCounter == 2:
                 if(self.checkPedestrain(cv_image) is False):
+                    # if the robot has seen, but now doesn't see the pedestrian
+                    # go forward, and begin cooldown for crosswalk
                     self.pedCounter = 0
                     velocity = Twist()
                     velocity.linear.x = 0.4
@@ -520,44 +451,52 @@ class controlNode:
                     self.publishVel.publish(velocity)
                     self.crosswalkCooldown = 30
             else:
-                print("Ped Failure")
+                print("Ped Failure")  # if you get here something is wrong
 
+        # if cooldown has started and isn't done, decrement the cooldown
+        # else if done, finish to cooldown and mark it done
         elif self.cooldownFlag is True:
             self.cooldown = self.cooldown - 1
-            # print(self.cooldown)
             if self.cooldown < 0:
                 self.cooldown = 0
                 self.cooldownFlag = False
-                self.edgeValue = int(self.getEdge(newMask, int(0.9*h), w, self.edgeValue))
+                self.edgeValue = int(self.getEdge(newMask, int(0.9*h), w,
+                                     self.edgeValue))
+
+        # if the cooldown is not in effect, check the
+        # road edge and jog accordingly
         else:
-            # print(self.edgeValue)
             newEdge = int(self.getEdge(newMask, int(0.9*h), w, self.edgeValue))
-            # print(newEdge)
             if self.edgeValue - newEdge < -jogThreshold:
                 self.rightJog()
                 self.edgeValue = newEdge
             if self.edgeValue - newEdge > jogThreshold:
                 self.leftJog()
                 self.edgeValue = newEdge
-            contours = np.array([[int(0.42*w), int(0.75*h)], [int(0.48*w), int(0.25*h)], [int(0.49*w), int(0.25*h)], [int(0.55*w), int(0.75*h)]])
-            img = np.zeros((h, w), dtype="uint8")  # create a single channel h x w pixel black image
-            cv2.fillPoly(img, pts=[contours], color=(255, 255, 255))
 
+            # create a single channel h x w pixel black image
+            # with a white area of interest as below
+            contours = np.array([[int(0.42*w), int(0.75*h)],
+                                 [int(0.48*w), int(0.25*h)],
+                                 [int(0.49*w), int(0.25*h)],
+                                 [int(0.55*w), int(0.75*h)]])
+            img = np.zeros((h, w), dtype="uint8")
+            cv2.fillPoly(img, pts=[contours], color=(255, 255, 255))
             finalMask = np.zeros((h, w), dtype="uint8")
+
+            # combines area of interest and grass masks
             cv2.bitwise_and(newMask, img, finalMask)
             velocity = Twist()
-            # leftEdge = int(3*w/7)
-            # rightEdge = int(15*w/28)
-            # topEdge = int(0.4*h)
-            # croppedBlur = newMask[topEdge:h, leftEdge:rightEdge]
+            # computes the value of the mask, compares to the threshold
+            # for each given corner
             imgSum = int(np.sum(finalMask))
-            sumText = str(imgSum)
-            #print(sumText)
             thresholdSet = [4000, 4000, 4250, 4250, 4300, 4250]
             threshold = thresholdSet[self.cornerNumber]
             if imgSum > threshold:
-                self.counter = self.counter + 1
+                self.counter = self.counter + 1  # acts as lowpass filter
                 if self.counter > 0:
+                    # if the robot is at a corner, turn and start up
+                    # the cooldown counter to clear image queue
                     velocity = Twist()
                     self.publishVel.publish(velocity)
                     self.going = self.leftTurn(self.cornerNumber)
@@ -567,6 +506,7 @@ class controlNode:
                     self.cooldownFlag = True
                     self.cooldown = 20
             else:
+                # if the robot isn't at a corner, just keep going
                 velocity.linear.x = 0.4
                 velocity.angular.z = 0.0
                 self.publishVel.publish(velocity)
@@ -574,6 +514,7 @@ class controlNode:
 
 
 def main(args):
+    # initalizes and runs above driving node
     print("START")
     rospy.init_node('controlNode', anonymous=True)
     print("Init ros")
