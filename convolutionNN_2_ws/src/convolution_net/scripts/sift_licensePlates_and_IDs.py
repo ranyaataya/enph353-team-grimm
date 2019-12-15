@@ -46,7 +46,6 @@ def findHeightThreshold(cameraImg, thresholdValue):
 """
 def getImagePath(fileName, position):
     global counter
-    # relPath = "letters_and_numbers/" + fileName[position] + "/" + fileName[position] + str(counter) + ".jpg"
     relPath = "LP_testDataSet/cropped/" + fileName[position] + str(counter) + ".jpg"
     counter = counter + 1
     return relPath
@@ -66,7 +65,7 @@ def saveImage(img, fileName, position):
 
 
 # ================================================================================
-RELATIVE_PATH = 'LP_testDataSet/raw/'  # 'rawImages/'
+RELATIVE_PATH = 'LP_testDataSet/raw/'
 
 files = os.listdir(RELATIVE_PATH)
 counter = 0
@@ -82,12 +81,11 @@ for fileName in files[:]:
     # Threshold colour value
     thresholdColour_blue = [1, 0, 102]
     threshold_blue_to_grey = 10
-    # ============================
+
     BLUE_DIFF_RANGE = [80, 107]
     BLUE_DIFF_RANGE_Y = [93, 107]
     GREY_DIFF = 7
     GREY_THRESHOLD = 95
-    # ============================
 
     heightThresholds = findHeightThreshold(cameraImg, BLUE_DIFF_RANGE_Y)
 
@@ -139,15 +137,15 @@ for fileName in files[:]:
     croppedImg = cameraImg[up_y:down_y, left_x:right_x, :]
     croppedHeight, croppedWidth = croppedImg.shape[0:2]
 
-    # scale cropped image to standard size, determine scaling factors
-    # standard numbers based on sample image
+    # Scale cropped image to standard size and determine scaling factors
+    # Standard numbers were determined through empirical tests
     STANDARD_HEIGHT = 195.0
     STANDARD_WIDTH = 222.0
 
     scalingHeightFactor = STANDARD_HEIGHT/croppedHeight
     scalingWidthFactor = STANDARD_WIDTH/croppedWidth
 
-    # [lower height, upper height, lower width, upper width]
+    # Character image bounds
     LP_bounds = [0.7, 0.9]
     lotID_bounds = [0.41, 0.63]
 
@@ -167,7 +165,6 @@ for fileName in files[:]:
     lot_img_letter = lotID_img[:, 0:int(lotID_img.shape[1]/2), :]
     lot_img_num = lotID_img[:, int(lotID_img.shape[1]/2)+1:lotID_img.shape[1], :]
 
-    # LP_charBounds = [17, 53, 54, 90, 126, 162, 165, 201]
     LP_charBounds = [17, 53, 55, 91, 132, 168, 170, 206]
 
     LP_img1 = licensePlate_img[:, LP_charBounds[0]:LP_charBounds[1], :]
@@ -194,11 +191,6 @@ for fileName in files[:]:
     # Save individual images for each letter and number
     print("Set: ", setNum, " saved")
     setNum = setNum + 1
-    # saveImage(lot_img_num, fileName, 5)
-    # saveImage(LP_img1, fileName, 7)
-    # saveImage(LP_img2, fileName, 8)
-    # saveImage(LP_img3, fileName, 9)
-    # saveImage(LP_img4, fileName, 10)
 
     saveImage(lot_img_num, fileName, 3)
     saveImage(LP_img1, fileName, 4)
@@ -206,9 +198,4 @@ for fileName in files[:]:
     saveImage(LP_img3, fileName, 6)
     saveImage(LP_img4, fileName, 7)
 
-    # plt.imshow(lot_img_num), plt.show()
-    # plt.imshow(LP_img1), plt.show()
-    # plt.imshow(LP_img2), plt.show()
-    # plt.imshow(LP_img3), plt.show()
-    # plt.imshow(LP_img4), plt.show()
-    # plt.imshow(cameraImg), plt.show()
+    # To view image use: plt.imshow(lot_img_num), plt.show()

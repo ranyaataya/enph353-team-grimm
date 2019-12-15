@@ -2,13 +2,13 @@
 
 # Author: Ranya Ataya
 # Purpose: This script saves the images from the video feed of the robot while
-#          the robot is being driven by the user (user controlled)
+#          the robot is being driven by the user
 
 
 from __future__ import print_function
 
 import roslib
-roslib.load_manifest('convolution_net')  # ('enph353_gazebo')
+roslib.load_manifest('convolution_net')
 import sys
 import rospy
 import cv2
@@ -27,11 +27,9 @@ class robotPhotographer:
         self.fileNameIncrement = 89
         self.npcType = "LP"  # change based on which one is wanted
 
-        # Need to initial subscriber for subscribing to image feed
         self.imageSubscriber = rospy.Subscriber("/R1/pi_camera/image_raw", Image, self.callback)
 
     def callback(self, data):
-        # we don't need every frame saved, just the significant ones
         print("Callback started")
 
         try:
@@ -52,7 +50,7 @@ class robotPhotographer:
             filename: string containing filename of image without .jpg
     """
     def photographer(self, robotImage, filename):
-        # saves image to a file in current directory
+        # Saves image as a .jpg file in current directory
         relPath = "LP_testDataSet/raw/"
         filenameWithExtension = relPath + filename + ".jpg"
         print("Filename with extension: ", filenameWithExtension)
@@ -63,7 +61,7 @@ class robotPhotographer:
 
     """
     @brief: Creates a filename for image
-    @param: npc: raptor or pedistrian, specified at top of script
+    @param: npc: raptor, pedistrian, or LP, specified in init function
     @return: string containing filename without .jpg
     """
     def fileNameCreator(self, npc):

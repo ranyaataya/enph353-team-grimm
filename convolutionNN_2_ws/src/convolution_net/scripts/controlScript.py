@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+# Authors: Ranya Ataya & Zach Laskin
 # This is the priliminary control script that will talk
 # with the competition rostopics
 
@@ -78,15 +79,15 @@ class controlNode:
             print(e)
         self.determineVelocity(cv_image)
 
+        # Publish initial message once
         if(self.initialMsgSent is False):
             initialMsg = str(self.teamName + ',' + self.teamPassword + ',' + '0' + ',' + 'AA11')
             self.publishLP.publish(initialMsg)
 
             self.initialMsgSent = True
-        # Checks if robot is at parking lot
 
+        # Checks if robot is at parking lot
         parkingLotFlag = self.atParkingLot(cv_image)
-        # print(parkingLotFlag)
 
         if parkingLotFlag is True and (self.counterLP - self.tempCounter) >= 15:
             print("At parking lot\n")
@@ -131,10 +132,7 @@ class controlNode:
         # Sum all the pixels in the image to represent the
         # area of blue in the image
         imgSum = np.sum(maskedImg)
-        # thresholdSum = [10000000, 17000000]
         thresholdSum = [4000000, 6500000]
-        # thresholdSum = [5000000, 7500000]
-        # print("imgSum: ", imgSum)
 
         # Robot is at parking lot
         if imgSum > thresholdSum[0] and imgSum < thresholdSum[1]:
@@ -162,32 +160,26 @@ class controlNode:
         print("model loaded")
 
         RELATIVE_PATH = "competitionImgs/"
-        # files = os.listdir(RELATIVE_PATH)
         files = ["img_0.jpg", "img_1.jpg", "img_2.jpg", "img_3.jpg",
                  "img_4.jpg"]
 
-        # for fileName in files[:]:
+        # Predict the character for each image, one at a time
         for i in range(5):
             letterNumImg = np.array(PIL_Image.open(RELATIVE_PATH + files[i]))
-
             letterNumImg = letterNumImg/255.0
-
             resizedImg = np.reshape(letterNumImg, [1, 39, 36, 3])
 
             predictions = LPModel.predict(resizedImg)
-            # print("Predictions: ", predictions)
 
             if(i == 1 or i == 2):
-                # it's a letter
+                # It's a letter
                 index = np.where(predictions == np.amax(predictions[:, 0:26]))
             else:
-                # it's a number
+                # It's a number
                 index = np.where(predictions == np.amax(predictions[:, 26:36]))
-            # index = np.where(predictions == np.amax(predictions))
-            # print("Index of max value: ", index)
+
             index = int(index[1])
             character = self.answerKey[index]
-            # print("Character: ", character)
             LP_msg = LP_msg + character
 
         return LP_msg

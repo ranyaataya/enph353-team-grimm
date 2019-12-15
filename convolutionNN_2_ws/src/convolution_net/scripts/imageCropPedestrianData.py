@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+# Author: Ranya Ataya
 # Crops the images of the pedestrian for generating data
 
 import cv2
@@ -39,12 +40,10 @@ def saveImage(img, fileName):
 
 RELATIVE_PATH = 'pedestrianCNN_rawData/'
 files = os.listdir(RELATIVE_PATH)
-fileName = 'pedestrian467.jpg'  # 240, 212, 372, 467
 
 setNum = 1
 
-# for fileName in files[:]:
-for i in range(1):
+for fileName in files[:]:
     print(fileName)
     cameraImg = cameraImg = np.array(Image.open(RELATIVE_PATH + fileName))
 
@@ -52,10 +51,12 @@ for i in range(1):
     height, width = cameraImg.shape[0:2]
 
     whiteThreshold = 250
-    CHECK_HEIGHT_FOR_CROPPING = height - 200  # 250
+    CHECK_HEIGHT_FOR_CROPPING = height - 200
+
     left_x = 0
     right_x = 0
 
+    # Convert image from RGB to black and white
     cameraBW = cv2.cv2.cvtColor(cameraImg, cv2.COLOR_BGR2GRAY)
 
     for x in range(width):
@@ -72,6 +73,8 @@ for i in range(1):
             break
 
     print(left_x, right_x)
+
+    # Crop image
     croppedImg = cameraImg[:, left_x:right_x, :]
     croppedHeight, croppedWidth = croppedImg.shape[0:2]
 
@@ -81,15 +84,13 @@ for i in range(1):
     scalingHeightFactor = STANDARD_HEIGHT/croppedHeight
     scalingWidthFactor = STANDARD_WIDTH/croppedWidth
 
-    # # Resize the cropped image to standard size
+    # Resize the cropped image to standard size
     resizedImg = cv2.resize(croppedImg, (int(croppedWidth*scalingWidthFactor),
                                          int(croppedHeight*scalingHeightFactor)),
                             interpolation=cv2.INTER_CUBIC)
 
     print("Set: ", setNum, " saved")
     setNum = setNum + 1
-    # saveImage(resizedImg, fileName)
+    saveImage(resizedImg, fileName)
 
-    # plt.imshow(cameraImg), plt.show()
-    # plt.imshow(resizedImg), plt.show()
-    # plt.imshow(bw), plt.show()
+    # To view image use: plt.imshow(cameraImg), plt.show()

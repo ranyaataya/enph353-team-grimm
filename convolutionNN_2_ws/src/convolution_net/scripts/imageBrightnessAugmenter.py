@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+
+# Author: Ranya Ataya
 # Augments images to have different brightnesses
 
 import numpy as np
@@ -11,9 +13,9 @@ READING_PATH = "letters_and_numbers/U/"
 files = os.listdir(READING_PATH)
 WRITING_PATH = "lettersAndNums_brightness/U/"
 
-counter = 56
-for i in range(1):
-    fileName = "U3097.jpg"  # files[i]
+counter = 0
+for i in range(5):
+    fileName = files[i]
     img = np.array(Image.open(READING_PATH + fileName))
 
     samples = np.expand_dims(img, 0)
@@ -28,6 +30,6 @@ for i in range(1):
         image = batch[0].astype('uint8')
 
         img_BGR = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
-        # define character
+        # Define character
         cv2.imwrite(WRITING_PATH + character + str(counter) + ".jpg", img_BGR)  # imwrite assumes BGR
         counter = counter + 1

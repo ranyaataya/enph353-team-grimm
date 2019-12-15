@@ -1,10 +1,13 @@
 #!/usr/bin/env python
 
+# Author: Ranya Ataya
+
 import cv2
 import numpy as np
 from matplotlib import pyplot as plt
 import os
 from PIL import Image
+
 
 """
 @brief: Crops the raw camera image from the robot's camera.
@@ -18,14 +21,10 @@ def imageCrop(cameraImg):
     height, width = cameraImg.shape[0:2]
 
     # Threshold colour value
-    thresholdColour_blue = [1, 0, 102]
-    threshold_blue_to_grey = 10
-    # ============================
     BLUE_DIFF_RANGE = [80, 107]
     BLUE_DIFF_RANGE_Y = [93, 107]
     GREY_DIFF = 7
     GREY_THRESHOLD = 95
-    # ============================
 
     heightThresholds = findHeightThreshold(cameraImg, BLUE_DIFF_RANGE_Y)
 
@@ -69,7 +68,6 @@ def imageCrop(cameraImg):
             right_x = width - x
             break
 
-
     # y Direction
     up_y = heightThresholds[0]
     down_y = heightThresholds[2]
@@ -78,15 +76,15 @@ def imageCrop(cameraImg):
     croppedImg = cameraImg[up_y:down_y, left_x:right_x, :]
     croppedHeight, croppedWidth = croppedImg.shape[0:2]
 
-    # scale cropped image to standard size, determine scaling factors
-    # standard numbers based on sample image
+    # Scale cropped image to standard size, determine scaling factors
+    # Standard numbers were based on empirical tests
     STANDARD_HEIGHT = 195.0
     STANDARD_WIDTH = 222.0
 
     scalingHeightFactor = STANDARD_HEIGHT/croppedHeight
     scalingWidthFactor = STANDARD_WIDTH/croppedWidth
 
-    # [lower height, upper height, lower width, upper width]
+    # Character image bounds
     LP_bounds = [0.7, 0.9]
     lotID_bounds = [0.41, 0.63]
 
@@ -106,7 +104,6 @@ def imageCrop(cameraImg):
     lot_img_letter = lotID_img[:, 0:int(lotID_img.shape[1]/2), :]
     lot_img_num = lotID_img[:, int(lotID_img.shape[1]/2)+1:lotID_img.shape[1], :]
 
-    # LP_charBounds = [17, 53, 54, 90, 126, 162, 165, 201]
     LP_charBounds = [17, 53, 55, 91, 132, 168, 170, 206]
 
     LP_img1 = licensePlate_img[:, LP_charBounds[0]:LP_charBounds[1], :]
@@ -130,6 +127,7 @@ def imageCrop(cameraImg):
                               int(lot_img_num.shape[0]*scaling_lotIDN_HeightFactor)),
                              interpolation=cv2.INTER_CUBIC)
 
+    # Save individual images
     saveImage(lot_img_num, "img_0.jpg")
     saveImage(LP_img1, "img_1.jpg")
     saveImage(LP_img2, "img_2.jpg")
@@ -173,8 +171,6 @@ def findHeightThreshold(cameraImg, thresholdValue):
 """
 def getImagePath(fileName):
     global counter
-    # relPath = "letters_and_numbers/" + fileName[position] + "/" + fileName[position] + str(counter) + ".jpg"
-    # CHANGE RELATIVE PATH TO BE WHAT WE WANT!!!!
     relPath = "competitionImgs/" + fileName
 
     return relPath

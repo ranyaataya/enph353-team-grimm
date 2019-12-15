@@ -1,4 +1,10 @@
 #!/usr/bin/env python
+
+# Author: Ranya Ataya
+# This script was used to develop the function for determining
+# if the robot is at a parking lot. The following code was copied
+# into controlScript.py
+
 import cv2
 import numpy as np
 from matplotlib import pyplot as plt
@@ -29,10 +35,4 @@ else:
     print("road")
     print(imgSum)
 
-print("end of script 1")
-from testRandomStuff import myfunction
-myfunction(4)
-
-# plt.imshow(cameraImg), plt.show()
-# plt.imshow(maskedCameraImg), plt.show()
-# plt.imshow(roadImg), plt.show()
+# To view image use: plt.imshow(cameraImg), plt.show()

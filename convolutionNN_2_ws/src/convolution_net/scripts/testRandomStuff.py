@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 
+# Author: Ranya Ataya
+# This script is just used as a place to test small random
+# chunks of code. Each chunk had various purposes for testing
+
 import cv2
 import numpy as np
 import os
