@@ -47,4 +47,5 @@ The control node consisted of the robot's overall decision making and setup. The
 <br><br>
 
 ### Notes:
-All python scripts used in the final iteration of the project can be found in enph353-team-grimm/convolutionNN_2_ws/src/convolution_net/scripts/ 
+All python scripts used in the final iteration of the project can be found in this GitHub repository in the following path: 
+<br>enph353-team-grimm/convolutionNN_2_ws/src/convolution_net/scripts/ 
